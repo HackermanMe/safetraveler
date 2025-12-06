@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SafeTraveler - PWA pour Aéroport de Lomé
 
-## Getting Started
+Application web progressive (PWA) pour améliorer l'expérience des passagers à l'aéroport de Lomé.
 
-First, run the development server:
+## Fonctionnalités
 
+### 1. Carte Interactive de l'Aéroport
+- Plan détaillé des terminaux et halls
+- Localisation des portes d'embarquement
+- Points d'intérêt (toilettes, restaurants, boutiques, services)
+- Sélecteur d'étage
+- Recherche de lieux
+
+### 2. Navigation Intelligente
+- Calcul d'itinéraire entre deux points
+- Instructions étape par étape
+- Affichage visuel sur la carte
+- Support multi-étages
+
+### 3. Système de Signalement Anonyme
+- Signalement d'incidents de sécurité
+- Problèmes de propreté
+- Maintenance et équipement
+- Comportements suspects
+- Upload de photos
+- Totalement anonyme
+
+### 4. Services et Informations
+- Catalogue complet des services
+- Informations de contact
+- Horaires d'ouverture
+- FAQ
+- Numéros d'urgence
+
+## Technologies Utilisées
+
+- **Framework**: Next.js 16 (App Router)
+- **UI**: React 19, TailwindCSS 4
+- **Carte**: Mapbox GL
+- **Base de données**: PostgreSQL avec Prisma
+- **PWA**: next-pwa
+- **Icons**: Lucide React
+- **TypeScript**: Pour la sécurité des types
+
+## Installation
+
+### Prérequis
+- Node.js 18+
+- PostgreSQL
+- Compte Mapbox (pour la clé API)
+
+### Étapes
+
+1. Cloner le projet
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <url>
+cd safetraveler
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Installer les dépendances
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configurer les variables d'environnement
+```bash
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Modifier `.env` avec vos valeurs:
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/safetraveler?schema=public"
+NEXT_PUBLIC_MAPBOX_TOKEN="your_mapbox_access_token"
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+```
 
-## Learn More
+4. Initialiser la base de données
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. Lancer le serveur de développement
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+L'application sera accessible sur [http://localhost:3000](http://localhost:3000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Configuration Mapbox
 
-## Deploy on Vercel
+1. Créer un compte sur [mapbox.com](https://mapbox.com)
+2. Créer un token d'accès
+3. Ajouter le token dans `.env` comme `NEXT_PUBLIC_MAPBOX_TOKEN`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Déploiement
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Vercel (Recommandé)
+```bash
+npm run build
+vercel deploy
+```
+
+## PWA
+
+L'application est configurée comme PWA:
+- Installation sur l'écran d'accueil
+- Fonctionne offline (cartes en cache)
+- Service Worker automatique
+- Optimisée pour mobile
+
+## Structure du Projet
+
+```
+safetraveler/
+├── app/                     # Pages et routes
+├── components/              # Composants React
+├── lib/                     # Utilitaires et données
+├── prisma/                  # Base de données
+└── public/                  # Assets statiques
+```
+
+## Sécurité
+
+- Signalements anonymes (pas de collecte d'informations personnelles)
+- Validation des entrées
+- HTTPS obligatoire en production
+
+## Licence
+
+MIT License

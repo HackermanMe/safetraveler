@@ -1,0 +1,43 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Report {
+  id          String   @id @default(cuid())
+  type        String   // security, cleanliness, maintenance, etc.
+  location    String   // Location ID or description
+  description String
+  photo       String?  // URL or base64
+  severity    String   @default("medium") // low, medium, high, critical
+  status      String   @default("pending") // pending, reviewing, resolved
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([status])
+  @@index([type])
+}
+
+model FlightStatus {
+  id            String   @id @default(cuid())
+  flightNumber  String   @unique
+  airline       String
+  destination   String?
+  origin        String?
+  gate          String?
+  terminal      String
+  scheduledTime String
+  status        String   // on_time, delayed, cancelled, boarding, departed
+  delay         Int?     // in minutes
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([flightNumber])
+  @@index([status])
+}

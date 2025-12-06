@@ -1,0 +1,215 @@
+{
+  "locations": [
+    {
+      "id": "entrance-main",
+      "name": "Entrée Principale",
+      "type": "entrance",
+      "floor": 0,
+      "coordinates": [1.254516, 6.165917],
+      "description": "Entrée principale de l'aéroport",
+      "status": "open"
+    },
+    {
+      "id": "checkin-a",
+      "name": "Enregistrement Zone A",
+      "type": "checkin",
+      "floor": 0,
+      "coordinates": [1.254616, 6.165917],
+      "description": "Comptoirs d'enregistrement 1-15",
+      "status": "open",
+      "accessibleTo": ["economy", "business", "premium"]
+    },
+    {
+      "id": "checkin-b",
+      "name": "Enregistrement Business",
+      "type": "checkin",
+      "floor": 0,
+      "coordinates": [1.254716, 6.165917],
+      "description": "Comptoirs réservés Business/Premium",
+      "status": "open",
+      "accessibleTo": ["business", "premium"]
+    },
+    {
+      "id": "security-1",
+      "name": "Contrôle de Sécurité 1",
+      "type": "security",
+      "floor": 0,
+      "coordinates": [1.254816, 6.165917],
+      "description": "Point de contrôle principal",
+      "status": "busy"
+    },
+    {
+      "id": "gate-1",
+      "name": "Porte d'Embarquement 1",
+      "type": "gate",
+      "floor": 1,
+      "coordinates": [1.254916, 6.165917],
+      "description": "Vols internationaux",
+      "status": "open"
+    },
+    {
+      "id": "gate-2",
+      "name": "Porte d'Embarquement 2",
+      "type": "gate",
+      "floor": 1,
+      "coordinates": [1.255016, 6.165917],
+      "description": "Vols internationaux",
+      "status": "open"
+    },
+    {
+      "id": "gate-3",
+      "name": "Porte d'Embarquement 3",
+      "type": "gate",
+      "floor": 1,
+      "coordinates": [1.255116, 6.165917],
+      "description": "Vols régionaux",
+      "status": "open"
+    },
+    {
+      "id": "toilet-1",
+      "name": "Toilettes Zone Publique",
+      "type": "toilet",
+      "floor": 0,
+      "coordinates": [1.254556, 6.165917],
+      "description": "Toilettes accessibles PMR",
+      "status": "open"
+    },
+    {
+      "id": "toilet-2",
+      "name": "Toilettes Zone Embarquement",
+      "type": "toilet",
+      "floor": 1,
+      "coordinates": [1.254956, 6.165917],
+      "description": "Toilettes accessibles PMR",
+      "status": "open"
+    },
+    {
+      "id": "restaurant-1",
+      "name": "Café de l'Aéroport",
+      "type": "restaurant",
+      "floor": 0,
+      "coordinates": [1.254656, 6.165917],
+      "description": "Café, snacks et restauration rapide",
+      "status": "open"
+    },
+    {
+      "id": "shop-1",
+      "name": "Duty Free",
+      "type": "shop",
+      "floor": 1,
+      "coordinates": [1.254856, 6.165917],
+      "description": "Boutique hors taxes",
+      "status": "open"
+    },
+    {
+      "id": "info-1",
+      "name": "Information",
+      "type": "information",
+      "floor": 0,
+      "coordinates": [1.254566, 6.165917],
+      "description": "Desk d'information et assistance",
+      "status": "open"
+    },
+    {
+      "id": "lounge-1",
+      "name": "Salon Business",
+      "type": "lounge",
+      "floor": 1,
+      "coordinates": [1.254756, 6.165917],
+      "description": "Salon réservé Business/Premium",
+      "status": "open",
+      "accessibleTo": ["business", "premium"]
+    },
+    {
+      "id": "baggage-1",
+      "name": "Retrait Bagages",
+      "type": "baggage",
+      "floor": 0,
+      "coordinates": [1.255216, 6.165917],
+      "description": "Tapis de récupération bagages",
+      "status": "open"
+    },
+    {
+      "id": "medical-1",
+      "name": "Infirmerie",
+      "type": "medical",
+      "floor": 0,
+      "coordinates": [1.254586, 6.165917],
+      "description": "Assistance médicale d'urgence",
+      "status": "open"
+    },
+    {
+      "id": "prayer-1",
+      "name": "Salle de Prière",
+      "type": "prayer",
+      "floor": 1,
+      "coordinates": [1.255056, 6.165917],
+      "description": "Espace de recueillement",
+      "status": "open"
+    }
+  ],
+  "services": [
+    {
+      "id": "service-assistance",
+      "name": "Assistance Passagers",
+      "category": "assistance",
+      "description": "Aide pour passagers à mobilité réduite, personnes âgées, accompagnement",
+      "location": "info-1",
+      "hours": "24/7",
+      "contact": "+228 22 23 44 55",
+      "icon": "accessibility"
+    },
+    {
+      "id": "service-medical",
+      "name": "Assistance Médicale",
+      "category": "medical",
+      "description": "Soins d'urgence, premiers secours",
+      "location": "medical-1",
+      "hours": "24/7",
+      "contact": "+228 22 23 44 56",
+      "icon": "cross"
+    },
+    {
+      "id": "service-lost",
+      "name": "Objets Trouvés",
+      "category": "lost_found",
+      "description": "Déclaration et récupération d'objets perdus",
+      "location": "info-1",
+      "hours": "6h - 23h",
+      "contact": "+228 22 23 44 57",
+      "icon": "briefcase"
+    },
+    {
+      "id": "service-info",
+      "name": "Information Vols",
+      "category": "information",
+      "description": "Informations sur les vols, horaires, portes",
+      "location": "info-1",
+      "hours": "24/7",
+      "contact": "+228 22 23 44 58",
+      "icon": "info"
+    },
+    {
+      "id": "service-customs",
+      "name": "Douane",
+      "category": "customs",
+      "description": "Déclarations douanières et contrôles",
+      "location": "customs-1",
+      "hours": "Selon horaires vols",
+      "contact": "+228 22 23 44 59",
+      "icon": "shield"
+    }
+  ],
+  "floors": [
+    {
+      "level": 0,
+      "name": "Rez-de-chaussée - Arrivées & Départs",
+      "bounds": [[1.2545, 6.1658], [1.2553, 6.1661]]
+    },
+    {
+      "level": 1,
+      "name": "Étage 1 - Zone d'Embarquement",
+      "bounds": [[1.2545, 6.1658], [1.2553, 6.1661]]
+    }
+  ]
+}
