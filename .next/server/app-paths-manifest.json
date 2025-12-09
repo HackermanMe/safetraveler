@@ -1,7 +1,9 @@
 {
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/api/flights/route": "app/api/flights/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/flights/page": "app/flights/page.js",
   "/map/page": "app/map/page.js",
   "/navigation/page": "app/navigation/page.js",
   "/page": "app/page.js",

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { PassengerProvider } from "@/lib/context/PassengerContext";
+import { LocaleProvider } from "@/lib/context/LocaleContext";
 import Navbar from "@/components/layout/Navbar";
 import ClassFAB from "@/components/ui/ClassFAB";
+import DemoModeBanner from "@/components/ui/DemoModeBanner";
 
 export const metadata: Metadata = {
   title: "SafeTraveler - Aéroport de Lomé",
@@ -43,11 +45,14 @@ export default function RootLayout({
         />
       </head>
       <body className="font-roboto antialiased bg-gray-50">
-        <PassengerProvider>
-          <Navbar />
-          <main className="pb-16 md:pb-0">{children}</main>
-          <ClassFAB />
-        </PassengerProvider>
+        <LocaleProvider>
+          <PassengerProvider>
+            <Navbar />
+            <main className="pb-16 md:pb-0">{children}</main>
+            <ClassFAB />
+            <DemoModeBanner />
+          </PassengerProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Location, LocationType } from "@/lib/types";
+import { locationColors as themeLocationColors, theme } from "@/lib/config/theme";
 
 interface EnhancedAirportMapProps {
   locations: Location[];
@@ -13,28 +14,8 @@ interface EnhancedAirportMapProps {
   currentFloor?: number;
 }
 
-// Couleurs Material Design pour chaque type de location
-const locationColors: Record<LocationType, string> = {
-  gate: "#1976d2",           // Blue
-  checkin: "#0288d1",        // Light Blue
-  security: "#f57c00",       // Orange
-  customs: "#7b1fa2",        // Purple
-  toilet: "#00897b",         // Teal
-  restaurant: "#e64a19",     // Deep Orange
-  shop: "#c2185b",           // Pink
-  information: "#388e3c",    // Green
-  exit: "#616161",           // Grey
-  entrance: "#424242",       // Dark Grey
-  lounge: "#d4af37",         // Gold
-  baggage: "#5d4037",        // Brown
-  parking: "#455a64",        // Blue Grey
-  medical: "#d32f2f",        // Red
-  prayer: "#512da8",         // Deep Purple
-  smoking: "#757575",        // Grey
-  atm: "#00796b",            // Teal
-  wifi: "#0097a7",           // Cyan
-  charging: "#fbc02d",       // Yellow
-};
+// Use location colors from theme
+const locationColors = themeLocationColors;
 
 export default function EnhancedAirportMap({
   locations,
@@ -59,23 +40,37 @@ export default function EnhancedAirportMap({
 
     mapboxgl.accessToken = token;
 
+    // Create map with improved style for Lomé Airport
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/light-v11",
-      center: [1.2549, 6.1659],
-      zoom: 17,
+      style: "mapbox://styles/mapbox/streets-v12", // More detailed street map
+      center: [1.2549, 6.1659], // Lomé-Tokoin Airport coordinates
+      zoom: 17.5, // Closer zoom for better indoor navigation
       pitch: 0,
       bearing: 0,
       attributionControl: false,
+      minZoom: 15, // Prevent zooming out too far
+      maxZoom: 20, // Allow detailed zoom
     });
 
-    map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
+    // Add controls
+    map.current.addControl(
+      new mapboxgl.NavigationControl({
+        showCompass: true,
+        showZoom: true,
+        visualizePitch: false,
+      }),
+      "top-right"
+    );
+
     map.current.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true,
         },
         trackUserLocation: true,
+        showUserHeading: true,
+        showUserLocation: true,
       }),
       "top-right"
     );
@@ -203,9 +198,9 @@ export default function EnhancedAirportMap({
         "line-cap": "round",
       },
       paint: {
-        "line-color": "#1976d2",
-        "line-width": 5,
-        "line-opacity": 0.8,
+        "line-color": theme.colors.accent.main, // Yellow accent for routes
+        "line-width": 6,
+        "line-opacity": 0.9,
       },
     });
 
@@ -281,11 +276,11 @@ function getLocationTypeLabel(type: LocationType): string {
 
 function getStatusColor(status: string): string {
   const colors: Record<string, string> = {
-    open: "#388e3c",
-    closed: "#d32f2f",
-    busy: "#f57c00",
+    open: theme.colors.success.main,
+    closed: theme.colors.error.main,
+    busy: theme.colors.warning.main,
   };
-  return colors[status] || "#757575";
+  return colors[status] || theme.colors.gray[500];
 }
 
 function getStatusLabel(status: string): string {

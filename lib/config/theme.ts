@@ -1,168 +1,198 @@
-// Material Design inspired theme
+// SafeTraveler Design System - Modern & Accessible
 export const theme = {
   colors: {
-    primary: {
-      main: '#1976d2',      // Google Blue
-      light: '#42a5f5',
-      dark: '#1565c0',
-      contrast: '#ffffff',
+    // Accent color - Yellow/Gold (for CTA, icons, badges)
+    accent: {
+      main: '#F59E0B',        // Amber 500 - Main yellow
+      light: '#FCD34D',       // Amber 300 - Light yellow
+      dark: '#D97706',        // Amber 600 - Dark yellow/gold
+      contrast: '#1F2937',    // Gray 800 - Dark text on yellow
     },
-    secondary: {
-      main: '#dc004e',
-      light: '#f73378',
-      dark: '#9a0036',
-      contrast: '#ffffff',
+    // Neutral palette - Grays
+    gray: {
+      50: '#F9FAFB',          // Very light gray
+      100: '#F3F4F6',         // Light gray background
+      200: '#E5E7EB',         // Light gray borders
+      300: '#D1D5DB',         // Medium-light gray
+      400: '#9CA3AF',         // Medium gray
+      500: '#6B7280',         // Medium gray text
+      600: '#4B5563',         // Dark gray text
+      700: '#374151',         // Very dark gray
+      800: '#1F2937',         // Almost black
+      900: '#111827',         // Pure dark
     },
+    // Semantic colors (minimal use)
     success: {
-      main: '#2e7d32',
-      light: '#4caf50',
-      dark: '#1b5e20',
+      main: '#10B981',        // Green 500
+      light: '#34D399',       // Green 400
+      dark: '#059669',        // Green 600
       contrast: '#ffffff',
     },
     warning: {
-      main: '#ed6c02',
-      light: '#ff9800',
-      dark: '#e65100',
-      contrast: '#ffffff',
+      main: '#F59E0B',        // Amber 500 (same as accent)
+      light: '#FCD34D',
+      dark: '#D97706',
+      contrast: '#1F2937',
     },
     error: {
-      main: '#d32f2f',
-      light: '#ef5350',
-      dark: '#c62828',
+      main: '#EF4444',        // Red 500
+      light: '#F87171',       // Red 400
+      dark: '#DC2626',        // Red 600
       contrast: '#ffffff',
     },
     info: {
-      main: '#0288d1',
-      light: '#03a9f4',
-      dark: '#01579b',
+      main: '#3B82F6',        // Blue 500
+      light: '#60A5FA',       // Blue 400
+      dark: '#2563EB',        // Blue 600
       contrast: '#ffffff',
     },
-    grey: {
-      50: '#fafafa',
-      100: '#f5f5f5',
-      200: '#eeeeee',
-      300: '#e0e0e0',
-      400: '#bdbdbd',
-      500: '#9e9e9e',
-      600: '#757575',
-      700: '#616161',
-      800: '#424242',
-      900: '#212121',
-    },
+    // Backgrounds
     background: {
-      default: '#fafafa',
-      paper: '#ffffff',
+      default: '#FFFFFF',     // Pure white
+      paper: '#F9FAFB',       // Very light gray (gray-50)
+      elevated: '#FFFFFF',    // White with shadow
     },
+    // Text colors
     text: {
-      primary: 'rgba(0, 0, 0, 0.87)',
-      secondary: 'rgba(0, 0, 0, 0.60)',
-      disabled: 'rgba(0, 0, 0, 0.38)',
+      primary: '#111827',     // Gray 900 - Almost black
+      secondary: '#6B7280',   // Gray 500 - Medium gray
+      disabled: '#9CA3AF',    // Gray 400
+      inverse: '#FFFFFF',     // White text
     },
-    divider: 'rgba(0, 0, 0, 0.12)',
+    // Borders & Dividers
+    border: {
+      light: '#F3F4F6',       // Gray 100
+      main: '#E5E7EB',        // Gray 200
+      dark: '#D1D5DB',        // Gray 300
+    },
+    divider: '#E5E7EB',       // Gray 200
   },
-  elevation: {
-    1: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-    2: '0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12)',
-    3: '0 10px 20px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.10)',
-    4: '0 15px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.05)',
-    8: '0 20px 40px rgba(0,0,0,0.20)',
+  // Modern shadows (subtle and refined)
+  shadow: {
+    none: 'none',
+    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
   },
-  borderRadius: {
+  // Border radius scale
+  radius: {
+    none: '0',
     sm: '4px',
+    DEFAULT: '6px',
     md: '8px',
     lg: '12px',
     xl: '16px',
+    '2xl': '24px',
     full: '9999px',
   },
+  // Precise spacing scale (4px base)
   spacing: {
-    xs: '4px',
-    sm: '8px',
-    md: '16px',
-    lg: '24px',
-    xl: '32px',
-    '2xl': '48px',
+    0: '0',
+    1: '4px',      // 0.25rem
+    2: '8px',      // 0.5rem
+    3: '12px',     // 0.75rem
+    4: '16px',     // 1rem
+    5: '20px',     // 1.25rem
+    6: '24px',     // 1.5rem
+    8: '32px',     // 2rem
+    10: '40px',    // 2.5rem
+    12: '48px',    // 3rem
+    16: '64px',    // 4rem
+    20: '80px',    // 5rem
+    24: '96px',    // 6rem
   },
+  // Modern typography scale (Roboto/Inter)
   typography: {
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    fontFamily: {
+      sans: "'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      mono: "'JetBrains Mono', 'Fira Code', Consolas, monospace",
+    },
+    // Display - Large hero text
+    display: {
+      fontSize: '56px',       // 3.5rem
+      fontWeight: 700,
+      lineHeight: 1.1,
+      letterSpacing: '-0.02em',
+    },
+    // Headings
     h1: {
-      fontSize: '96px',
-      fontWeight: 300,
-      lineHeight: 1.167,
-      letterSpacing: '-1.5px',
+      fontSize: '48px',       // 3rem
+      fontWeight: 700,
+      lineHeight: 1.2,
+      letterSpacing: '-0.01em',
     },
     h2: {
-      fontSize: '60px',
-      fontWeight: 300,
-      lineHeight: 1.2,
-      letterSpacing: '-0.5px',
+      fontSize: '36px',       // 2.25rem
+      fontWeight: 700,
+      lineHeight: 1.25,
+      letterSpacing: '-0.01em',
     },
     h3: {
-      fontSize: '48px',
-      fontWeight: 400,
-      lineHeight: 1.167,
-      letterSpacing: '0px',
+      fontSize: '30px',       // 1.875rem
+      fontWeight: 600,
+      lineHeight: 1.3,
+      letterSpacing: '0',
     },
     h4: {
-      fontSize: '34px',
-      fontWeight: 400,
-      lineHeight: 1.235,
-      letterSpacing: '0.25px',
+      fontSize: '24px',       // 1.5rem
+      fontWeight: 600,
+      lineHeight: 1.4,
+      letterSpacing: '0',
     },
     h5: {
-      fontSize: '24px',
-      fontWeight: 400,
-      lineHeight: 1.334,
-      letterSpacing: '0px',
+      fontSize: '20px',       // 1.25rem
+      fontWeight: 600,
+      lineHeight: 1.5,
+      letterSpacing: '0',
     },
     h6: {
-      fontSize: '20px',
-      fontWeight: 500,
-      lineHeight: 1.6,
-      letterSpacing: '0.15px',
+      fontSize: '18px',       // 1.125rem
+      fontWeight: 600,
+      lineHeight: 1.5,
+      letterSpacing: '0',
     },
-    subtitle1: {
-      fontSize: '16px',
+    // Body text
+    large: {
+      fontSize: '18px',       // 1.125rem
       fontWeight: 400,
-      lineHeight: 1.75,
-      letterSpacing: '0.15px',
+      lineHeight: 1.6,
+      letterSpacing: '0',
     },
-    subtitle2: {
-      fontSize: '14px',
-      fontWeight: 500,
-      lineHeight: 1.57,
-      letterSpacing: '0.1px',
-    },
-    body1: {
-      fontSize: '16px',
+    base: {
+      fontSize: '16px',       // 1rem
       fontWeight: 400,
       lineHeight: 1.5,
-      letterSpacing: '0.15px',
+      letterSpacing: '0',
     },
-    body2: {
-      fontSize: '14px',
+    small: {
+      fontSize: '14px',       // 0.875rem
       fontWeight: 400,
-      lineHeight: 1.43,
-      letterSpacing: '0.15px',
+      lineHeight: 1.5,
+      letterSpacing: '0',
     },
+    tiny: {
+      fontSize: '12px',       // 0.75rem
+      fontWeight: 400,
+      lineHeight: 1.5,
+      letterSpacing: '0.01em',
+    },
+    // Special
     button: {
-      fontSize: '14px',
+      fontSize: '15px',       // 0.9375rem
       fontWeight: 500,
-      lineHeight: 1.75,
-      letterSpacing: '0.4px',
-      textTransform: 'uppercase',
+      lineHeight: 1,
+      letterSpacing: '0.01em',
     },
     caption: {
-      fontSize: '12px',
-      fontWeight: 400,
-      lineHeight: 1.66,
-      letterSpacing: '0.4px',
-    },
-    overline: {
-      fontSize: '12px',
-      fontWeight: 400,
-      lineHeight: 2.66,
-      letterSpacing: '1px',
-      textTransform: 'uppercase',
+      fontSize: '12px',       // 0.75rem
+      fontWeight: 500,
+      lineHeight: 1.4,
+      letterSpacing: '0.02em',
+      textTransform: 'uppercase' as const,
     },
   },
   breakpoints: {
@@ -192,42 +222,47 @@ export const theme = {
   },
 };
 
+// Passenger class colors (aligned with new design system)
 export const passengerClassColors = {
   economy: {
-    primary: '#757575',
-    light: '#9e9e9e',
-    background: '#f5f5f5',
+    primary: '#6B7280',      // Gray 500
+    light: '#9CA3AF',        // Gray 400
+    background: '#F9FAFB',   // Gray 50
+    border: '#E5E7EB',       // Gray 200
   },
   business: {
-    primary: '#1976d2',
-    light: '#42a5f5',
-    background: '#e3f2fd',
+    primary: '#3B82F6',      // Blue 500
+    light: '#60A5FA',        // Blue 400
+    background: '#EFF6FF',   // Blue 50
+    border: '#BFDBFE',       // Blue 200
   },
   first: {
-    primary: '#d4af37',
-    light: '#ffd700',
-    background: '#fffbea',
+    primary: '#F59E0B',      // Amber 500 (accent yellow)
+    light: '#FCD34D',        // Amber 300
+    background: '#FFFBEB',   // Amber 50
+    border: '#FDE68A',       // Amber 200
   },
 };
 
+// Location type colors (refined and cohesive)
 export const locationColors = {
-  gate: "#1976d2",
-  checkin: "#0288d1",
-  security: "#f57c00",
-  customs: "#7b1fa2",
-  toilet: "#00897b",
-  restaurant: "#e64a19",
-  shop: "#c2185b",
-  information: "#388e3c",
-  exit: "#616161",
-  entrance: "#424242",
-  lounge: "#d4af37",
-  baggage: "#5d4037",
-  parking: "#455a64",
-  medical: "#d32f2f",
-  prayer: "#512da8",
-  smoking: "#757575",
-  atm: "#00796b",
-  wifi: "#0097a7",
-  charging: "#fbc02d",
+  gate: "#3B82F6",           // Blue 500
+  checkin: "#06B6D4",        // Cyan 500
+  security: "#F97316",       // Orange 500
+  customs: "#8B5CF6",        // Violet 500
+  toilet: "#14B8A6",         // Teal 500
+  restaurant: "#EF4444",     // Red 500
+  shop: "#EC4899",           // Pink 500
+  information: "#10B981",    // Green 500
+  exit: "#6B7280",           // Gray 500
+  entrance: "#374151",       // Gray 700
+  lounge: "#F59E0B",         // Amber 500 (accent)
+  baggage: "#92400E",        // Amber 800
+  parking: "#475569",        // Slate 600
+  medical: "#DC2626",        // Red 600
+  prayer: "#7C3AED",         // Violet 600
+  smoking: "#9CA3AF",        // Gray 400
+  atm: "#059669",            // Emerald 600
+  wifi: "#0891B2",           // Cyan 600
+  charging: "#FBBF24",       // Amber 400
 };

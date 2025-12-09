@@ -1,7 +1,9 @@
 {
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/api/flights/route": "/api/flights",
   "/favicon.ico/route": "/favicon.ico",
+  "/flights/page": "/flights",
   "/map/page": "/map",
   "/navigation/page": "/navigation",
   "/page": "/",

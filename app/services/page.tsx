@@ -1,262 +1,513 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Phone, Clock, Search, X, ChevronRight } from "lucide-react";
-import { ServiceInfo } from "@/lib/types";
+import {
+  Phone,
+  Clock,
+  Search,
+  X,
+  MapPin,
+  Coffee,
+  ShoppingBag,
+  Utensils,
+  Heart,
+  Info,
+  WifiIcon,
+  Sparkles,
+} from "lucide-react";
+import { Location } from "@/lib/types";
 import airportData from "@/lib/data/airport-data.json";
-
-const serviceIcons: { [key: string]: string } = {
-  accessibility: "♿",
-  medical: "⚕️",
-  lost_found: "🧳",
-  information: "ℹ️",
-  customs: "🛃",
-  currency: "💱",
-};
+import { theme } from "@/lib/config/theme";
 
 export default function ServicesPage() {
-  const [services, setServices] = useState<ServiceInfo[]>([]);
+  const [locations, setLocations] = useState<Location[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedService, setSelectedService] = useState<ServiceInfo | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
 
   useEffect(() => {
-    setServices(airportData.services as ServiceInfo[]);
+    setLocations(airportData.locations as Location[]);
   }, []);
 
-  const filteredServices = services.filter((service) =>
-    service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    service.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const categories = [
+    {
+      id: "all",
+      name: "Tous",
+      icon: Sparkles,
+      types: ["restaurant", "shop", "lounge", "medical", "information"],
+    },
+    {
+      id: "restaurant",
+      name: "Restaurants",
+      icon: Utensils,
+      types: ["restaurant"],
+    },
+    {
+      id: "shop",
+      name: "Boutiques",
+      icon: ShoppingBag,
+      types: ["shop"],
+    },
+    {
+      id: "lounge",
+      name: "Salons",
+      icon: Coffee,
+      types: ["lounge"],
+    },
+    {
+      id: "services",
+      name: "Services",
+      icon: Heart,
+      types: ["medical", "information"],
+    },
+  ];
+
+  const getLocationIcon = (type: string) => {
+    const icons: Record<string, string> = {
+      restaurant: "🍽️",
+      shop: "🛍️",
+      lounge: "✨",
+      medical: "⚕️",
+      information: "ℹ️",
+    };
+    return icons[type] || "📍";
+  };
+
+  const filteredLocations = locations.filter((loc) => {
+    const category = categories.find((cat) => cat.id === selectedCategory);
+    const matchesCategory =
+      selectedCategory === "all" || category?.types.includes(loc.type);
+    const matchesSearch =
+      loc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      loc.description?.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
+
+  // Emergency contacts
+  const emergencyContacts = [
+    {
+      name: "Urgence Médicale",
+      description: "Assistance médicale 24/7",
+      phone: "+228 22 23 44 56",
+      icon: "⚕️",
+      color: theme.colors.error.main,
+    },
+    {
+      name: "Information",
+      description: "Renseignements généraux",
+      phone: "+228 22 23 44 55",
+      icon: "ℹ️",
+      color: theme.colors.info.main,
+    },
+  ];
+
+  // Quick tips
+  const tips = [
+    { icon: "⏰", title: "Arrivée", text: "2h avant pour vols internationaux" },
+    { icon: "🌐", title: "Wi-Fi", text: "Gratuit - Réseau 'Airport-WiFi'" },
+    { icon: "♿", title: "Accessibilité", text: "Assistance PMR disponible" },
+    { icon: "💱", title: "Change", text: "Bureau de change au RDC" },
+  ];
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-light text-gray-900 mb-3">
-            Services et Informations
+    <div
+      className="min-h-screen pb-20"
+      style={{ backgroundColor: theme.colors.background.default }}
+    >
+      {/* Header */}
+      <div
+        className="sticky top-[56px] md:top-[64px] z-40 backdrop-blur-sm"
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.95)",
+          borderBottom: `1px solid ${theme.colors.border.main}`,
+          boxShadow: theme.shadow.sm,
+        }}
+      >
+        <div className="px-4 py-4">
+          <h1
+            className="font-bold mb-1"
+            style={{
+              fontSize: theme.typography.h4.fontSize,
+              fontWeight: theme.typography.h4.fontWeight,
+              color: theme.colors.text.primary,
+            }}
+          >
+            Services & Boutiques
           </h1>
-          <p className="text-gray-600">
-            Tous les services disponibles dans l'aéroport
+          <p
+            className="text-xs"
+            style={{
+              color: theme.colors.text.secondary,
+            }}
+          >
+            Découvrez tout ce que l'aéroport offre
           </p>
-        </div>
-
-        {/* Search */}
-        <div className="mb-6">
-          <div className="relative max-w-2xl">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Rechercher un service..."
-              className="w-full pl-12 pr-12 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent shadow-sm"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2"
-              >
-                <X className="w-5 h-5 text-gray-400 hover:text-gray-600" />
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Emergency Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-          <div className="bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg shadow-lg p-6">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Urgence Médicale</h3>
-                <p className="text-red-100 text-sm mb-4">
-                  Assistance médicale d'urgence 24/7
-                </p>
-                <a
-                  href="tel:+22822234456"
-                  className="inline-flex items-center space-x-2 bg-white text-red-600 px-4 py-2 rounded-lg font-medium hover:bg-red-50 transition-colors"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>+228 22 23 44 56</span>
-                </a>
-              </div>
-              <div className="text-5xl">⚕️</div>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg shadow-lg p-6">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Information</h3>
-                <p className="text-blue-100 text-sm mb-4">
-                  Assistance et renseignements
-                </p>
-                <a
-                  href="tel:+22822234455"
-                  className="inline-flex items-center space-x-2 bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>+228 22 23 44 55</span>
-                </a>
-              </div>
-              <div className="text-5xl">ℹ️</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Services List */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="p-6 border-b border-gray-200">
-            <h2 className="text-xl font-medium text-gray-900">
-              Tous les services ({filteredServices.length})
-            </h2>
-          </div>
-
-          {filteredServices.length === 0 ? (
-            <div className="p-12 text-center">
-              <p className="text-gray-500">Aucun service trouvé</p>
-            </div>
-          ) : (
-            <div className="divide-y divide-gray-200">
-              {filteredServices.map((service) => (
-                <button
-                  key={service.id}
-                  onClick={() => setSelectedService(service)}
-                  className="w-full text-left p-6 hover:bg-gray-50 transition-colors flex items-center justify-between"
-                >
-                  <div className="flex items-start space-x-4 flex-1">
-                    <div className="text-4xl">
-                      {serviceIcons[service.icon] || "🏢"}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium text-gray-900 mb-1">
-                        {service.name}
-                      </h3>
-                      <p className="text-sm text-gray-600 mb-2">
-                        {service.description}
-                      </p>
-                      <div className="flex flex-wrap gap-3 text-sm text-gray-500">
-                        <div className="flex items-center space-x-1">
-                          <Clock className="w-4 h-4" />
-                          <span>{service.hours}</span>
-                        </div>
-                        {service.contact && (
-                          <div className="flex items-center space-x-1">
-                            <Phone className="w-4 h-4" />
-                            <span>{service.contact}</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <ChevronRight className="w-5 h-5 text-gray-400" />
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* FAQ */}
-        <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">
-            Questions Fréquentes
-          </h2>
-          <div className="space-y-4">
-            <details className="group">
-              <summary className="flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <span className="font-medium text-gray-900">
-                  Combien de temps avant le vol dois-je arriver ?
-                </span>
-                <ChevronRight className="w-5 h-5 text-gray-400 group-open:rotate-90 transition-transform" />
-              </summary>
-              <p className="p-4 text-gray-600 text-sm">
-                Il est recommandé d'arriver 2 heures avant pour les vols
-                internationaux et 1h30 avant pour les vols régionaux.
-              </p>
-            </details>
-
-            <details className="group">
-              <summary className="flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <span className="font-medium text-gray-900">
-                  Y a-t-il un Wi-Fi gratuit ?
-                </span>
-                <ChevronRight className="w-5 h-5 text-gray-400 group-open:rotate-90 transition-transform" />
-              </summary>
-              <p className="p-4 text-gray-600 text-sm">
-                Oui, le Wi-Fi gratuit est disponible dans tout l'aéroport.
-                Connectez-vous au réseau "Airport-Free-WiFi".
-              </p>
-            </details>
-
-            <details className="group">
-              <summary className="flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <span className="font-medium text-gray-900">
-                  Assistance pour personnes à mobilité réduite ?
-                </span>
-                <ChevronRight className="w-5 h-5 text-gray-400 group-open:rotate-90 transition-transform" />
-              </summary>
-              <p className="p-4 text-gray-600 text-sm">
-                Un service d'assistance est disponible 24/7. Contactez le +228 22
-                23 44 55 ou demandez à n'importe quel agent de l'aéroport.
-              </p>
-            </details>
-          </div>
         </div>
       </div>
 
-      {/* Service Detail Modal */}
-      {selectedService && (
+      {/* Main Content */}
+      <div className="px-4 py-4 space-y-4">
+        {/* Emergency Cards */}
+        <div className="grid grid-cols-2 gap-3">
+          {emergencyContacts.map((contact) => (
+            <a
+              key={contact.phone}
+              href={`tel:${contact.phone.replace(/\s/g, "")}`}
+              className="rounded-xl p-4 transition-all"
+              style={{
+                background: `linear-gradient(135deg, ${contact.color} 0%, ${contact.color}DD 100%)`,
+                color: "#fff",
+                boxShadow: theme.shadow.md,
+              }}
+            >
+              <div className="text-3xl mb-2">{contact.icon}</div>
+              <h3 className="font-bold text-sm mb-1">{contact.name}</h3>
+              <p className="text-xs opacity-90 mb-2">{contact.description}</p>
+              <div className="flex items-center gap-1 text-xs font-semibold">
+                <Phone className="w-3 h-3" />
+                {contact.phone}
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* Quick Tips */}
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
-          onClick={() => setSelectedService(null)}
+          className="rounded-xl p-4"
+          style={{
+            backgroundColor: theme.colors.background.elevated,
+            border: `1px solid ${theme.colors.border.main}`,
+          }}
+        >
+          <h3
+            className="font-semibold mb-3 flex items-center gap-2"
+            style={{
+              fontSize: theme.typography.base.fontSize,
+              color: theme.colors.text.primary,
+            }}
+          >
+            <Info className="w-5 h-5" style={{ color: theme.colors.accent.main }} />
+            Infos utiles
+          </h3>
+          <div className="grid grid-cols-2 gap-3">
+            {tips.map((tip, index) => (
+              <div key={index} className="text-center">
+                <div className="text-2xl mb-1">{tip.icon}</div>
+                <p
+                  className="font-semibold text-xs mb-0.5"
+                  style={{ color: theme.colors.text.primary }}
+                >
+                  {tip.title}
+                </p>
+                <p className="text-xs" style={{ color: theme.colors.text.secondary }}>
+                  {tip.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Search */}
+        <div className="relative">
+          <Search
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"
+            style={{ color: theme.colors.text.secondary }}
+          />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Rechercher..."
+            className="w-full rounded-xl transition-all"
+            style={{
+              padding: `${theme.spacing[3]} ${theme.spacing[3]} ${theme.spacing[3]} ${theme.spacing[10]}`,
+              border: `1px solid ${theme.colors.border.main}`,
+              fontSize: theme.typography.base.fontSize,
+              color: theme.colors.text.primary,
+              backgroundColor: theme.colors.background.elevated,
+            }}
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2"
+            >
+              <X className="w-5 h-5" style={{ color: theme.colors.text.secondary }} />
+            </button>
+          )}
+        </div>
+
+        {/* Category Tabs */}
+        <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4">
+          {categories.map((category) => {
+            const Icon = category.icon;
+            const isActive = selectedCategory === category.id;
+            const count = locations.filter((loc) =>
+              category.types.includes(loc.type)
+            ).length;
+
+            return (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className="flex-shrink-0 rounded-lg transition-all flex items-center gap-2"
+                style={{
+                  padding: `${theme.spacing[2]} ${theme.spacing[4]}`,
+                  backgroundColor: isActive
+                    ? theme.colors.accent.main
+                    : theme.colors.background.elevated,
+                  color: isActive
+                    ? theme.colors.accent.contrast
+                    : theme.colors.text.primary,
+                  border: `1px solid ${isActive ? theme.colors.accent.main : theme.colors.border.main}`,
+                  fontSize: theme.typography.small.fontSize,
+                  fontWeight: isActive ? 600 : 500,
+                }}
+              >
+                <Icon className="w-4 h-4" />
+                <span>{category.name}</span>
+                <span
+                  className="px-1.5 py-0.5 rounded-full text-xs font-bold"
+                  style={{
+                    backgroundColor: isActive
+                      ? "rgba(255,255,255,0.3)"
+                      : theme.colors.gray[200],
+                  }}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Locations List */}
+        {filteredLocations.length === 0 ? (
+          <div
+            className="rounded-xl p-8 text-center"
+            style={{
+              backgroundColor: theme.colors.background.elevated,
+              border: `1px solid ${theme.colors.border.main}`,
+            }}
+          >
+            <Search
+              className="w-12 h-12 mx-auto mb-3"
+              style={{ color: theme.colors.gray[400] }}
+            />
+            <h3
+              className="font-semibold mb-1"
+              style={{
+                fontSize: theme.typography.base.fontSize,
+                color: theme.colors.text.primary,
+              }}
+            >
+              Aucun résultat
+            </h3>
+            <p className="text-xs" style={{ color: theme.colors.text.secondary }}>
+              Essayez une autre recherche
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {filteredLocations.map((location) => (
+              <button
+                key={location.id}
+                onClick={() => setSelectedLocation(location)}
+                className="w-full rounded-xl p-4 transition-all text-left"
+                style={{
+                  backgroundColor: theme.colors.background.elevated,
+                  border: `1px solid ${theme.colors.border.main}`,
+                  boxShadow: theme.shadow.sm,
+                }}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="text-3xl flex-shrink-0">
+                    {getLocationIcon(location.type)}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3
+                      className="font-semibold mb-1"
+                      style={{
+                        fontSize: theme.typography.base.fontSize,
+                        color: theme.colors.text.primary,
+                      }}
+                    >
+                      {location.name}
+                    </h3>
+                    <p
+                      className="text-xs mb-2 line-clamp-2"
+                      style={{ color: theme.colors.text.secondary }}
+                    >
+                      {location.description}
+                    </p>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      {location.hours && (
+                        <span
+                          className="flex items-center gap-1 text-xs px-2 py-1 rounded"
+                          style={{
+                            backgroundColor: theme.colors.success.main + '20',
+                            color: theme.colors.success.dark,
+                          }}
+                        >
+                          <Clock className="w-3 h-3" />
+                          {location.hours}
+                        </span>
+                      )}
+                      <span
+                        className="text-xs px-2 py-1 rounded"
+                        style={{
+                          backgroundColor: theme.colors.gray[200],
+                          color: theme.colors.text.secondary,
+                        }}
+                      >
+                        {location.floor === 0
+                          ? "RDC"
+                          : location.floor === 1
+                          ? "Étage 1"
+                          : `Étage ${location.floor}`}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Location Detail Modal */}
+      {selectedLocation && (
+        <div
+          className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/50 backdrop-blur-sm"
+          onClick={() => setSelectedLocation(null)}
         >
           <div
-            className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6"
+            className="bg-white rounded-t-3xl md:rounded-3xl w-full md:max-w-lg p-6 pb-8 md:pb-6"
+            style={{
+              boxShadow: theme.shadow.xl,
+              maxHeight: "80vh",
+              overflowY: "auto",
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center space-x-3">
-                <div className="text-5xl">
-                  {serviceIcons[selectedService.icon] || "🏢"}
+              <div className="flex items-center gap-3">
+                <div className="text-4xl">
+                  {getLocationIcon(selectedLocation.type)}
                 </div>
-                <h3 className="text-2xl font-normal text-gray-900">
-                  {selectedService.name}
+                <h3
+                  className="font-bold"
+                  style={{
+                    fontSize: theme.typography.h5.fontSize,
+                    color: theme.colors.text.primary,
+                  }}
+                >
+                  {selectedLocation.name}
                 </h3>
               </div>
               <button
-                onClick={() => setSelectedService(null)}
-                className="p-2 rounded-full hover:bg-gray-100"
+                onClick={() => setSelectedLocation(null)}
+                className="p-2 rounded-full transition-all"
+                style={{
+                  backgroundColor: theme.colors.gray[100],
+                }}
               >
-                <X className="w-6 h-6 text-gray-600" />
+                <X className="w-5 h-5" style={{ color: theme.colors.text.primary }} />
               </button>
             </div>
 
-            <p className="text-gray-600 mb-6">{selectedService.description}</p>
+            <p
+              className="mb-4"
+              style={{
+                fontSize: theme.typography.base.fontSize,
+                color: theme.colors.text.secondary,
+                lineHeight: 1.6,
+              }}
+            >
+              {selectedLocation.description}
+            </p>
 
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
-                <Clock className="w-5 h-5 text-gray-600" />
+            <div className="space-y-3">
+              {selectedLocation.hours && (
+                <div
+                  className="flex items-center gap-3 p-3 rounded-lg"
+                  style={{
+                    backgroundColor: theme.colors.success.main + '10',
+                    border: `1px solid ${theme.colors.success.main}30`,
+                  }}
+                >
+                  <Clock className="w-5 h-5" style={{ color: theme.colors.success.main }} />
+                  <div>
+                    <div className="text-xs" style={{ color: theme.colors.text.secondary }}>
+                      Horaires
+                    </div>
+                    <div
+                      className="font-semibold"
+                      style={{
+                        fontSize: theme.typography.base.fontSize,
+                        color: theme.colors.text.primary,
+                      }}
+                    >
+                      {selectedLocation.hours}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div
+                className="flex items-center gap-3 p-3 rounded-lg"
+                style={{
+                  backgroundColor: theme.colors.info.main + '10',
+                  border: `1px solid ${theme.colors.info.main}30`,
+                }}
+              >
+                <MapPin className="w-5 h-5" style={{ color: theme.colors.info.main }} />
                 <div>
-                  <div className="text-sm text-gray-500">Horaires</div>
-                  <div className="font-medium text-gray-900">
-                    {selectedService.hours}
+                  <div className="text-xs" style={{ color: theme.colors.text.secondary }}>
+                    Localisation
+                  </div>
+                  <div
+                    className="font-semibold"
+                    style={{
+                      fontSize: theme.typography.base.fontSize,
+                      color: theme.colors.text.primary,
+                    }}
+                  >
+                    {selectedLocation.floor === 0
+                      ? "Rez-de-chaussée"
+                      : `Étage ${selectedLocation.floor}`}
                   </div>
                 </div>
               </div>
 
-              {selectedService.contact && (
-                <a
-                  href={`tel:${selectedService.contact}`}
-                  className="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+              {selectedLocation.accessibleTo && (
+                <div
+                  className="flex items-center gap-3 p-3 rounded-lg"
+                  style={{
+                    backgroundColor: theme.colors.warning.main + '10',
+                    border: `1px solid ${theme.colors.warning.main}30`,
+                  }}
                 >
-                  <Phone className="w-5 h-5 text-blue-600" />
+                  <Sparkles
+                    className="w-5 h-5"
+                    style={{ color: theme.colors.warning.main }}
+                  />
                   <div>
-                    <div className="text-sm text-blue-600">Téléphone</div>
-                    <div className="font-medium text-blue-900">
-                      {selectedService.contact}
+                    <div className="text-xs" style={{ color: theme.colors.text.secondary }}>
+                      Accès
+                    </div>
+                    <div
+                      className="font-semibold"
+                      style={{
+                        fontSize: theme.typography.base.fontSize,
+                        color: theme.colors.text.primary,
+                      }}
+                    >
+                      Business & Première Classe uniquement
                     </div>
                   </div>
-                </a>
+                </div>
               )}
             </div>
           </div>

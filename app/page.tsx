@@ -15,11 +15,14 @@ import { usePassenger } from "@/lib/context/PassengerContext";
 import { getApplicableSteps, PassengerClass } from "@/lib/types/passenger";
 import { passengerClassColors } from "@/lib/config/theme";
 import ClassSelectorModal from "@/components/ui/ClassSelectorModal";
+import HeroCarousel from "@/components/home/HeroCarousel";
+import { useLocale } from "@/lib/context/LocaleContext";
 
 export default function Home() {
   const router = useRouter();
   const { profile, setProfile } = usePassenger();
   const [showModal, setShowModal] = useState(false);
+  const { t } = useLocale();
 
   useEffect(() => {
     // Show modal on first load if no profile
@@ -47,9 +50,9 @@ export default function Home() {
   const classColor = profile ? passengerClassColors[profile.class] : null;
 
   const classLabels = {
-    economy: "Économique",
-    business: "Business",
-    first: "Première Classe",
+    economy: t('class.economy'),
+    business: t('class.business'),
+    first: t('class.first'),
   };
 
   return (
@@ -61,15 +64,10 @@ export default function Home() {
       />
 
       <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          {/* Welcome Section */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-light text-gray-900 mb-3">
-              Bienvenue à l'aéroport de Lomé
-            </h1>
-            <p className="text-lg text-gray-600">
-              Votre parcours simplifié de l'arrivée à l'embarquement
-            </p>
+        <div className="max-w-7xl mx-auto px-4 py-4 md:py-8">
+          {/* Hero Carousel */}
+          <div className="mb-6 md:mb-12">
+            <HeroCarousel />
           </div>
 
           {profile && (
@@ -96,14 +94,14 @@ export default function Home() {
                         {classLabels[profile.class]}
                       </h3>
                       {profile.flightNumber && (
-                        <p className="text-sm text-gray-700">Vol {profile.flightNumber}</p>
+                        <p className="text-sm text-gray-700">{t('common.flight')} {profile.flightNumber}</p>
                       )}
                     </div>
                   </div>
                   {profile.gate && (
                     <div className="flex items-center space-x-2 text-sm text-gray-700 mt-2">
                       <MapPin className="w-4 h-4" />
-                      <span>Porte {profile.gate}</span>
+                      <span>{t('common.gate')} {profile.gate}</span>
                     </div>
                   )}
                 </div>
@@ -112,7 +110,7 @@ export default function Home() {
                   className="text-sm font-medium px-4 py-2 rounded-lg border hover:bg-white/50 transition-colors"
                   style={{ borderColor: classColor?.primary, color: classColor?.primary }}
                 >
-                  Modifier
+                  {t('profile.modify')}
                 </button>
               </div>
             </div>
@@ -120,7 +118,7 @@ export default function Home() {
             {/* Journey Steps */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
               <h2 className="text-2xl font-normal text-gray-900 mb-6">
-                Votre parcours
+                {t('journey.title')}
               </h2>
 
               <div className="space-y-4">
@@ -204,7 +202,7 @@ export default function Home() {
                               className="inline-flex items-center space-x-2 mt-4 text-sm font-medium text-blue-600 hover:text-blue-700"
                             >
                               <MapPin className="w-4 h-4" />
-                              <span>Voir sur la carte</span>
+                              <span>{t('journey.viewMap')}</span>
                               <ArrowRight className="w-4 h-4" />
                             </Link>
                           )}
@@ -225,9 +223,9 @@ export default function Home() {
             className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
           >
             <MapPin className="w-8 h-8 text-blue-600 mb-3" />
-            <h3 className="font-medium text-gray-900 mb-1">Plan de l'aéroport</h3>
+            <h3 className="font-medium text-gray-900 mb-1">{t('quickActions.map.title')}</h3>
             <p className="text-sm text-gray-600">
-              Explorez la carte interactive
+              {t('quickActions.map.description')}
             </p>
           </Link>
 
@@ -238,9 +236,9 @@ export default function Home() {
             <svg className="w-8 h-8 text-blue-600 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 className="font-medium text-gray-900 mb-1">Services</h3>
+            <h3 className="font-medium text-gray-900 mb-1">{t('quickActions.services.title')}</h3>
             <p className="text-sm text-gray-600">
-              Informations et assistance
+              {t('quickActions.services.description')}
             </p>
           </Link>
 
@@ -251,9 +249,9 @@ export default function Home() {
             <svg className="w-8 h-8 text-red-600 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
-            <h3 className="font-medium text-gray-900 mb-1">Signalement</h3>
+            <h3 className="font-medium text-gray-900 mb-1">{t('quickActions.report.title')}</h3>
             <p className="text-sm text-gray-600">
-              Signalez un problème
+              {t('quickActions.report.description')}
             </p>
           </Link>
           </div>

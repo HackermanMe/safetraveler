@@ -9,6 +9,7 @@ interface ClassSelectorModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelect: (selectedClass: PassengerClass, flightNumber?: string, gate?: string) => void;
+  onFirstTimeSelect?: () => void;
   currentClass?: PassengerClass;
 }
 
@@ -16,6 +17,7 @@ export default function ClassSelectorModal({
   isOpen,
   onClose,
   onSelect,
+  onFirstTimeSelect,
   currentClass,
 }: ClassSelectorModalProps) {
   const [selectedClass, setSelectedClass] = useState<PassengerClass>(
@@ -44,6 +46,12 @@ export default function ClassSelectorModal({
 
   const handleConfirm = () => {
     onSelect(selectedClass, flightNumber || undefined, gate || undefined);
+
+    // Notify parent if this is first time selection
+    if (!currentClass && onFirstTimeSelect) {
+      onFirstTimeSelect();
+    }
+
     onClose();
   };
 

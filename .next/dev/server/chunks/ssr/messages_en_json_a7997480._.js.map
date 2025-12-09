@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/messages/en.json"],"sourcesContent":["{\"nav\":{\"home\":\"Home\",\"map\":\"Map\",\"navigation\":\"Navigation\",\"flights\":\"Flights\",\"report\":\"Report\",\"services\":\"Services\"},\"home\":{\"welcome\":\"Welcome to Lomé Airport\",\"tagline\":\"Your simplified journey from arrival to boarding\",\"heroTagline\":\"On-time Ride\",\"heroNew\":\"NEW\",\"profile\":{\"modify\":\"Modify\"},\"journey\":{\"title\":\"Your Journey\",\"viewMap\":\"View on map\"},\"quickActions\":{\"map\":{\"title\":\"Airport Map\",\"description\":\"Explore the interactive map\"},\"services\":{\"title\":\"Services\",\"description\":\"Information and assistance\"},\"report\":{\"title\":\"Report\",\"description\":\"Report an issue\"}},\"class\":{\"economy\":\"Economy\",\"business\":\"Business\",\"first\":\"First Class\"}},\"common\":{\"minutes\":\"min\",\"gate\":\"Gate\",\"flight\":\"Flight\"}}"],"names":[],"mappings":"AAAA"}},
+    {"offset": {"line": 3, "column": 746}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
