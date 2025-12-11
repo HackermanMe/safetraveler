@@ -10,6 +10,7 @@ export interface Location {
   icon?: string;
   status?: "open" | "closed" | "busy";
   accessibleTo?: PassengerProfile[];
+  hours?: string;
 }
 
 export type LocationType =
