@@ -21,104 +21,107 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/clock.js [app-client] (ecmascript) <export default as Clock>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/lock.js [app-client] (ecmascript) <export default as Lock>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/config/theme.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/context/LocaleContext.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
 ;
-// Catégories de signalement selon les spécifications
-const reportCategories = [
-    {
-        value: "suspicious_object",
-        label: "Objet suspect",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldAlert$3e$__["ShieldAlert"],
-        description: "Colis, bagage ou objet abandonné suspect",
-        severity: "critical",
-        color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.error.main
-    },
-    {
-        value: "lost_object",
-        label: "Objet perdu",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"],
-        description: "Objet personnel égaré ou trouvé",
-        severity: "low",
-        color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.info.main
-    },
-    {
-        value: "concerning_behavior",
-        label: "Comportement inquiétant",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"],
-        description: "Comportement suspect ou inapproprié",
-        severity: "high",
-        color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.warning.main
-    },
-    {
-        value: "medical_incident",
-        label: "Incident médical",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"],
-        description: "Urgence médicale ou personne en détresse",
-        severity: "critical",
-        color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.error.dark
-    },
-    {
-        value: "danger_emergency",
-        label: "Danger / Urgence",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__["AlertCircle"],
-        description: "Situation dangereuse immédiate",
-        severity: "critical",
-        color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.error.main
-    }
-];
-// Zones de l'aéroport pour localisation approximative
-const airportZones = [
-    {
-        value: "entrance",
-        label: "Entrée principale"
-    },
-    {
-        value: "checkin",
-        label: "Zone d'enregistrement"
-    },
-    {
-        value: "security",
-        label: "Contrôle de sécurité"
-    },
-    {
-        value: "gates_a",
-        label: "Portes A"
-    },
-    {
-        value: "gates_b",
-        label: "Portes B"
-    },
-    {
-        value: "baggage_claim",
-        label: "Récupération des bagages"
-    },
-    {
-        value: "food_court",
-        label: "Zone de restauration"
-    },
-    {
-        value: "shops",
-        label: "Zone commerciale"
-    },
-    {
-        value: "toilets",
-        label: "Toilettes"
-    },
-    {
-        value: "parking",
-        label: "Parking"
-    },
-    {
-        value: "other",
-        label: "Autre"
-    }
-];
+;
 function ReportPage() {
     _s();
+    const { t } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLocale"])();
+    // Catégories de signalement selon les spécifications
+    const reportCategories = [
+        {
+            value: "suspicious_object",
+            labelKey: "report.categories.suspiciousObject",
+            descriptionKey: "report.categories.suspiciousObjectDescription",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldAlert$3e$__["ShieldAlert"],
+            severity: "critical",
+            color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.error.main
+        },
+        {
+            value: "lost_object",
+            labelKey: "report.categories.lostObject",
+            descriptionKey: "report.categories.lostObjectDescription",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"],
+            severity: "low",
+            color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.info.main
+        },
+        {
+            value: "concerning_behavior",
+            labelKey: "report.categories.concerningBehavior",
+            descriptionKey: "report.categories.concerningBehaviorDescription",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"],
+            severity: "high",
+            color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.warning.main
+        },
+        {
+            value: "medical_incident",
+            labelKey: "report.categories.medicalIncident",
+            descriptionKey: "report.categories.medicalIncidentDescription",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"],
+            severity: "critical",
+            color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.error.dark
+        },
+        {
+            value: "danger_emergency",
+            labelKey: "report.categories.dangerEmergency",
+            descriptionKey: "report.categories.dangerEmergencyDescription",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__["AlertCircle"],
+            severity: "critical",
+            color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.error.main
+        }
+    ];
+    // Zones de l'aéroport pour localisation approximative
+    const airportZones = [
+        {
+            value: "entrance",
+            labelKey: "report.zones.entrance"
+        },
+        {
+            value: "checkin",
+            labelKey: "report.zones.checkin"
+        },
+        {
+            value: "security",
+            labelKey: "report.zones.security"
+        },
+        {
+            value: "gates_a",
+            labelKey: "report.zones.gatesA"
+        },
+        {
+            value: "gates_b",
+            labelKey: "report.zones.gatesB"
+        },
+        {
+            value: "baggage_claim",
+            labelKey: "report.zones.baggageClaim"
+        },
+        {
+            value: "food_court",
+            labelKey: "report.zones.foodCourt"
+        },
+        {
+            value: "shops",
+            labelKey: "report.zones.shops"
+        },
+        {
+            value: "toilets",
+            labelKey: "report.zones.toilets"
+        },
+        {
+            value: "parking",
+            labelKey: "report.zones.parking"
+        },
+        {
+            value: "other",
+            labelKey: "report.zones.other"
+        }
+    ];
     const [step, setStep] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1); // 1: Category, 2: Details, 3: Confirmation
     const [category, setCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [zone, setZone] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
@@ -208,12 +211,12 @@ function ReportPage() {
                             }
                         }, void 0, false, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 169,
+                            lineNumber: 171,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/report/page.tsx",
-                        lineNumber: 162,
+                        lineNumber: 164,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -223,10 +226,10 @@ function ReportPage() {
                             fontWeight: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.h3.fontWeight,
                             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                         },
-                        children: "Signalement envoyé"
+                        children: t("report.success.title")
                     }, void 0, false, {
                         fileName: "[project]/app/report/page.tsx",
-                        lineNumber: 174,
+                        lineNumber: 176,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -236,10 +239,10 @@ function ReportPage() {
                             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary,
                             lineHeight: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.lineHeight
                         },
-                        children: "Merci pour votre vigilance. Votre signalement a été transmis au pôle sécurité de l'aéroport."
+                        children: t("report.success.description")
                     }, void 0, false, {
                         fileName: "[project]/app/report/page.tsx",
-                        lineNumber: 184,
+                        lineNumber: 186,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -255,10 +258,10 @@ function ReportPage() {
                                     fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize,
                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                 },
-                                children: "Numéro de suivi"
+                                children: t("report.success.trackingNumber")
                             }, void 0, false, {
                                 fileName: "[project]/app/report/page.tsx",
-                                lineNumber: 203,
+                                lineNumber: 205,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -270,13 +273,13 @@ function ReportPage() {
                                 children: reportId
                             }, void 0, false, {
                                 fileName: "[project]/app/report/page.tsx",
-                                lineNumber: 212,
+                                lineNumber: 214,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/report/page.tsx",
-                        lineNumber: 196,
+                        lineNumber: 198,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -296,7 +299,7 @@ function ReportPage() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/report/page.tsx",
-                                        lineNumber: 232,
+                                        lineNumber: 234,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -305,16 +308,16 @@ function ReportPage() {
                                             fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.info.main
                                         },
-                                        children: "Reçu"
+                                        children: t("report.success.status")
                                     }, void 0, false, {
                                         fileName: "[project]/app/report/page.tsx",
-                                        lineNumber: 233,
+                                        lineNumber: 235,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/report/page.tsx",
-                                lineNumber: 231,
+                                lineNumber: 233,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -322,16 +325,16 @@ function ReportPage() {
                                     fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize,
                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                 },
-                                children: "Le personnel de sécurité a été notifié et prendra en charge votre signalement rapidement."
+                                children: t("report.success.statusDescription")
                             }, void 0, false, {
                                 fileName: "[project]/app/report/page.tsx",
-                                lineNumber: 243,
+                                lineNumber: 245,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/report/page.tsx",
-                        lineNumber: 224,
+                        lineNumber: 226,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -355,21 +358,21 @@ function ReportPage() {
                             e.currentTarget.style.transform = "translateY(0)";
                             e.currentTarget.style.boxShadow = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].shadow.sm;
                         },
-                        children: "Fermer"
+                        children: t("common.close")
                     }, void 0, false, {
                         fileName: "[project]/app/report/page.tsx",
-                        lineNumber: 253,
+                        lineNumber: 255,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/report/page.tsx",
-                lineNumber: 161,
+                lineNumber: 163,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/report/page.tsx",
-            lineNumber: 157,
+            lineNumber: 159,
             columnNumber: 7
         }, this);
     }
@@ -392,10 +395,10 @@ function ReportPage() {
                                 lineHeight: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.display.lineHeight,
                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                             },
-                            children: "Signaler un incident"
+                            children: t("report.title")
                         }, void 0, false, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 290,
+                            lineNumber: 292,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -404,16 +407,16 @@ function ReportPage() {
                                 lineHeight: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.large.lineHeight,
                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                             },
-                            children: "Aidez à maintenir la sécurité de l'aéroport. Votre signalement est anonyme et confidentiel."
+                            children: t("report.subtitle")
                         }, void 0, false, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 301,
+                            lineNumber: 303,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/report/page.tsx",
-                    lineNumber: 289,
+                    lineNumber: 291,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -432,7 +435,7 @@ function ReportPage() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/report/page.tsx",
-                                lineNumber: 321,
+                                lineNumber: 323,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -443,10 +446,10 @@ function ReportPage() {
                                             fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.accent.dark
                                         },
-                                        children: "Signalement 100% anonyme"
+                                        children: t("report.anonymous")
                                     }, void 0, false, {
                                         fileName: "[project]/app/report/page.tsx",
-                                        lineNumber: 326,
+                                        lineNumber: 328,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -454,27 +457,27 @@ function ReportPage() {
                                             fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize,
                                             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                         },
-                                        children: "Aucune donnée personnelle n'est collectée. Votre identité reste totalement confidentielle."
+                                        children: t("report.anonymousDescription")
                                     }, void 0, false, {
                                         fileName: "[project]/app/report/page.tsx",
-                                        lineNumber: 335,
+                                        lineNumber: 337,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/report/page.tsx",
-                                lineNumber: 325,
+                                lineNumber: 327,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/report/page.tsx",
-                        lineNumber: 320,
+                        lineNumber: 322,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/report/page.tsx",
-                    lineNumber: 313,
+                    lineNumber: 315,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -496,7 +499,7 @@ function ReportPage() {
                                     children: num
                                 }, void 0, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 351,
+                                    lineNumber: 353,
                                     columnNumber: 15
                                 }, this),
                                 num < 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -506,18 +509,18 @@ function ReportPage() {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 368,
+                                    lineNumber: 370,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, num, true, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 350,
+                            lineNumber: 352,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/app/report/page.tsx",
-                    lineNumber: 348,
+                    lineNumber: 350,
                     columnNumber: 9
                 }, this),
                 step === 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -530,10 +533,10 @@ function ReportPage() {
                                 fontWeight: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.h4.fontWeight,
                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                             },
-                            children: "Quelle est la nature de l'incident ?"
+                            children: t("report.steps.category")
                         }, void 0, false, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 385,
+                            lineNumber: 387,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -577,12 +580,12 @@ function ReportPage() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/report/page.tsx",
-                                                    lineNumber: 434,
+                                                    lineNumber: 436,
                                                     columnNumber: 25
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/report/page.tsx",
-                                                lineNumber: 428,
+                                                lineNumber: 430,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -594,10 +597,10 @@ function ReportPage() {
                                                             fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                                             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                                         },
-                                                        children: cat.label
+                                                        children: t(cat.labelKey)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/report/page.tsx",
-                                                        lineNumber: 437,
+                                                        lineNumber: 439,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -605,33 +608,33 @@ function ReportPage() {
                                                             fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize,
                                                             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                                         },
-                                                        children: cat.description
+                                                        children: t(cat.descriptionKey)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/report/page.tsx",
-                                                        lineNumber: 446,
+                                                        lineNumber: 448,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/report/page.tsx",
-                                                lineNumber: 436,
+                                                lineNumber: 438,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/report/page.tsx",
-                                        lineNumber: 427,
+                                        lineNumber: 429,
                                         columnNumber: 21
                                     }, this)
                                 }, cat.value, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 400,
+                                    lineNumber: 402,
                                     columnNumber: 19
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 395,
+                            lineNumber: 397,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -664,13 +667,13 @@ function ReportPage() {
                             children: "Continuer"
                         }, void 0, false, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 460,
+                            lineNumber: 462,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/report/page.tsx",
-                    lineNumber: 384,
+                    lineNumber: 386,
                     columnNumber: 11
                 }, this),
                 step === 2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -698,14 +701,14 @@ function ReportPage() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 516,
+                                            lineNumber: 518,
                                             columnNumber: 17
                                         }, this),
-                                        "Où se situe l'incident ?"
+                                        t("report.steps.location")
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 509,
+                                    lineNumber: 511,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -730,30 +733,30 @@ function ReportPage() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                             value: "",
-                                            children: "Sélectionnez une zone..."
+                                            children: t("report.steps.locationPlaceholder")
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 539,
+                                            lineNumber: 541,
                                             columnNumber: 17
                                         }, this),
                                         airportZones.map((z)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                 value: z.value,
-                                                children: z.label
+                                                children: t(z.labelKey)
                                             }, z.value, false, {
                                                 fileName: "[project]/app/report/page.tsx",
-                                                lineNumber: 541,
+                                                lineNumber: 543,
                                                 columnNumber: 19
                                             }, this))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 519,
+                                    lineNumber: 521,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 501,
+                            lineNumber: 503,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -770,17 +773,17 @@ function ReportPage() {
                                         fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                         color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                     },
-                                    children: "Description détaillée"
+                                    children: t("report.steps.description")
                                 }, void 0, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 557,
+                                    lineNumber: 559,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
                                     value: description,
                                     onChange: (e)=>setDescription(e.target.value),
                                     rows: 5,
-                                    placeholder: "Décrivez l'incident de manière précise : ce que vous avez vu, entendu, ou remarqué...",
+                                    placeholder: t("report.steps.descriptionPlaceholder"),
                                     className: "w-full rounded-lg focus:outline-none transition-all resize-none",
                                     style: {
                                         padding: `${__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].spacing[3]} ${__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].spacing[4]}`,
@@ -799,13 +802,13 @@ function ReportPage() {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 566,
+                                    lineNumber: 568,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 549,
+                            lineNumber: 551,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -830,14 +833,14 @@ function ReportPage() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 606,
+                                            lineNumber: 608,
                                             columnNumber: 17
                                         }, this),
-                                        "Photo (optionnel)"
+                                        t("report.steps.photo")
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 599,
+                                    lineNumber: 601,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -849,7 +852,7 @@ function ReportPage() {
                                     className: "hidden"
                                 }, void 0, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 609,
+                                    lineNumber: 611,
                                     columnNumber: 15
                                 }, this),
                                 photo ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -861,7 +864,7 @@ function ReportPage() {
                                             className: "w-full h-64 object-cover rounded-lg"
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 619,
+                                            lineNumber: 621,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -881,13 +884,13 @@ function ReportPage() {
                                             children: "✕"
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 624,
+                                            lineNumber: 626,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 618,
+                                    lineNumber: 620,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     type: "button",
@@ -913,7 +916,7 @@ function ReportPage() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 663,
+                                            lineNumber: 665,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -921,22 +924,22 @@ function ReportPage() {
                                                 fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                             },
-                                            children: "Appuyez pour prendre une photo"
+                                            children: t("report.steps.photoButton")
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 667,
+                                            lineNumber: 669,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 644,
+                                    lineNumber: 646,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 591,
+                            lineNumber: 593,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -961,7 +964,7 @@ function ReportPage() {
                                     children: "Retour"
                                 }, void 0, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 681,
+                                    lineNumber: 683,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -991,22 +994,22 @@ function ReportPage() {
                                             e.currentTarget.style.boxShadow = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].shadow.sm;
                                         }
                                     },
-                                    children: "Continuer"
+                                    children: t("common.continue")
                                 }, void 0, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 700,
+                                    lineNumber: 702,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 680,
+                            lineNumber: 682,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/report/page.tsx",
-                    lineNumber: 499,
+                    lineNumber: 501,
                     columnNumber: 11
                 }, this),
                 step === 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1019,10 +1022,10 @@ function ReportPage() {
                                 fontWeight: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.h4.fontWeight,
                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                             },
-                            children: "Vérifiez votre signalement"
+                            children: t("report.steps.review")
                         }, void 0, false, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 743,
+                            lineNumber: 745,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1041,10 +1044,10 @@ function ReportPage() {
                                                 fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize,
                                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                             },
-                                            children: "Type d'incident"
+                                            children: t("report.steps.incidentType")
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 764,
+                                            lineNumber: 766,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1053,16 +1056,16 @@ function ReportPage() {
                                                 fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                             },
-                                            children: reportCategories.find((c)=>c.value === category)?.label
+                                            children: t(reportCategories.find((c)=>c.value === category)?.labelKey || "")
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 773,
+                                            lineNumber: 775,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 763,
+                                    lineNumber: 765,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1073,10 +1076,10 @@ function ReportPage() {
                                                 fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize,
                                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                             },
-                                            children: "Localisation"
+                                            children: t("report.steps.locationLabel")
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 784,
+                                            lineNumber: 786,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1085,16 +1088,16 @@ function ReportPage() {
                                                 fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                             },
-                                            children: airportZones.find((z)=>z.value === zone)?.label
+                                            children: t(airportZones.find((z)=>z.value === zone)?.labelKey || "")
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 793,
+                                            lineNumber: 795,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 783,
+                                    lineNumber: 785,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1105,10 +1108,10 @@ function ReportPage() {
                                                 fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize,
                                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                             },
-                                            children: "Description"
+                                            children: t("report.steps.descriptionLabel")
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 804,
+                                            lineNumber: 806,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1119,13 +1122,13 @@ function ReportPage() {
                                             children: description
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 813,
+                                            lineNumber: 815,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 803,
+                                    lineNumber: 805,
                                     columnNumber: 15
                                 }, this),
                                 photo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1136,10 +1139,10 @@ function ReportPage() {
                                                 fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize,
                                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                             },
-                                            children: "Photo jointe"
+                                            children: t("report.steps.photoAttached")
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 824,
+                                            lineNumber: 826,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -1148,19 +1151,19 @@ function ReportPage() {
                                             className: "w-full h-48 object-cover rounded-lg"
                                         }, void 0, false, {
                                             fileName: "[project]/app/report/page.tsx",
-                                            lineNumber: 833,
+                                            lineNumber: 835,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 823,
+                                    lineNumber: 825,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 755,
+                            lineNumber: 757,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1183,25 +1186,25 @@ function ReportPage() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/report/page.tsx",
-                                        lineNumber: 857,
+                                        lineNumber: 859,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "En cas d'urgence immédiate (danger de mort, incendie, attentat), appelez directement le 112 ou alertez le personnel de sécurité le plus proche."
+                                        children: t("report.warning")
                                     }, void 0, false, {
                                         fileName: "[project]/app/report/page.tsx",
-                                        lineNumber: 861,
+                                        lineNumber: 863,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/report/page.tsx",
-                                lineNumber: 850,
+                                lineNumber: 852,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 843,
+                            lineNumber: 845,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1223,10 +1226,10 @@ function ReportPage() {
                                     onMouseLeave: (e)=>{
                                         e.currentTarget.style.backgroundColor = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.gray[100];
                                     },
-                                    children: "Retour"
+                                    children: t("common.back")
                                 }, void 0, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 869,
+                                    lineNumber: 871,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1266,10 +1269,10 @@ function ReportPage() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/app/report/page.tsx",
-                                                lineNumber: 922,
+                                                lineNumber: 924,
                                                 columnNumber: 21
                                             }, this),
-                                            "Envoi en cours..."
+                                            t("report.sending")
                                         ]
                                     }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                         children: [
@@ -1277,42 +1280,46 @@ function ReportPage() {
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/report/page.tsx",
-                                                lineNumber: 933,
+                                                lineNumber: 935,
                                                 columnNumber: 21
                                             }, this),
-                                            "Envoyer le signalement"
+                                            t("report.submit")
                                         ]
                                     }, void 0, true)
                                 }, void 0, false, {
                                     fileName: "[project]/app/report/page.tsx",
-                                    lineNumber: 888,
+                                    lineNumber: 890,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/report/page.tsx",
-                            lineNumber: 868,
+                            lineNumber: 870,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/report/page.tsx",
-                    lineNumber: 742,
+                    lineNumber: 744,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/report/page.tsx",
-            lineNumber: 287,
+            lineNumber: 289,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/report/page.tsx",
-        lineNumber: 283,
+        lineNumber: 285,
         columnNumber: 5
     }, this);
 }
-_s(ReportPage, "w6Qi9scJMy8PNgQ/b+lfbTi0e0A=");
+_s(ReportPage, "7DomoL8zT44FtljCYVdCau8TLLI=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLocale"]
+    ];
+});
 _c = ReportPage;
 var _c;
 __turbopack_context__.k.register(_c, "ReportPage");

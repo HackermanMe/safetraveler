@@ -99,6 +99,7 @@ function LocaleProvider({ children }) {
     _s();
     const [locale, setLocaleState] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("fr");
     const [messages, setMessages] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
+    const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "LocaleProvider.useEffect": ()=>{
             // Load locale from localStorage
@@ -106,16 +107,18 @@ function LocaleProvider({ children }) {
             if (savedLocale && [
                 "fr",
                 "en",
-                "ewe",
-                "kabiye"
+                "ewe"
             ].includes(savedLocale)) {
                 setLocaleState(savedLocale);
+            } else {
+                setIsLoading(false);
             }
         }
     }["LocaleProvider.useEffect"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "LocaleProvider.useEffect": ()=>{
             // Load messages for current locale
+            setIsLoading(true);
             __turbopack_context__.f({
                 "@/messages/en.json": {
                     id: ()=>"[project]/messages/en.json (json, async loader)",
@@ -136,42 +139,59 @@ function LocaleProvider({ children }) {
             }).import(`@/messages/${locale}.json`).then({
                 "LocaleProvider.useEffect": (module)=>{
                     setMessages(module.default);
+                    setIsLoading(false);
+                }
+            }["LocaleProvider.useEffect"]).catch({
+                "LocaleProvider.useEffect": (error)=>{
+                    console.error(`Failed to load messages for locale ${locale}:`, error);
+                    setIsLoading(false);
                 }
             }["LocaleProvider.useEffect"]);
         }
     }["LocaleProvider.useEffect"], [
         locale
     ]);
-    const setLocale = (newLocale)=>{
-        setLocaleState(newLocale);
-        localStorage.setItem("locale", newLocale);
-    };
-    const t = (key)=>{
-        const keys = key.split(".");
-        let value = messages;
-        for (const k of keys){
-            if (value && typeof value === "object") {
-                value = value[k];
-            } else {
-                return key;
+    const setLocale = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "LocaleProvider.useCallback[setLocale]": (newLocale)=>{
+            if (newLocale !== locale) {
+                setLocaleState(newLocale);
+                localStorage.setItem("locale", newLocale);
             }
         }
-        return typeof value === "string" ? value : key;
-    };
+    }["LocaleProvider.useCallback[setLocale]"], [
+        locale
+    ]);
+    const t = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "LocaleProvider.useCallback[t]": (key)=>{
+            const keys = key.split(".");
+            let value = messages;
+            for (const k of keys){
+                if (value && typeof value === "object") {
+                    value = value[k];
+                } else {
+                    return key;
+                }
+            }
+            return typeof value === "string" ? value : key;
+        }
+    }["LocaleProvider.useCallback[t]"], [
+        messages
+    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LocaleContext.Provider, {
         value: {
             locale,
             setLocale,
-            t
+            t,
+            isLoading
         },
         children: children
     }, void 0, false, {
         fileName: "[project]/lib/context/LocaleContext.tsx",
-        lineNumber: 54,
+        lineNumber: 67,
         columnNumber: 5
     }, this);
 }
-_s(LocaleProvider, "5pT0Dyjx3+0PwYMp8L2PtpHh2B0=");
+_s(LocaleProvider, "WKDovUMwmwbKI1j6R/kAaj/COZs=");
 _c = LocaleProvider;
 function useLocale() {
     _s1();
@@ -485,14 +505,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navi
 const locales = [
     'fr',
     'en',
-    'ewe',
-    'kabiye'
+    'ewe'
 ];
 const localeNames = {
     fr: 'Français',
     en: 'English',
-    ewe: 'Eʋegbe',
-    kabiye: 'Kabɩyɛ'
+    ewe: 'Eʋegbe'
 };
 const __TURBOPACK__default__export__ = _c1 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$intl$2f$dist$2f$esm$2f$development$2f$server$2f$react$2d$client$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getRequestConfig"])(_c = async ({ locale })=>{
     // Validate that the incoming `locale` parameter is valid
@@ -575,7 +593,6 @@ function LanguageSelector({ currentLocale }) {
             case "en":
                 return "🇬🇧";
             case "ewe":
-            case "kabiye":
                 return "🇹🇬";
             default:
                 return "🌍";
@@ -594,7 +611,7 @@ function LanguageSelector({ currentLocale }) {
                         className: "w-5 h-5 text-gray-600"
                     }, void 0, false, {
                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                        lineNumber: 54,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -602,7 +619,7 @@ function LanguageSelector({ currentLocale }) {
                         children: __TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["localeNames"][currentLocale]
                     }, void 0, false, {
                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                        lineNumber: 55,
+                        lineNumber: 54,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -610,13 +627,13 @@ function LanguageSelector({ currentLocale }) {
                         children: getLocaleFlag(currentLocale)
                     }, void 0, false, {
                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                        lineNumber: 58,
+                        lineNumber: 57,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ui/LanguageSelector.tsx",
-                lineNumber: 49,
+                lineNumber: 48,
                 columnNumber: 7
             }, this),
             isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -630,7 +647,7 @@ function LanguageSelector({ currentLocale }) {
                                 children: getLocaleFlag(locale)
                             }, void 0, false, {
                                 fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                lineNumber: 71,
+                                lineNumber: 70,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -641,7 +658,7 @@ function LanguageSelector({ currentLocale }) {
                                         children: __TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["localeNames"][locale]
                                     }, void 0, false, {
                                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                        lineNumber: 73,
+                                        lineNumber: 72,
                                         columnNumber: 17
                                     }, this),
                                     locale === "ewe" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -649,7 +666,7 @@ function LanguageSelector({ currentLocale }) {
                                         children: "Langue Ewe"
                                     }, void 0, false, {
                                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 80,
                                         columnNumber: 19
                                     }, this),
                                     locale === "kabiye" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -657,37 +674,37 @@ function LanguageSelector({ currentLocale }) {
                                         children: "Langue Kabiyè"
                                     }, void 0, false, {
                                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                        lineNumber: 84,
+                                        lineNumber: 83,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                lineNumber: 72,
+                                lineNumber: 71,
                                 columnNumber: 15
                             }, this),
                             currentLocale === locale && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-2 h-2 bg-blue-600 rounded-full"
                             }, void 0, false, {
                                 fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                lineNumber: 88,
+                                lineNumber: 87,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, locale, true, {
                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                        lineNumber: 64,
+                        lineNumber: 63,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/ui/LanguageSelector.tsx",
-                lineNumber: 62,
+                lineNumber: 61,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ui/LanguageSelector.tsx",
-        lineNumber: 48,
+        lineNumber: 47,
         columnNumber: 5
     }, this);
 }
@@ -733,38 +750,38 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-const navItems = [
-    {
-        name: "Carte",
-        href: "/map",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Map$3e$__["Map"]
-    },
-    {
-        name: "Navigation",
-        href: "/navigation",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Navigation$3e$__["Navigation"]
-    },
-    {
-        name: "Vols",
-        href: "/flights",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plane$2d$takeoff$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlaneTakeoff$3e$__["PlaneTakeoff"]
-    },
-    {
-        name: "Signaler",
-        href: "/report",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"]
-    },
-    {
-        name: "Services",
-        href: "/services",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"]
-    }
-];
 function Navbar() {
     _s();
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
     const { profile } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$PassengerContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePassenger"])();
-    const { locale } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLocale"])();
+    const { locale, t } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLocale"])();
+    const navItems = [
+        {
+            nameKey: "nav.map",
+            href: "/map",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Map$3e$__["Map"]
+        },
+        {
+            nameKey: "nav.navigation",
+            href: "/navigation",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Navigation$3e$__["Navigation"]
+        },
+        {
+            nameKey: "nav.flights",
+            href: "/flights",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plane$2d$takeoff$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlaneTakeoff$3e$__["PlaneTakeoff"]
+        },
+        {
+            nameKey: "nav.report",
+            href: "/report",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"]
+        },
+        {
+            nameKey: "nav.services",
+            href: "/services",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"]
+        }
+    ];
     const classColor = profile ? __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["passengerClassColors"][profile.class].primary : __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.gray[600];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
@@ -837,14 +854,14 @@ function Navbar() {
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    children: item.name
+                                                    children: t(item.nameKey)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/layout/Navbar.tsx",
                                                     lineNumber: 121,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
-                                        }, item.name, true, {
+                                        }, item.nameKey, true, {
                                             fileName: "[project]/components/layout/Navbar.tsx",
                                             lineNumber: 94,
                                             columnNumber: 19
@@ -901,7 +918,7 @@ function Navbar() {
                                                     fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize,
                                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                                 },
-                                                children: profile.class === "economy" ? "Économie" : profile.class === "business" ? "Business" : "First Class"
+                                                children: t(`home.class.${profile.class === "economy" ? "economy" : profile.class === "business" ? "business" : "first"}`)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/layout/Navbar.tsx",
                                                 lineNumber: 150,
@@ -916,7 +933,7 @@ function Navbar() {
                                                 children: profile.flightNumber
                                             }, void 0, false, {
                                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                                lineNumber: 164,
+                                                lineNumber: 160,
                                                 columnNumber: 21
                                             }, this)
                                         ]
@@ -970,35 +987,35 @@ function Navbar() {
                                     className: "h-10 w-auto"
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/Navbar.tsx",
-                                    lineNumber: 194,
+                                    lineNumber: 190,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                lineNumber: 193,
+                                lineNumber: 189,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$LanguageSelector$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 currentLocale: locale
                             }, void 0, false, {
                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                lineNumber: 202,
+                                lineNumber: 198,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/layout/Navbar.tsx",
-                        lineNumber: 191,
+                        lineNumber: 187,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/layout/Navbar.tsx",
-                    lineNumber: 190,
+                    lineNumber: 186,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/layout/Navbar.tsx",
-                lineNumber: 182,
+                lineNumber: 178,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1026,7 +1043,7 @@ function Navbar() {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/Navbar.tsx",
-                                    lineNumber: 226,
+                                    lineNumber: 222,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
@@ -1037,7 +1054,7 @@ function Navbar() {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/Navbar.tsx",
-                                    lineNumber: 231,
+                                    lineNumber: 227,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1046,33 +1063,33 @@ function Navbar() {
                                         fontWeight: isActive ? 600 : 400,
                                         color: isActive ? __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.accent.main : __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                     },
-                                    children: item.name
+                                    children: t(item.nameKey)
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/Navbar.tsx",
-                                    lineNumber: 238,
+                                    lineNumber: 234,
                                     columnNumber: 17
                                 }, this)
                             ]
-                        }, item.name, true, {
+                        }, item.nameKey, true, {
                             fileName: "[project]/components/layout/Navbar.tsx",
-                            lineNumber: 220,
+                            lineNumber: 216,
                             columnNumber: 15
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/components/layout/Navbar.tsx",
-                    lineNumber: 215,
+                    lineNumber: 211,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/layout/Navbar.tsx",
-                lineNumber: 208,
+                lineNumber: 204,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true);
 }
-_s(Navbar, "wCkBIUgsi8A63d+pQFslriMM99A=", false, function() {
+_s(Navbar, "PKfCHe6WyKUFiBRawPfvQ0CxAKY=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"],
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$PassengerContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePassenger"],

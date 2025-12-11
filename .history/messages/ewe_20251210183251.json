@@ -1,0 +1,240 @@
+{
+  "nav": {
+    "home": "Aƒe",
+    "map": "Mɔfianu",
+    "navigation": "Mɔtata",
+    "flights": "Dzodzodzowo",
+    "report": "Gblɔe",
+    "services": "Dɔwɔwɔwo"
+  },
+  "home": {
+    "welcome": "Woezɔ ɖe Lomé Dzodzodzeƒe",
+    "tagline": "Wò mɔzɔzɔ bɔbɔe tso gbɔgbɔ yi ɖoɖo",
+    "heroTagline": "Zɔzɔ le gaƒoƒo me",
+    "heroNew": "YEYE",
+    "profile": {
+      "modify": "Trɔ asi"
+    },
+    "journey": {
+      "title": "Wò Mɔzɔzɔ",
+      "viewMap": "Kpɔ le mɔfianu dzi"
+    },
+    "quickActions": {
+      "map": {
+        "title": "Dzodzodzeƒe Mɔfianu",
+        "description": "Tsa mɔfianu si woate ŋu awɔ dɔ kplii la me"
+      },
+      "services": {
+        "title": "Dɔwɔwɔwo",
+        "description": "Nyatakaka kple kpekpeɖeŋu"
+      },
+      "report": {
+        "title": "Gblɔe",
+        "description": "Gblɔ kuxi aɖe"
+      }
+    },
+    "class": {
+      "economy": "Gadzikpɔ",
+      "business": "Asitsatsa",
+      "first": "Gbãtɔ Hatsotso"
+    }
+  },
+  "common": {
+    "minutes": "aɖabaƒoƒo",
+    "gate": "Agbo",
+    "flight": "Dzodzodzo",
+    "search": "Dii",
+    "searchPlaceholder": "Dii...",
+    "all": "Katã",
+    "loading": "Dzɔdzɔm...",
+    "noResults": "Gomekpɔkpɔ mele o",
+    "tryAnotherSearch": "Dzɔ dii bubu aɖe",
+    "floor": {
+      "ground": "Aƒe ƒe gbɔ",
+      "level": "Aƒe"
+    },
+    "close": "Ɖo",
+    "back": "Trɔ megbe",
+    "continue": "Ɖo ɖe eŋu",
+    "send": "Ɖa",
+    "cancel": "Ɖe"
+  },
+  "map": {
+    "title": "Dzodzodzeƒe Mɔfianu",
+    "searchPlaceholder": "Dii aƒe aɖe...",
+    "legend": "Nyatakaka",
+    "locationTypes": {
+      "gate": "Agbowo",
+      "checkin": "Kpɔkpɔ",
+      "security": "Dzidzɔkpɔkpɔ",
+      "toilet": "Tsiƒe",
+      "restaurant": "Nuɖuɖu",
+      "shop": "Dzidzɔkpɔkpɔwo",
+      "information": "Nyatakaka",
+      "lounge": "Aƒeƒoƒowo",
+      "baggage": "Nuƒoƒowo",
+      "entrance": "Dzidzɔkpɔkpɔwo",
+      "exit": "Dzidzɔkpɔkpɔwo",
+      "medical": "Dzidzɔkpɔkpɔ",
+      "prayer": "Gbeɖiɖi"
+    }
+  },
+  "navigation": {
+    "title": "Mɔtata",
+    "subtitle": "Kpɔ mɔtata le dzodzodzeƒe me",
+    "currentLocation": "Enye le...",
+    "destination": "Madi be madzɔ ɖe...",
+    "calculateRoute": "Ŋuie mɔtata",
+    "routeSummary": {
+      "distance": "Kpekpeɖeŋu",
+      "duration": "Gaƒoƒo",
+      "steps": "mɔtatawo",
+      "difficulty": "Kpekpeɖeŋu ƒe dze",
+      "easy": "Vovotɔ"
+    },
+    "instructions": "Nyatakaka siwo le eŋu",
+    "currentStep": "Mɔtata si le eŋu",
+    "stepCompleted": "Mɔtata wu",
+    "next": "Esi ɖe eŋu",
+    "arrived": "Wodzɔ ɖe eŋu!",
+    "arrivedDescription": "Wodzɔ ɖe mɔtata siwo wodi la me",
+    "newRoute": "Mɔtata yeye",
+    "selectRoute": "Tia mɔtata siwo wodi",
+    "selectRouteDescription": "Tia aƒe siwo le eŋu kple mɔtata siwo wodi be woaƒo nyatakaka siwo le eŋu",
+    "popularDestinations": {
+      "boarding": "Ɖoɖo",
+      "services": "Dɔwɔwɔwo",
+      "dining": "Nuɖuɖu",
+      "shopping": "Dzidzɔkpɔkpɔ",
+      "lounge": "Aƒeƒoƒo",
+      "arrival": "Gbɔgbɔ"
+    }
+  },
+  "flights": {
+    "title": "Dzodzodzowo siwo le eŋu",
+    "subtitle": "Lomé Dzodzodzeƒe (LFW)",
+    "loading": "Dzodzodzowo dzɔdzɔm...",
+    "lastUpdate": "Dzɔdzɔm siwo wu",
+    "demoMode": "Dzɔdzɔm ƒe dze",
+    "noFlights": "Dzodzodzo mele o",
+    "noFlightsDescription": "Dzodzodzo mele eŋu o",
+    "refresh": "Dzodzodzowo ɖe eŋu",
+    "filters": {
+      "all": "Katã",
+      "departure": "Dzidzɔkpɔkpɔ",
+      "arrival": "Gbɔgbɔ"
+    },
+    "status": {
+      "onTime": "Le gaƒoƒo me",
+      "delayed": "Dzɔdzɔm",
+      "boarding": "Ɖoɖo",
+      "departed": "Dzɔ",
+      "arrived": "Dzɔ ɖe eŋu",
+      "cancelled": "Ɖe"
+    },
+    "types": {
+      "departure": "DZIDZƆKPƆKPƆ",
+      "arrival": "GBƆGBƆ"
+    },
+    "gate": "Agbo",
+    "terminal": "Terminal"
+  },
+  "services": {
+    "title": "Dɔwɔwɔwo & Dzidzɔkpɔkpɔwo",
+    "subtitle": "Kpɔ nu katã si dzodzodzeƒe la le eŋu",
+    "emergency": {
+      "medical": "Dzidzɔkpɔkpɔ ƒe dzidzɔkpɔkpɔ",
+      "medicalDescription": "Dzidzɔkpɔkpɔ ƒe kpekpeɖeŋu 24/7",
+      "information": "Nyatakaka",
+      "informationDescription": "Nyatakaka siwo le eŋu"
+    },
+    "tips": {
+      "title": "Nyatakaka siwo le eŋu",
+      "arrival": {
+        "title": "Gbɔgbɔ",
+        "text": "2 gaƒoƒo ɖe eŋu be dzodzodzowo siwo le eŋu"
+      },
+      "wifi": {
+        "title": "Wi-Fi",
+        "text": "Vovotɔ - 'Airport-WiFi' ƒe dze"
+      },
+      "accessibility": {
+        "title": "Dzidzɔkpɔkpɔ",
+        "text": "Kpekpeɖeŋu le dzidzɔkpɔkpɔwo ƒe dze"
+      },
+      "exchange": {
+        "title": "Dzidzɔkpɔkpɔ",
+        "text": "Dzidzɔkpɔkpɔ ƒe aƒe le aƒe ƒe gbɔ"
+      }
+    },
+    "categories": {
+      "all": "Katã",
+      "restaurant": "Nuɖuɖuwo",
+      "shop": "Dzidzɔkpɔkpɔwo",
+      "lounge": "Aƒeƒoƒowo",
+      "services": "Dɔwɔwɔwo"
+    },
+    "location": {
+      "hours": "Gaƒoƒowo",
+      "location": "Aƒe",
+      "access": "Dzidzɔkpɔkpɔ",
+      "businessOnly": "Asitsatsa & Gbãtɔ Hatsotso koe"
+    },
+    "searchPlaceholder": "Dii..."
+  },
+  "report": {
+    "title": "Gblɔ kuxi aɖe",
+    "subtitle": "Kpɔ dzidzɔkpɔkpɔ ƒe dze le dzodzodzeƒe me. Wò gblɔe mele eŋu o kple dzidzɔkpɔkpɔ.",
+    "anonymous": "Gblɔe siwo le eŋu 100%",
+    "anonymousDescription": "Nyatakaka siwo le eŋu mele eŋu o. Wò dzidzɔkpɔkpɔ mele eŋu o.",
+    "categories": {
+      "suspiciousObject": "Nu siwo le eŋu",
+      "suspiciousObjectDescription": "Nuƒoƒo, nuƒoƒo alo nu siwo wotso ɖe eŋu",
+      "lostObject": "Nu siwo wotso",
+      "lostObjectDescription": "Nu siwo wotso alo nu siwo wokpɔ",
+      "concerningBehavior": "Dzidzɔkpɔkpɔ siwo le eŋu",
+      "concerningBehaviorDescription": "Dzidzɔkpɔkpɔ siwo le eŋu alo dzidzɔkpɔkpɔ siwo mele eŋu o",
+      "medicalIncident": "Dzidzɔkpɔkpɔ ƒe kuxi",
+      "medicalIncidentDescription": "Dzidzɔkpɔkpɔ ƒe dzidzɔkpɔkpɔ alo ame siwo le eŋu",
+      "dangerEmergency": "Dzidzɔkpɔkpɔ / Dzidzɔkpɔkpɔ",
+      "dangerEmergencyDescription": "Dzidzɔkpɔkpɔ siwo le eŋu"
+    },
+    "steps": {
+      "category": "Kuxi siwo le eŋu la nye nu ka?",
+      "location": "Kuxi siwo le eŋu la le aƒe ka?",
+      "locationPlaceholder": "Tia aƒe aɖe...",
+      "description": "Nyatakaka siwo le eŋu",
+      "descriptionPlaceholder": "Gblɔ kuxi siwo le eŋu la: nu siwo wokpɔ, wose alo wokpɔ...",
+      "photo": "Foto (siwo mele eŋu o)",
+      "photoButton": "Dze be woaƒo foto",
+      "review": "Kpɔ gblɔe siwo wogblɔ",
+      "incidentType": "Kuxi ƒe dze",
+      "locationLabel": "Aƒe",
+      "descriptionLabel": "Nyatakaka",
+      "photoAttached": "Foto siwo woaƒo"
+    },
+    "zones": {
+      "entrance": "Dzidzɔkpɔkpɔ ƒe aƒe",
+      "checkin": "Kpɔkpɔ ƒe aƒe",
+      "security": "Dzidzɔkpɔkpɔ ƒe kpɔkpɔ",
+      "gatesA": "Agbowo A",
+      "gatesB": "Agbowo B",
+      "baggageClaim": "Nuƒoƒowo ƒe kpɔkpɔ",
+      "foodCourt": "Nuɖuɖu ƒe aƒe",
+      "shops": "Dzidzɔkpɔkpɔ ƒe aƒe",
+      "toilets": "Tsiƒewo",
+      "parking": "Parking",
+      "other": "Bubu"
+    },
+    "warning": "Ne dzidzɔkpɔkpɔ siwo le eŋu (dzidzɔkpɔkpɔ ƒe dzidzɔkpɔkpɔ, dzidzɔkpɔkpɔ, dzidzɔkpɔkpɔ), ɖo 112 be woaƒo dzidzɔkpɔkpɔ siwo le eŋu alo woaƒo dzidzɔkpɔkpɔ siwo le eŋu.",
+    "sending": "Ɖa le eŋu...",
+    "submit": "Ɖa gblɔe",
+    "success": {
+      "title": "Gblɔe wu",
+      "description": "Akpe na wò dzidzɔkpɔkpɔ. Wò gblɔe wu ɖe dzidzɔkpɔkpɔ ƒe aƒe.",
+      "trackingNumber": "Dzidzɔkpɔkpɔ ƒe dze",
+      "status": "Woaƒo",
+      "statusDescription": "Dzidzɔkpɔkpɔ siwo le eŋu woaƒo kple woaƒo gblɔe siwo wogblɔ la."
+    }
+  }
+}

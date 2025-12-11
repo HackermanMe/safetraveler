@@ -26,6 +26,7 @@ function EnhancedAirportMap({ locations, selectedLocation, onLocationSelect, sho
     const map = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const markers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])({});
     const [mapLoaded, setMapLoaded] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const imageCache = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(new Map());
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "EnhancedAirportMap.useEffect": ()=>{
             if (!mapContainer.current || map.current) return;
@@ -33,7 +34,8 @@ function EnhancedAirportMap({ locations, selectedLocation, onLocationSelect, sho
             if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
             ;
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mapbox$2d$gl$2f$dist$2f$mapbox$2d$gl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].accessToken = token;
-            // Create map with improved style for Lomé Airport
+            // Create map with Streets style for Gnassingbé Eyadéma Airport (LFW)
+            // Gnassingbé Eyadéma Airport coordinates: [1.2549, 6.1659]
             map.current = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mapbox$2d$gl$2f$dist$2f$mapbox$2d$gl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].Map({
                 container: mapContainer.current,
                 style: "mapbox://styles/mapbox/streets-v12",
@@ -41,11 +43,11 @@ function EnhancedAirportMap({ locations, selectedLocation, onLocationSelect, sho
                     1.2549,
                     6.1659
                 ],
-                zoom: 17.5,
+                zoom: 15.5,
                 pitch: 0,
                 bearing: 0,
-                attributionControl: false,
-                minZoom: 15,
+                attributionControl: true,
+                minZoom: 11,
                 maxZoom: 20
             });
             // Add controls
@@ -77,81 +79,247 @@ function EnhancedAirportMap({ locations, selectedLocation, onLocationSelect, sho
             })["EnhancedAirportMap.useEffect"];
         }
     }["EnhancedAirportMap.useEffect"], []);
-    // Add enhanced markers
+    // Create SVG image for marker
+    const createMarkerImage = (color, initial, isSelected)=>{
+        return new Promise((resolve)=>{
+            const imageId = `${color}-${initial}-${isSelected}`;
+            // Always create new image to ensure it's up to date
+            const pinHeadSize = isSelected ? 28 : 24;
+            const pinPointSize = 12;
+            const totalHeight = pinHeadSize + pinPointSize;
+            const totalWidth = pinHeadSize;
+            const svg = `
+        <svg width="${totalWidth}" height="${totalHeight}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="shadow-${imageId.replace(/[^a-zA-Z0-9]/g, '_')}" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="${isSelected ? '2' : '1'}" stdDeviation="${isSelected ? '2' : '1.5'}" flood-opacity="0.3"/>
+            </filter>
+          </defs>
+          <g filter="url(#shadow-${imageId.replace(/[^a-zA-Z0-9]/g, '_')})">
+            <circle cx="${totalWidth / 2}" cy="${pinHeadSize / 2}" r="${pinHeadSize / 2 - 1}" fill="${color}" stroke="${isSelected ? '#fff' : 'rgba(255,255,255,0.9)'}" stroke-width="2"/>
+            <path d="M ${totalWidth / 2 - pinPointSize / 2} ${pinHeadSize} L ${totalWidth / 2} ${totalHeight} L ${totalWidth / 2 + pinPointSize / 2} ${pinHeadSize} Z" fill="${color}"/>
+            <text x="${totalWidth / 2}" y="${pinHeadSize / 2}" font-family="system-ui, -apple-system, sans-serif" font-size="${isSelected ? '14' : '12'}" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="central">${initial}</text>
+          </g>
+        </svg>
+      `;
+            const img = new Image();
+            img.onload = ()=>{
+                imageCache.current.set(imageId, img);
+                resolve(img);
+            };
+            img.src = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`;
+        });
+    };
+    // Add enhanced markers using Mapbox symbols (fixed size on zoom)
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "EnhancedAirportMap.useEffect": ()=>{
             if (!map.current || !mapLoaded) return;
+            // Remove existing markers and layers
             Object.values(markers.current).forEach({
                 "EnhancedAirportMap.useEffect": (marker)=>marker.remove()
             }["EnhancedAirportMap.useEffect"]);
             markers.current = {};
+            const sourceId = "locations-source";
+            const layerId = "locations-layer";
+            // Remove existing source and layer if they exist
+            if (map.current.getLayer(layerId)) {
+                map.current.removeLayer(layerId);
+            }
+            if (map.current.getSource(sourceId)) {
+                map.current.removeSource(sourceId);
+            }
             const floorLocations = locations.filter({
                 "EnhancedAirportMap.useEffect.floorLocations": (loc)=>loc.floor === currentFloor
             }["EnhancedAirportMap.useEffect.floorLocations"]);
-            floorLocations.forEach({
-                "EnhancedAirportMap.useEffect": (location)=>{
-                    const color = locationColors[location.type] || "#757575";
-                    const isSelected = selectedLocation === location.id;
-                    // Create custom marker element
-                    const el = document.createElement("div");
-                    el.className = "custom-marker";
-                    el.style.width = isSelected ? "48px" : "40px";
-                    el.style.height = isSelected ? "48px" : "40px";
-                    el.style.cursor = "pointer";
-                    el.style.borderRadius = "50%";
-                    el.style.backgroundColor = color;
-                    el.style.border = `3px solid ${isSelected ? "#fff" : "rgba(255,255,255,0.9)"}`;
-                    el.style.boxShadow = isSelected ? "0 4px 12px rgba(0,0,0,0.3)" : "0 2px 8px rgba(0,0,0,0.2)";
-                    el.style.display = "flex";
-                    el.style.alignItems = "center";
-                    el.style.justifyContent = "center";
-                    el.style.transition = "all 0.2s ease";
-                    el.style.color = "#fff";
-                    el.style.fontSize = isSelected ? "20px" : "16px";
-                    el.style.fontWeight = "bold";
-                    el.innerHTML = getLocationInitial(location.type);
-                    el.addEventListener("mouseenter", {
-                        "EnhancedAirportMap.useEffect": ()=>{
-                            el.style.transform = "scale(1.15)";
-                            el.style.zIndex = "1000";
+            // Create GeoJSON features
+            const features = floorLocations.map({
+                "EnhancedAirportMap.useEffect.features": (location)=>({
+                        type: "Feature",
+                        geometry: {
+                            type: "Point",
+                            coordinates: location.coordinates
+                        },
+                        properties: {
+                            id: location.id,
+                            name: location.name,
+                            type: location.type,
+                            description: location.description || "",
+                            status: location.status || "",
+                            color: locationColors[location.type] || "#757575",
+                            initial: getLocationInitial(location.type),
+                            isSelected: selectedLocation === location.id
                         }
-                    }["EnhancedAirportMap.useEffect"]);
-                    el.addEventListener("mouseleave", {
-                        "EnhancedAirportMap.useEffect": ()=>{
-                            el.style.transform = "scale(1)";
-                            el.style.zIndex = "1";
+                    })
+            }["EnhancedAirportMap.useEffect.features"]);
+            // Add source
+            map.current.addSource(sourceId, {
+                type: "geojson",
+                data: {
+                    type: "FeatureCollection",
+                    features
+                }
+            });
+            // Load images and add layer
+            const loadImagesAndAddLayer = {
+                "EnhancedAirportMap.useEffect.loadImagesAndAddLayer": async ()=>{
+                    if (!map.current) return;
+                    const uniqueMarkers = new Set();
+                    floorLocations.forEach({
+                        "EnhancedAirportMap.useEffect.loadImagesAndAddLayer": (location)=>{
+                            const color = locationColors[location.type] || "#757575";
+                            const initial = getLocationInitial(location.type);
+                            const isSelected = selectedLocation === location.id;
+                            uniqueMarkers.add(`${color}-${initial}-${isSelected}`);
                         }
-                    }["EnhancedAirportMap.useEffect"]);
-                    const popup = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mapbox$2d$gl$2f$dist$2f$mapbox$2d$gl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].Popup({
-                        offset: 25,
-                        closeButton: false,
-                        maxWidth: "300px"
-                    }).setHTML(`
-        <div style="padding: 12px;">
-          <div style="display: flex; align-items: center; margin-bottom: 8px;">
-            <div style="width: 32px; height: 32px; border-radius: 50%; background-color: ${color}; display: flex; align-items: center; justify-center; color: white; font-weight: bold; margin-right: 12px;">
-              ${getLocationInitial(location.type)}
-            </div>
-            <div>
-              <h3 style="font-weight: 600; font-size: 16px; margin: 0; color: #1f2937;">${location.name}</h3>
-              <p style="font-size: 12px; color: #6b7280; margin: 0;">${getLocationTypeLabel(location.type)}</p>
-            </div>
-          </div>
-          ${location.description ? `<p style="font-size: 14px; color: #4b5563; margin: 0;">${location.description}</p>` : ""}
-          ${location.status ? `<div style="margin-top: 8px; padding: 4px 8px; background-color: ${getStatusColor(location.status)}20; color: ${getStatusColor(location.status)}; border-radius: 4px; font-size: 12px; display: inline-block; font-weight: 500;">${getStatusLabel(location.status)}</div>` : ""}
-        </div>
-      `);
-                    const marker = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mapbox$2d$gl$2f$dist$2f$mapbox$2d$gl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].Marker(el).setLngLat(location.coordinates).setPopup(popup).addTo(map.current);
-                    el.addEventListener("click", {
-                        "EnhancedAirportMap.useEffect": ()=>{
+                    }["EnhancedAirportMap.useEffect.loadImagesAndAddLayer"]);
+                    // Load all unique marker images
+                    await Promise.all(Array.from(uniqueMarkers).map({
+                        "EnhancedAirportMap.useEffect.loadImagesAndAddLayer": async (key)=>{
+                            if (!map.current) return;
+                            // Parse key: format is "color-initial-selected"
+                            // Color may contain dashes, so we need to split from the end
+                            const parts = key.split("-");
+                            const selected = parts[parts.length - 1];
+                            const initial = parts[parts.length - 2];
+                            const color = parts.slice(0, -2).join("-");
+                            const isSelected = selected === "true";
+                            const imageId = `marker-${key}`;
+                            const img = await createMarkerImage(color, initial, isSelected);
+                            if (!map.current.hasImage(imageId)) {
+                                map.current.addImage(imageId, img);
+                            }
+                        }
+                    }["EnhancedAirportMap.useEffect.loadImagesAndAddLayer"]));
+                    if (!map.current) return;
+                    // Add layer with fixed icon size (doesn't scale with zoom)
+                    if (!map.current.getLayer(layerId)) {
+                        map.current.addLayer({
+                            id: layerId,
+                            type: "symbol",
+                            source: sourceId,
+                            layout: {
+                                "icon-image": [
+                                    "case",
+                                    [
+                                        "get",
+                                        "isSelected"
+                                    ],
+                                    [
+                                        "concat",
+                                        "marker-",
+                                        [
+                                            "get",
+                                            "color"
+                                        ],
+                                        "-",
+                                        [
+                                            "get",
+                                            "initial"
+                                        ],
+                                        "-true"
+                                    ],
+                                    [
+                                        "concat",
+                                        "marker-",
+                                        [
+                                            "get",
+                                            "color"
+                                        ],
+                                        "-",
+                                        [
+                                            "get",
+                                            "initial"
+                                        ],
+                                        "-false"
+                                    ]
+                                ],
+                                "icon-size": 1,
+                                "icon-anchor": "bottom",
+                                "icon-allow-overlap": true,
+                                "icon-ignore-placement": true
+                            }
+                        });
+                    }
+                    // Define event handlers
+                    const clickHandler = {
+                        "EnhancedAirportMap.useEffect.loadImagesAndAddLayer.clickHandler": (e)=>{
+                            if (!e.features || !e.features[0] || !map.current) return;
+                            const props = e.features[0].properties;
+                            if (!props) return;
+                            const color = props.color;
+                            const coordinates = e.features[0].geometry.coordinates.slice();
+                            const location = floorLocations.find({
+                                "EnhancedAirportMap.useEffect.loadImagesAndAddLayer.clickHandler.location": (loc)=>loc.id === props.id
+                            }["EnhancedAirportMap.useEffect.loadImagesAndAddLayer.clickHandler.location"]);
+                            if (!location) return;
                             if (onLocationSelect) {
                                 onLocationSelect(location.id);
                             }
+                            const popup = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mapbox$2d$gl$2f$dist$2f$mapbox$2d$gl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].Popup({
+                                offset: 25,
+                                closeButton: false,
+                                maxWidth: "300px"
+                            }).setLngLat(coordinates).setHTML(`
+            <div style="padding: 12px;">
+              <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                <div style="width: 12px; height: 12px; border-radius: 50%; background-color: ${color}; border: 2px solid ${color}; margin-right: 12px; flex-shrink: 0;"></div>
+                <div>
+                  <h3 style="font-weight: 600; font-size: 16px; margin: 0; color: #1f2937;">${location.name}</h3>
+                  <p style="font-size: 12px; color: #6b7280; margin: 0;">${getLocationTypeLabel(location.type)}</p>
+                </div>
+              </div>
+              ${location.description ? `<p style="font-size: 14px; color: #4b5563; margin: 0;">${location.description}</p>` : ""}
+              ${location.status ? `<div style="margin-top: 8px; padding: 4px 8px; background-color: ${getStatusColor(location.status)}20; color: ${getStatusColor(location.status)}; border-radius: 4px; font-size: 12px; display: inline-block; font-weight: 500;">${getStatusLabel(location.status)}</div>` : ""}
+            </div>
+          `).addTo(map.current);
                         }
-                    }["EnhancedAirportMap.useEffect"]);
-                    markers.current[location.id] = marker;
+                    }["EnhancedAirportMap.useEffect.loadImagesAndAddLayer.clickHandler"];
+                    const mouseEnterHandler = {
+                        "EnhancedAirportMap.useEffect.loadImagesAndAddLayer.mouseEnterHandler": ()=>{
+                            if (map.current) {
+                                map.current.getCanvas().style.cursor = "pointer";
+                            }
+                        }
+                    }["EnhancedAirportMap.useEffect.loadImagesAndAddLayer.mouseEnterHandler"];
+                    const mouseLeaveHandler = {
+                        "EnhancedAirportMap.useEffect.loadImagesAndAddLayer.mouseLeaveHandler": ()=>{
+                            if (map.current) {
+                                map.current.getCanvas().style.cursor = "";
+                            }
+                        }
+                    }["EnhancedAirportMap.useEffect.loadImagesAndAddLayer.mouseLeaveHandler"];
+                    // Add event handlers
+                    map.current.on("click", layerId, clickHandler);
+                    map.current.on("mouseenter", layerId, mouseEnterHandler);
+                    map.current.on("mouseleave", layerId, mouseLeaveHandler);
+                    // Store handlers for cleanup
+                    map.current._markerHandlers = {
+                        click: clickHandler,
+                        mouseenter: mouseEnterHandler,
+                        mouseleave: mouseLeaveHandler
+                    };
                 }
-            }["EnhancedAirportMap.useEffect"]);
+            }["EnhancedAirportMap.useEffect.loadImagesAndAddLayer"];
+            loadImagesAndAddLayer();
+            return ({
+                "EnhancedAirportMap.useEffect": ()=>{
+                    if (map.current) {
+                        const handlers = map.current._markerHandlers;
+                        if (handlers) {
+                            map.current.off("click", layerId, handlers.click);
+                            map.current.off("mouseenter", layerId, handlers.mouseenter);
+                            map.current.off("mouseleave", layerId, handlers.mouseleave);
+                            delete map.current._markerHandlers;
+                        }
+                        if (map.current.getLayer(layerId)) {
+                            map.current.removeLayer(layerId);
+                        }
+                        if (map.current.getSource(sourceId)) {
+                            map.current.removeSource(sourceId);
+                        }
+                    }
+                }
+            })["EnhancedAirportMap.useEffect"];
         }
     }["EnhancedAirportMap.useEffect"], [
         locations,
@@ -190,21 +358,81 @@ function EnhancedAirportMap({ locations, selectedLocation, onLocationSelect, sho
                 },
                 paint: {
                     "line-color": __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.accent.main,
-                    "line-width": 6,
+                    "line-width": [
+                        "interpolate",
+                        [
+                            "linear"
+                        ],
+                        [
+                            "zoom"
+                        ],
+                        10,
+                        4,
+                        15,
+                        6,
+                        18,
+                        8
+                    ],
                     "line-opacity": 0.9
                 }
             });
-            const bounds = showRoute.reduce({
-                "EnhancedAirportMap.useEffect.bounds": (bounds, coord)=>bounds.extend(coord)
-            }["EnhancedAirportMap.useEffect.bounds"], new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mapbox$2d$gl$2f$dist$2f$mapbox$2d$gl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].LngLatBounds(showRoute[0], showRoute[0]));
-            map.current.fitBounds(bounds, {
-                padding: 80
-            });
+            // Add a subtle outline for better visibility
+            map.current.addLayer({
+                id: `${routeId}-outline`,
+                type: "line",
+                source: routeId,
+                layout: {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                paint: {
+                    "line-color": "#ffffff",
+                    "line-width": [
+                        "interpolate",
+                        [
+                            "linear"
+                        ],
+                        [
+                            "zoom"
+                        ],
+                        10,
+                        6,
+                        15,
+                        8,
+                        18,
+                        10
+                    ],
+                    "line-opacity": 0.5
+                }
+            }, routeId); // Insert before the main route layer
+            // Fit map to route bounds with padding
+            if (showRoute.length > 0) {
+                const bounds = showRoute.reduce({
+                    "EnhancedAirportMap.useEffect.bounds": (bounds, coord)=>bounds.extend(coord)
+                }["EnhancedAirportMap.useEffect.bounds"], new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mapbox$2d$gl$2f$dist$2f$mapbox$2d$gl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].LngLatBounds(showRoute[0], showRoute[0]));
+                map.current.fitBounds(bounds, {
+                    padding: {
+                        top: 100,
+                        bottom: 100,
+                        left: 100,
+                        right: 100
+                    },
+                    maxZoom: 18,
+                    duration: 1000
+                });
+            }
             return ({
                 "EnhancedAirportMap.useEffect": ()=>{
-                    if (map.current && map.current.getSource(routeId)) {
-                        map.current.removeLayer(routeId);
-                        map.current.removeSource(routeId);
+                    if (map.current) {
+                        if (map.current.getLayer(`${routeId}-outline`)) {
+                            map.current.removeLayer(`${routeId}-outline`);
+                        }
+                        if (map.current.getLayer(routeId)) {
+                            map.current.removeLayer(routeId);
+                        }
+                        if (map.current.getSource(routeId)) {
+                            map.current.removeSource(routeId);
+                        }
                     }
                 }
             })["EnhancedAirportMap.useEffect"];
@@ -218,11 +446,11 @@ function EnhancedAirportMap({ locations, selectedLocation, onLocationSelect, sho
         className: "w-full h-full rounded-lg"
     }, void 0, false, {
         fileName: "[project]/components/map/EnhancedAirportMap.tsx",
-        lineNumber: 224,
+        lineNumber: 431,
         columnNumber: 10
     }, this);
 }
-_s(EnhancedAirportMap, "+MSU2QggOeQC3qAg8KxJ2m7PJ18=");
+_s(EnhancedAirportMap, "BLZB6/4utv9kF7X1oEWQwxWHZfE=");
 _c = EnhancedAirportMap;
 function getLocationInitial(type) {
     const initials = {
@@ -296,7 +524,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 "[project]/lib/data/airport-data.json (json)", ((__turbopack_context__) => {
 
-__turbopack_context__.v(JSON.parse("{\"airport\":{\"name\":\"Aéroport International Gnassingbé Eyadéma\",\"code\":\"LFW\",\"city\":\"Lomé\",\"country\":\"Togo\",\"coordinates\":[1.2549,6.1659],\"capacity\":\"2 000 000 passagers/an\",\"hub\":\"ASKY Airlines\",\"distance_city\":\"6.8 km du centre-ville\"},\"locations\":[{\"id\":\"entrance-main\",\"name\":\"Entrée Principale\",\"type\":\"entrance\",\"floor\":0,\"coordinates\":[1.2545,6.1658],\"description\":\"Entrée principale du terminal international\",\"status\":\"open\"},{\"id\":\"entrance-vip\",\"name\":\"Entrée VIP\",\"type\":\"entrance\",\"floor\":0,\"coordinates\":[1.25455,6.1658],\"description\":\"Entrée réservée Business et Première Classe\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"checkin-economy\",\"name\":\"Enregistrement Zone A\",\"type\":\"checkin\",\"floor\":0,\"coordinates\":[1.2546,6.16585],\"description\":\"Comptoirs 1-20 - Classe Économique\",\"status\":\"open\",\"accessibleTo\":[\"economy\"]},{\"id\":\"checkin-business\",\"name\":\"Enregistrement Zone B\",\"type\":\"checkin\",\"floor\":0,\"coordinates\":[1.25465,6.16585],\"description\":\"Comptoirs 21-26 - Business & Première Classe\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"checkin-asky\",\"name\":\"Enregistrement ASKY Airlines\",\"type\":\"checkin\",\"floor\":0,\"coordinates\":[1.2547,6.16585],\"description\":\"Comptoirs dédiés ASKY Airlines (hub)\",\"status\":\"open\"},{\"id\":\"security-main\",\"name\":\"Contrôle de Sécurité Principal\",\"type\":\"security\",\"floor\":0,\"coordinates\":[1.25475,6.1659],\"description\":\"Point de contrôle sécurité et passeport\",\"status\":\"busy\"},{\"id\":\"security-fast\",\"name\":\"Contrôle Fast Track\",\"type\":\"security\",\"floor\":0,\"coordinates\":[1.2548,6.1659],\"description\":\"Voie rapide Business/Première Classe\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"gate-a1\",\"name\":\"Porte A1\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.2549,6.16595],\"description\":\"Vols internationaux - Air France, Brussels Airlines\",\"status\":\"open\"},{\"id\":\"gate-a2\",\"name\":\"Porte A2\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25495,6.16595],\"description\":\"Vols internationaux - Ethiopian Airlines\",\"status\":\"open\"},{\"id\":\"gate-a3\",\"name\":\"Porte A3\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.255,6.16595],\"description\":\"Vols internationaux - Turkish Airlines\",\"status\":\"open\"},{\"id\":\"gate-a4\",\"name\":\"Porte A4\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25505,6.16595],\"description\":\"Vols internationaux - Royal Air Maroc\",\"status\":\"open\"},{\"id\":\"gate-a5\",\"name\":\"Porte A5\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.2551,6.16595],\"description\":\"Vols internationaux - ASKY Airlines\",\"status\":\"open\"},{\"id\":\"gate-a6\",\"name\":\"Porte A6\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25515,6.16595],\"description\":\"Vols internationaux - Emirates, Air Côte d'Ivoire\",\"status\":\"open\"},{\"id\":\"gate-b1\",\"name\":\"Porte B1\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.2549,6.166],\"description\":\"Vols régionaux - Destinations Afrique de l'Ouest\",\"status\":\"open\"},{\"id\":\"gate-b2\",\"name\":\"Porte B2\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25495,6.166],\"description\":\"Vols domestiques\",\"status\":\"open\"},{\"id\":\"gate-b3\",\"name\":\"Porte B3\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.255,6.166],\"description\":\"Vols régionaux - ASKY Airlines\",\"status\":\"open\"},{\"id\":\"baggage-1\",\"name\":\"Tapis 1 - Arrivées Internationales\",\"type\":\"baggage\",\"floor\":0,\"coordinates\":[1.2552,6.16575],\"description\":\"Récupération bagages vols internationaux\",\"status\":\"open\"},{\"id\":\"baggage-2\",\"name\":\"Tapis 2 - Arrivées Régionales\",\"type\":\"baggage\",\"floor\":0,\"coordinates\":[1.25525,6.16575],\"description\":\"Récupération bagages vols régionaux\",\"status\":\"open\"},{\"id\":\"customs-arrival\",\"name\":\"Douane Arrivées\",\"type\":\"customs\",\"floor\":0,\"coordinates\":[1.2553,6.16575],\"description\":\"Contrôle douanier pour arrivées internationales\",\"status\":\"open\"},{\"id\":\"info-main\",\"name\":\"Information Principale\",\"type\":\"information\",\"floor\":0,\"coordinates\":[1.25455,6.16585],\"description\":\"Renseignements, objets trouvés, assistance\",\"status\":\"open\"},{\"id\":\"info-gates\",\"name\":\"Information Zone Embarquement\",\"type\":\"information\",\"floor\":1,\"coordinates\":[1.255,6.1659],\"description\":\"Informations vols et assistance embarquement\",\"status\":\"open\"},{\"id\":\"toilet-arrival\",\"name\":\"Toilettes Zone Arrivées\",\"type\":\"toilet\",\"floor\":0,\"coordinates\":[1.25515,6.16575],\"description\":\"Toilettes accessibles PMR\",\"status\":\"open\"},{\"id\":\"toilet-checkin\",\"name\":\"Toilettes Zone Enregistrement\",\"type\":\"toilet\",\"floor\":0,\"coordinates\":[1.25465,6.1658],\"description\":\"Toilettes accessibles PMR\",\"status\":\"open\"},{\"id\":\"toilet-gates-a\",\"name\":\"Toilettes Portes A\",\"type\":\"toilet\",\"floor\":1,\"coordinates\":[1.25505,6.1659],\"description\":\"Toilettes zone internationale\",\"status\":\"open\"},{\"id\":\"toilet-gates-b\",\"name\":\"Toilettes Portes B\",\"type\":\"toilet\",\"floor\":1,\"coordinates\":[1.25495,6.166],\"description\":\"Toilettes zone domestique\",\"status\":\"open\"},{\"id\":\"medical-main\",\"name\":\"Infirmerie\",\"type\":\"medical\",\"floor\":0,\"coordinates\":[1.2546,6.1658],\"description\":\"Assistance médicale d'urgence - 24/7\",\"status\":\"open\"},{\"id\":\"prayer-room\",\"name\":\"Salle de Prière\",\"type\":\"prayer\",\"floor\":1,\"coordinates\":[1.2551,6.1659],\"description\":\"Espace de recueillement multi-confessionnel\",\"status\":\"open\"},{\"id\":\"lounge-asky\",\"name\":\"Salon VIP ASKY Airlines\",\"type\":\"lounge\",\"floor\":1,\"coordinates\":[1.25485,6.16595],\"description\":\"Salon VIP avec restauration, Wi-Fi, douches\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"restaurant-maquis\",\"name\":\"Le Maquis de l'Aéroport\",\"type\":\"restaurant\",\"floor\":0,\"coordinates\":[1.2547,6.1658],\"description\":\"Cuisine togolaise authentique - Fufu, Akpan, Akoumé\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"restaurant-teranga\",\"name\":\"Restaurant Teranga\",\"type\":\"restaurant\",\"floor\":1,\"coordinates\":[1.25505,6.16592],\"description\":\"Cuisine africaine et internationale\",\"status\":\"open\",\"hours\":\"5h - 23h\"},{\"id\":\"cafe-express\",\"name\":\"Café Express\",\"type\":\"restaurant\",\"floor\":1,\"coordinates\":[1.25495,6.16592],\"description\":\"Café, viennoiseries, sandwichs rapides\",\"status\":\"open\",\"hours\":\"4h30 - 23h30\"},{\"id\":\"restaurant-fastfood\",\"name\":\"Quick Bites\",\"type\":\"restaurant\",\"floor\":1,\"coordinates\":[1.2551,6.16592],\"description\":\"Fast-food international - Burgers, pizzas, salades\",\"status\":\"open\",\"hours\":\"6h - 23h\"},{\"id\":\"shop-dutyfree\",\"name\":\"Duty Free Lomé\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.2549,6.16592],\"description\":\"Parfums, alcools, tabac, cosmétiques hors taxes\",\"status\":\"open\",\"hours\":\"5h - 23h\"},{\"id\":\"shop-artisanat\",\"name\":\"Artisanat Togolais\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.255,6.16592],\"description\":\"Tissus batik, sculptures, bijoux locaux, souvenirs\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"shop-presse\",\"name\":\"Relay Presse\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.25515,6.16592],\"description\":\"Presse internationale, livres, snacks\",\"status\":\"open\",\"hours\":\"5h - 23h\"},{\"id\":\"shop-electronics\",\"name\":\"Tech & Travel\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.25505,6.16597],\"description\":\"Électronique, accessoires voyage, adaptateurs\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"bank-utb\",\"name\":\"Union Togolaise de Banque (UTB)\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.25475,6.16575],\"description\":\"Distributeur automatique et services bancaires\",\"status\":\"open\",\"hours\":\"24/7 (DAB)\"},{\"id\":\"exchange-office\",\"name\":\"Bureau de Change\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.2548,6.16575],\"description\":\"Change de devises - CFA, EUR, USD\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"car-rental-avis\",\"name\":\"Avis Location de Voitures\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.25535,6.1658],\"description\":\"Location de véhicules\",\"status\":\"open\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 05 82\"},{\"id\":\"car-rental-europcar\",\"name\":\"Europcar\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.2554,6.1658],\"description\":\"Location de véhicules\",\"status\":\"open\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 13 24\"},{\"id\":\"car-rental-hertz\",\"name\":\"Hertz\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.25545,6.1658],\"description\":\"Location de véhicules\",\"status\":\"open\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 44 79\"},{\"id\":\"parking-main\",\"name\":\"Parking Principal\",\"type\":\"parking\",\"floor\":0,\"coordinates\":[1.2544,6.1658],\"description\":\"Parking longue durée - 650 places\",\"status\":\"open\",\"hours\":\"24/7\"}],\"services\":[{\"id\":\"service-prmassist\",\"name\":\"Assistance Passagers à Mobilité Réduite\",\"category\":\"assistance\",\"description\":\"Accompagnement personnalisé, fauteuils roulants, assistance embarquement/débarquement\",\"location\":\"info-main\",\"hours\":\"24/7\",\"contact\":\"+228 22 23 44 55\",\"icon\":\"accessibility\",\"free\":true},{\"id\":\"service-medical\",\"name\":\"Assistance Médicale d'Urgence\",\"category\":\"medical\",\"description\":\"Infirmerie avec personnel qualifié, premiers secours, défibrillateur\",\"location\":\"medical-main\",\"hours\":\"24/7\",\"contact\":\"+228 22 23 44 56\",\"icon\":\"cross\",\"free\":true},{\"id\":\"service-lostfound\",\"name\":\"Objets Trouvés\",\"category\":\"lost_found\",\"description\":\"Déclaration et récupération d'objets perdus dans l'enceinte de l'aéroport\",\"location\":\"info-main\",\"hours\":\"6h - 23h\",\"contact\":\"+228 22 23 44 57\",\"icon\":\"briefcase\",\"free\":true},{\"id\":\"service-flightinfo\",\"name\":\"Information Vols en Temps Réel\",\"category\":\"information\",\"description\":\"Horaires, retards, annulations, changements de porte\",\"location\":\"info-main\",\"hours\":\"24/7\",\"contact\":\"+228 22 23 44 58\",\"icon\":\"info\",\"free\":true},{\"id\":\"service-customs\",\"name\":\"Services Douaniers\",\"category\":\"customs\",\"description\":\"Déclarations douanières, contrôles, informations réglementaires\",\"location\":\"customs-arrival\",\"hours\":\"Selon horaires des vols\",\"contact\":\"+228 22 23 44 59\",\"icon\":\"shield\",\"free\":true},{\"id\":\"service-wifi\",\"name\":\"Wi-Fi Gratuit\",\"category\":\"connectivity\",\"description\":\"Accès Internet sans fil gratuit dans tout l'aéroport\",\"location\":\"Partout\",\"hours\":\"24/7\",\"network\":\"Aeroport_LFW_Free\",\"icon\":\"wifi\",\"free\":true},{\"id\":\"service-porter\",\"name\":\"Porteurs de Bagages\",\"category\":\"assistance\",\"description\":\"Aide au transport des bagages\",\"location\":\"entrance-main\",\"hours\":\"5h - 23h\",\"icon\":\"luggage\",\"free\":false,\"pricing\":\"2000-5000 CFA selon distance\"},{\"id\":\"service-vip\",\"name\":\"Service VIP & Meet & Greet\",\"category\":\"premium\",\"description\":\"Accueil personnalisé, assistance formalités, salon VIP, voie rapide\",\"location\":\"entrance-vip\",\"hours\":\"24/7 (sur réservation)\",\"contact\":\"+228 22 23 44 60\",\"icon\":\"star\",\"free\":false,\"pricing\":\"À partir de 50 000 CFA\"},{\"id\":\"service-avis\",\"name\":\"Location Voitures Avis\",\"category\":\"transport\",\"description\":\"Large gamme de véhicules disponibles\",\"location\":\"car-rental-avis\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 05 82\",\"icon\":\"car\",\"free\":false,\"website\":\"https://www.avis.com\"},{\"id\":\"service-europcar\",\"name\":\"Location Voitures Europcar\",\"category\":\"transport\",\"description\":\"Véhicules neufs et bien entretenus\",\"location\":\"car-rental-europcar\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 13 24\",\"icon\":\"car\",\"free\":false,\"website\":\"https://www.europcar.com\"},{\"id\":\"service-hertz\",\"name\":\"Location Voitures Hertz\",\"category\":\"transport\",\"description\":\"Leader mondial de la location de véhicules\",\"location\":\"car-rental-hertz\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 44 79\",\"icon\":\"car\",\"free\":false,\"website\":\"https://www.hertz.com\"},{\"id\":\"service-utb\",\"name\":\"Services Bancaires UTB\",\"category\":\"financial\",\"description\":\"Distributeur automatique 24/7, services bancaires\",\"location\":\"bank-utb\",\"hours\":\"24/7 (DAB)\",\"icon\":\"banknote\",\"free\":true},{\"id\":\"service-exchange\",\"name\":\"Bureau de Change\",\"category\":\"financial\",\"description\":\"Change CFA, Euro, Dollar US, autres devises principales\",\"location\":\"exchange-office\",\"hours\":\"6h - 22h\",\"icon\":\"coins\",\"free\":false,\"commission\":\"Commission 2-3%\"}],\"floors\":[{\"level\":0,\"name\":\"Rez-de-chaussée - Arrivées & Départs\",\"description\":\"Zone publique : Enregistrement, Bagages, Services\",\"bounds\":[[1.2544,6.1657],[1.2556,6.1661]]},{\"level\":1,\"name\":\"Étage 1 - Zone d'Embarquement\",\"description\":\"Zone sécurisée : Portes d'embarquement, Restaurants, Boutiques\",\"bounds\":[[1.2548,6.1659],[1.2552,6.1661]]}],\"airlines\":[{\"code\":\"KP\",\"name\":\"ASKY Airlines\",\"type\":\"hub\",\"destinations\":[\"Dakar\",\"Abidjan\",\"Ouagadougou\",\"Niamey\",\"Cotonou\",\"Accra\",\"Lagos\",\"Libreville\"]},{\"code\":\"AF\",\"name\":\"Air France\",\"type\":\"international\",\"destinations\":[\"Paris CDG\"]},{\"code\":\"SN\",\"name\":\"Brussels Airlines\",\"type\":\"international\",\"destinations\":[\"Bruxelles\"]},{\"code\":\"ET\",\"name\":\"Ethiopian Airlines\",\"type\":\"international\",\"destinations\":[\"Addis-Abeba\"]},{\"code\":\"TK\",\"name\":\"Turkish Airlines\",\"type\":\"international\",\"destinations\":[\"Istanbul\"]},{\"code\":\"AT\",\"name\":\"Royal Air Maroc\",\"type\":\"international\",\"destinations\":[\"Casablanca\"]},{\"code\":\"EK\",\"name\":\"Emirates\",\"type\":\"international\",\"destinations\":[\"Dubaï\"]},{\"code\":\"HF\",\"name\":\"Air Côte d'Ivoire\",\"type\":\"regional\",\"destinations\":[\"Abidjan\",\"Dakar\"]}]}"));}),
+__turbopack_context__.v({"airport":{"name":"Aéroport International Gnassingbé Eyadéma","code":"LFW","city":"Lomé","country":"Togo","coordinates":[1.2549,6.1659],"capacity":"2 000 000 passagers/an","hub":"ASKY Airlines","distance_city":"6.8 km du centre-ville"},"locations":[{"id":"gate-a1","name":"Porte A1","type":"gate","floor":1,"coordinates":[1.253568,6.170194],"description":"Porte d'embarquement A1 - Vols internationaux","status":"open"},{"id":"gate-a2","name":"Porte A2","type":"gate","floor":1,"coordinates":[1.253185,6.169748],"description":"Porte d'embarquement A2 - Vols internationaux","status":"open"},{"id":"gate-a3","name":"Porte A3","type":"gate","floor":1,"coordinates":[1.252825,6.169437],"description":"Porte d'embarquement A3 - Vols internationaux","status":"open"},{"id":"gate-b1","name":"Porte B1","type":"gate","floor":1,"coordinates":[1.254069,6.171084],"description":"Porte d'embarquement B1 - Vols régionaux","status":"open"},{"id":"gate-b2","name":"Porte B2","type":"gate","floor":1,"coordinates":[1.253923,6.170668],"description":"Porte d'embarquement B2 - Vols régionaux","status":"open"},{"id":"checkin-economy-1","name":"Enregistrement Zone A","type":"checkin","floor":0,"coordinates":[1.253038,6.170017],"description":"Comptoirs 1-20 - Classe Économique","status":"open","accessibleTo":["economy"]},{"id":"checkin-economy-2","name":"Enregistrement Zone B","type":"checkin","floor":0,"coordinates":[1.253899,6.170813],"description":"Comptoirs 21-40 - Classe Économique","status":"open","accessibleTo":["economy"]},{"id":"checkin-business","name":"Enregistrement Business","type":"checkin","floor":0,"coordinates":[1.252822,6.169666],"description":"Comptoirs Business & Première Classe","status":"open","accessibleTo":["business","first"]},{"id":"security-main","name":"Contrôle de Sécurité Principal","type":"security","floor":0,"coordinates":[1.253083,6.172066],"description":"Point de contrôle sécurité et passeport","status":"busy"},{"id":"security-fast","name":"Contrôle Fast Track","type":"security","floor":0,"coordinates":[1.253317,6.170509],"description":"Voie rapide Business/Première Classe","status":"open","accessibleTo":["business","first"]},{"id":"toilet-arrival","name":"Toilettes Zone Arrivées","type":"toilet","floor":0,"coordinates":[1.253572,6.170538],"description":"Toilettes accessibles PMR","status":"open"},{"id":"toilet-checkin","name":"Toilettes Zone Enregistrement","type":"toilet","floor":0,"coordinates":[1.253357,6.170299],"description":"Toilettes accessibles PMR","status":"open"},{"id":"toilet-gates-a","name":"Toilettes Portes A","type":"toilet","floor":1,"coordinates":[1.253572,6.170538],"description":"Toilettes zone internationale","status":"open"},{"id":"toilet-gates-b","name":"Toilettes Portes B","type":"toilet","floor":1,"coordinates":[1.253357,6.170299],"description":"Toilettes zone domestique","status":"open"},{"id":"restaurant-maquis","name":"Le Maquis de l'Aéroport","type":"restaurant","floor":0,"coordinates":[1.252739,6.170065],"description":"Cuisine togolaise authentique - Fufu, Akpan, Akoumé","status":"open","hours":"6h - 22h"},{"id":"restaurant-teranga","name":"Restaurant Teranga","type":"restaurant","floor":1,"coordinates":[1.252739,6.170065],"description":"Cuisine africaine et internationale","status":"open","hours":"5h - 23h"},{"id":"cafe-express","name":"Café Express","type":"restaurant","floor":1,"coordinates":[1.252739,6.170065],"description":"Café, viennoiseries, sandwichs rapides","status":"open","hours":"4h30 - 23h30"},{"id":"shop-dutyfree","name":"Duty Free Lomé","type":"shop","floor":1,"coordinates":[1.25217,6.169382],"description":"Parfums, alcools, tabac, cosmétiques hors taxes","status":"open","hours":"5h - 23h"},{"id":"shop-artisanat","name":"Artisanat Togolais","type":"shop","floor":1,"coordinates":[1.251705,6.169352],"description":"Tissus batik, sculptures, bijoux locaux, souvenirs","status":"open","hours":"6h - 22h"},{"id":"shop-presse","name":"Relay Presse","type":"shop","floor":1,"coordinates":[1.252265,6.169839],"description":"Presse internationale, livres, snacks","status":"open","hours":"5h - 23h"},{"id":"info-main","name":"Information Principale","type":"information","floor":0,"coordinates":[1.253386,6.17088],"description":"Renseignements, objets trouvés, assistance","status":"open"},{"id":"info-gates","name":"Information Zone Embarquement","type":"information","floor":1,"coordinates":[1.252895,6.170068],"description":"Informations vols et assistance embarquement","status":"open"},{"id":"lounge-asky","name":"Salon VIP ASKY Airlines","type":"lounge","floor":1,"coordinates":[1.252755,6.170232],"description":"Salon VIP avec restauration, Wi-Fi, douches","status":"open","accessibleTo":["business","first"]},{"id":"lounge-business","name":"Salon Business","type":"lounge","floor":1,"coordinates":[1.253317,6.170509],"description":"Salon Business avec bar et restauration","status":"open","accessibleTo":["business","first"]}],"services":[{"id":"service-prmassist","name":"Assistance Passagers à Mobilité Réduite","category":"assistance","description":"Accompagnement personnalisé, fauteuils roulants, assistance embarquement/débarquement","location":"info-main","hours":"24/7","contact":"+228 22 23 44 55","icon":"accessibility","free":true},{"id":"service-medical","name":"Assistance Médicale d'Urgence","category":"medical","description":"Infirmerie avec personnel qualifié, premiers secours, défibrillateur","location":"medical-main","hours":"24/7","contact":"+228 22 23 44 56","icon":"cross","free":true},{"id":"service-lostfound","name":"Objets Trouvés","category":"lost_found","description":"Déclaration et récupération d'objets perdus dans l'enceinte de l'aéroport","location":"info-main","hours":"6h - 23h","contact":"+228 22 23 44 57","icon":"briefcase","free":true},{"id":"service-flightinfo","name":"Information Vols en Temps Réel","category":"information","description":"Horaires, retards, annulations, changements de porte","location":"info-main","hours":"24/7","contact":"+228 22 23 44 58","icon":"info","free":true},{"id":"service-customs","name":"Services Douaniers","category":"customs","description":"Déclarations douanières, contrôles, informations réglementaires","location":"customs-arrival","hours":"Selon horaires des vols","contact":"+228 22 23 44 59","icon":"shield","free":true},{"id":"service-wifi","name":"Wi-Fi Gratuit","category":"connectivity","description":"Accès Internet sans fil gratuit dans tout l'aéroport","location":"Partout","hours":"24/7","network":"Aeroport_LFW_Free","icon":"wifi","free":true},{"id":"service-porter","name":"Porteurs de Bagages","category":"assistance","description":"Aide au transport des bagages","location":"entrance-main","hours":"5h - 23h","icon":"luggage","free":false,"pricing":"2000-5000 CFA selon distance"},{"id":"service-vip","name":"Service VIP & Meet & Greet","category":"premium","description":"Accueil personnalisé, assistance formalités, salon VIP, voie rapide","location":"entrance-vip","hours":"24/7 (sur réservation)","contact":"+228 22 23 44 60","icon":"star","free":false,"pricing":"À partir de 50 000 CFA"}],"floors":[{"level":0,"name":"Rez-de-chaussée - Arrivées & Départs","description":"Zone publique : Enregistrement, Bagages, Services","bounds":[[1.251,6.163],[1.2595,6.169]]},{"level":1,"name":"Étage 1 - Zone d'Embarquement","description":"Zone sécurisée : Portes d'embarquement, Restaurants, Boutiques","bounds":[[1.255,6.166],[1.2595,6.169]]}],"airlines":[{"code":"KP","name":"ASKY Airlines","type":"hub","destinations":["Dakar","Abidjan","Ouagadougou","Niamey","Cotonou","Accra","Lagos","Libreville"]},{"code":"AF","name":"Air France","type":"international","destinations":["Paris CDG"]},{"code":"SN","name":"Brussels Airlines","type":"international","destinations":["Bruxelles"]},{"code":"ET","name":"Ethiopian Airlines","type":"international","destinations":["Addis-Abeba"]},{"code":"TK","name":"Turkish Airlines","type":"international","destinations":["Istanbul"]},{"code":"AT","name":"Royal Air Maroc","type":"international","destinations":["Casablanca"]},{"code":"EK","name":"Emirates","type":"international","destinations":["Dubaï"]},{"code":"HF","name":"Air Côte d'Ivoire","type":"regional","destinations":["Abidjan","Dakar"]}]});}),
 "[project]/app/map/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -313,6 +541,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$map$2f$EnhancedAirportMap$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/map/EnhancedAirportMap.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$data$2f$airport$2d$data$2e$json__$28$json$29$__ = __turbopack_context__.i("[project]/lib/data/airport-data.json (json)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/config/theme.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/context/LocaleContext.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
@@ -321,23 +550,10 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-const locationTypeLabels = {
-    gate: "Portes",
-    checkin: "Enregistrement",
-    security: "Sécurité",
-    toilet: "Toilettes",
-    restaurant: "Restauration",
-    shop: "Boutiques",
-    information: "Information",
-    lounge: "Salons",
-    baggage: "Bagages",
-    entrance: "Entrées",
-    exit: "Sorties",
-    medical: "Médical",
-    prayer: "Prière"
-};
+;
 function MapPage() {
     _s();
+    const { t } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLocale"])();
     const [locations, setLocations] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [floors, setFloors] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [currentFloor, setCurrentFloor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
@@ -351,6 +567,18 @@ function MapPage() {
             setFloors(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$data$2f$airport$2d$data$2e$json__$28$json$29$__["default"].floors);
         }
     }["MapPage.useEffect"], []);
+    // Get only the location types to display in legend
+    const legendLocationTypes = [
+        "gate",
+        "checkin",
+        "security",
+        "toilet",
+        "restaurant",
+        "shop",
+        "information",
+        "lounge"
+    ];
+    // Get location types from actual locations (for filtering)
     const locationTypes = Array.from(new Set(locations.map((loc)=>loc.type))).sort();
     const filteredLocations = locations.filter((loc)=>{
         const matchesSearch = loc.name.toLowerCase().includes(searchQuery.toLowerCase()) || loc.description?.toLowerCase().includes(searchQuery.toLowerCase());
@@ -402,14 +630,14 @@ function MapPage() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/app/map/page.tsx",
-                                            lineNumber: 86,
+                                            lineNumber: 85,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                             type: "text",
                                             value: searchQuery,
                                             onChange: (e)=>setSearchQuery(e.target.value),
-                                            placeholder: "Rechercher un lieu...",
+                                            placeholder: t("map.searchPlaceholder"),
                                             className: "w-full rounded-lg focus:outline-none transition-all",
                                             style: {
                                                 paddingLeft: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].spacing[10],
@@ -430,7 +658,7 @@ function MapPage() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/app/map/page.tsx",
-                                            lineNumber: 90,
+                                            lineNumber: 89,
                                             columnNumber: 15
                                         }, this),
                                         searchQuery && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -449,18 +677,18 @@ function MapPage() {
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/map/page.tsx",
-                                                lineNumber: 126,
+                                                lineNumber: 125,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/map/page.tsx",
-                                            lineNumber: 115,
+                                            lineNumber: 114,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/map/page.tsx",
-                                    lineNumber: 85,
+                                    lineNumber: 84,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -486,18 +714,18 @@ function MapPage() {
                                         className: "w-5 h-5"
                                     }, void 0, false, {
                                         fileName: "[project]/app/map/page.tsx",
-                                        lineNumber: 150,
+                                        lineNumber: 149,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/map/page.tsx",
-                                    lineNumber: 130,
+                                    lineNumber: 129,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/map/page.tsx",
-                            lineNumber: 84,
+                            lineNumber: 83,
                             columnNumber: 11
                         }, this),
                         showFilters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -524,27 +752,27 @@ function MapPage() {
                                             e.currentTarget.style.backgroundColor = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.background.elevated;
                                         }
                                     },
-                                    children: locationTypeLabels[type] || type
+                                    children: t(`map.locationTypes.${type}`) || type
                                 }, type, false, {
                                     fileName: "[project]/app/map/page.tsx",
-                                    lineNumber: 160,
+                                    lineNumber: 159,
                                     columnNumber: 19
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/app/map/page.tsx",
-                            lineNumber: 156,
+                            lineNumber: 155,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/map/page.tsx",
-                    lineNumber: 83,
+                    lineNumber: 82,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/map/page.tsx",
-                lineNumber: 75,
+                lineNumber: 74,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -557,7 +785,7 @@ function MapPage() {
                         currentFloor: currentFloor
                     }, void 0, false, {
                         fileName: "[project]/app/map/page.tsx",
-                        lineNumber: 195,
+                        lineNumber: 194,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -593,11 +821,11 @@ function MapPage() {
                                         style: {
                                             fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize
                                         },
-                                        children: floor.level === 0 ? "RDC" : `Étage ${floor.level}`
+                                        children: floor.level === 0 ? t("common.floor.ground") : `${t("common.floor.level")} ${floor.level}`
                                     }, void 0, false, {
                                         fileName: "[project]/app/map/page.tsx",
-                                        lineNumber: 236,
-                                        columnNumber: 17
+                                        lineNumber: 235,
+                                        columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "mt-1",
@@ -608,19 +836,19 @@ function MapPage() {
                                         children: floor.name.split(" - ")[1] || floor.name
                                     }, void 0, false, {
                                         fileName: "[project]/app/map/page.tsx",
-                                        lineNumber: 244,
+                                        lineNumber: 243,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, floor.level, true, {
                                 fileName: "[project]/app/map/page.tsx",
-                                lineNumber: 213,
+                                lineNumber: 212,
                                 columnNumber: 15
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/app/map/page.tsx",
-                        lineNumber: 203,
+                        lineNumber: 202,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -641,14 +869,14 @@ function MapPage() {
                                         className: "w-4 h-4 mr-2"
                                     }, void 0, false, {
                                         fileName: "[project]/app/map/page.tsx",
-                                        lineNumber: 275,
+                                        lineNumber: 274,
                                         columnNumber: 13
                                     }, this),
-                                    "Légende"
+                                    t("map.legend")
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/map/page.tsx",
-                                lineNumber: 268,
+                                lineNumber: 267,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -656,7 +884,7 @@ function MapPage() {
                                 style: {
                                     fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.tiny.fontSize
                                 },
-                                children: Object.entries(locationTypeLabels).slice(0, 8).map(([type, label])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: legendLocationTypes.map((type)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex items-center space-x-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -667,50 +895,54 @@ function MapPage() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/app/map/page.tsx",
-                                                lineNumber: 283,
+                                                lineNumber: 282,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 style: {
                                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                                 },
-                                                children: label
+                                                children: t(`map.locationTypes.${type}`) || type
                                             }, void 0, false, {
                                                 fileName: "[project]/app/map/page.tsx",
-                                                lineNumber: 290,
+                                                lineNumber: 289,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, type, true, {
                                         fileName: "[project]/app/map/page.tsx",
-                                        lineNumber: 282,
+                                        lineNumber: 281,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/map/page.tsx",
-                                lineNumber: 278,
+                                lineNumber: 277,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/map/page.tsx",
-                        lineNumber: 261,
+                        lineNumber: 260,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/map/page.tsx",
-                lineNumber: 194,
+                lineNumber: 193,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/map/page.tsx",
-        lineNumber: 71,
+        lineNumber: 70,
         columnNumber: 5
     }, this);
 }
-_s(MapPage, "QAEDPtQvPRXSN7ZvUTLAkvAYpAU=");
+_s(MapPage, "g8btA+xXa7hJ9ktba7xUL2nZw8A=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLocale"]
+    ];
+});
 _c = MapPage;
 var _c;
 __turbopack_context__.k.register(_c, "MapPage");

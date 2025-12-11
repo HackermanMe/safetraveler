@@ -1,0 +1,240 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "map": "Carte",
+    "navigation": "Navigation",
+    "flights": "Vols",
+    "report": "Signaler",
+    "services": "Services"
+  },
+  "home": {
+    "welcome": "Bienvenue à l'aéroport de Lomé",
+    "tagline": "Votre parcours simplifié de l'arrivée à l'embarquement",
+    "heroTagline": "Course à l'heure",
+    "heroNew": "NEW",
+    "profile": {
+      "modify": "Modifier"
+    },
+    "journey": {
+      "title": "Votre parcours",
+      "viewMap": "Voir sur la carte"
+    },
+    "quickActions": {
+      "map": {
+        "title": "Plan de l'aéroport",
+        "description": "Explorez la carte interactive"
+      },
+      "services": {
+        "title": "Services",
+        "description": "Informations et assistance"
+      },
+      "report": {
+        "title": "Signalement",
+        "description": "Signalez un problème"
+      }
+    },
+    "class": {
+      "economy": "Économique",
+      "business": "Business",
+      "first": "Première Classe"
+    }
+  },
+  "common": {
+    "minutes": "min",
+    "gate": "Porte",
+    "flight": "Vol",
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher...",
+    "all": "Tous",
+    "loading": "Chargement...",
+    "noResults": "Aucun résultat",
+    "tryAnotherSearch": "Essayez une autre recherche",
+    "floor": {
+      "ground": "RDC",
+      "level": "Étage"
+    },
+    "close": "Fermer",
+    "back": "Retour",
+    "continue": "Continuer",
+    "send": "Envoyer",
+    "cancel": "Annuler"
+  },
+  "map": {
+    "title": "Carte de l'aéroport",
+    "searchPlaceholder": "Rechercher un lieu...",
+    "legend": "Légende",
+    "locationTypes": {
+      "gate": "Portes",
+      "checkin": "Enregistrement",
+      "security": "Sécurité",
+      "toilet": "Toilettes",
+      "restaurant": "Restauration",
+      "shop": "Boutiques",
+      "information": "Information",
+      "lounge": "Salons",
+      "baggage": "Bagages",
+      "entrance": "Entrées",
+      "exit": "Sorties",
+      "medical": "Médical",
+      "prayer": "Prière"
+    }
+  },
+  "navigation": {
+    "title": "Navigation",
+    "subtitle": "Trouvez votre chemin dans l'aéroport",
+    "currentLocation": "Je suis actuellement...",
+    "destination": "Je veux aller à...",
+    "calculateRoute": "Calculer l'itinéraire",
+    "routeSummary": {
+      "distance": "Distance",
+      "duration": "Durée",
+      "steps": "étapes",
+      "difficulty": "Niveau de difficulté",
+      "easy": "Facile"
+    },
+    "instructions": "Instructions détaillées",
+    "currentStep": "Étape actuelle",
+    "stepCompleted": "Étape terminée",
+    "next": "Suivant",
+    "arrived": "Vous êtes arrivé!",
+    "arrivedDescription": "Vous avez atteint votre destination",
+    "newRoute": "Nouveau trajet",
+    "selectRoute": "Choisissez votre trajet",
+    "selectRouteDescription": "Sélectionnez votre position actuelle et votre destination pour obtenir des instructions détaillées",
+    "popularDestinations": {
+      "boarding": "Embarquement",
+      "services": "Services",
+      "dining": "Restauration",
+      "shopping": "Shopping",
+      "lounge": "Lounge",
+      "arrival": "Arrivée"
+    }
+  },
+  "flights": {
+    "title": "Vols en direct",
+    "subtitle": "Aéroport de Lomé (LFW)",
+    "loading": "Chargement des vols...",
+    "lastUpdate": "Mis à jour",
+    "demoMode": "Mode démonstration",
+    "noFlights": "Aucun vol trouvé",
+    "noFlightsDescription": "Aucun vol prévu pour le moment",
+    "refresh": "Actualiser les vols",
+    "filters": {
+      "all": "Tous",
+      "departure": "Départ",
+      "arrival": "Arrivée"
+    },
+    "status": {
+      "onTime": "À l'heure",
+      "delayed": "Retardé",
+      "boarding": "Embarquement",
+      "departed": "Parti",
+      "arrived": "Arrivé",
+      "cancelled": "Annulé"
+    },
+    "types": {
+      "departure": "DÉP",
+      "arrival": "ARR"
+    },
+    "gate": "Porte",
+    "terminal": "Terminal"
+  },
+  "services": {
+    "title": "Services & Boutiques",
+    "subtitle": "Découvrez tout ce que l'aéroport offre",
+    "emergency": {
+      "medical": "Urgence Médicale",
+      "medicalDescription": "Assistance médicale 24/7",
+      "information": "Information",
+      "informationDescription": "Renseignements généraux"
+    },
+    "tips": {
+      "title": "Infos utiles",
+      "arrival": {
+        "title": "Arrivée",
+        "text": "2h avant pour vols internationaux"
+      },
+      "wifi": {
+        "title": "Wi-Fi",
+        "text": "Gratuit - Réseau 'Airport-WiFi'"
+      },
+      "accessibility": {
+        "title": "Accessibilité",
+        "text": "Assistance PMR disponible"
+      },
+      "exchange": {
+        "title": "Change",
+        "text": "Bureau de change au RDC"
+      }
+    },
+    "categories": {
+      "all": "Tous",
+      "restaurant": "Restaurants",
+      "shop": "Boutiques",
+      "lounge": "Salons",
+      "services": "Services"
+    },
+    "location": {
+      "hours": "Horaires",
+      "location": "Localisation",
+      "access": "Accès",
+      "businessOnly": "Business & Première Classe uniquement"
+    },
+    "searchPlaceholder": "Rechercher..."
+  },
+  "report": {
+    "title": "Signaler un incident",
+    "subtitle": "Aidez à maintenir la sécurité de l'aéroport. Votre signalement est anonyme et confidentiel.",
+    "anonymous": "Signalement 100% anonyme",
+    "anonymousDescription": "Aucune donnée personnelle n'est collectée. Votre identité reste totalement confidentielle.",
+    "categories": {
+      "suspiciousObject": "Objet suspect",
+      "suspiciousObjectDescription": "Colis, bagage ou objet abandonné suspect",
+      "lostObject": "Objet perdu",
+      "lostObjectDescription": "Objet personnel égaré ou trouvé",
+      "concerningBehavior": "Comportement inquiétant",
+      "concerningBehaviorDescription": "Comportement suspect ou inapproprié",
+      "medicalIncident": "Incident médical",
+      "medicalIncidentDescription": "Urgence médicale ou personne en détresse",
+      "dangerEmergency": "Danger / Urgence",
+      "dangerEmergencyDescription": "Situation dangereuse immédiate"
+    },
+    "steps": {
+      "category": "Quelle est la nature de l'incident ?",
+      "location": "Où se situe l'incident ?",
+      "locationPlaceholder": "Sélectionnez une zone...",
+      "description": "Description détaillée",
+      "descriptionPlaceholder": "Décrivez l'incident de manière précise : ce que vous avez vu, entendu, ou remarqué...",
+      "photo": "Photo (optionnel)",
+      "photoButton": "Appuyez pour prendre une photo",
+      "review": "Vérifiez votre signalement",
+      "incidentType": "Type d'incident",
+      "locationLabel": "Localisation",
+      "descriptionLabel": "Description",
+      "photoAttached": "Photo jointe"
+    },
+    "zones": {
+      "entrance": "Entrée principale",
+      "checkin": "Zone d'enregistrement",
+      "security": "Contrôle de sécurité",
+      "gatesA": "Portes A",
+      "gatesB": "Portes B",
+      "baggageClaim": "Récupération des bagages",
+      "foodCourt": "Zone de restauration",
+      "shops": "Zone commerciale",
+      "toilets": "Toilettes",
+      "parking": "Parking",
+      "other": "Autre"
+    },
+    "warning": "En cas d'urgence immédiate (danger de mort, incendie, attentat), appelez directement le 112 ou alertez le personnel de sécurité le plus proche.",
+    "sending": "Envoi en cours...",
+    "submit": "Envoyer le signalement",
+    "success": {
+      "title": "Signalement envoyé",
+      "description": "Merci pour votre vigilance. Votre signalement a été transmis au pôle sécurité de l'aéroport.",
+      "trackingNumber": "Numéro de suivi",
+      "status": "Reçu",
+      "statusDescription": "Le personnel de sécurité a été notifié et prendra en charge votre signalement rapidement."
+    }
+  }
+}

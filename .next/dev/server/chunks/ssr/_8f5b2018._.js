@@ -8,45 +8,78 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/context/LocaleContext.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/i18n.ts [app-ssr] (ecmascript)");
 "use client";
 ;
 ;
-const welcomeMessages = [
-    {
-        text: "Bienvenue à l'aéroport de Lomé",
-        language: "Français",
-        locale: "fr"
-    },
-    {
-        text: "Welcome to Lomé Airport",
-        language: "English",
-        locale: "en"
-    },
-    {
-        text: "Woezɔ ɖe Lomé Dzodzodzeƒe",
-        language: "Eʋegbe",
-        locale: "ewe"
-    },
-    {
-        text: "Kɩbarʊ Lomé Ɛyɔbʊ pɔzʊʊ ɖɩ-taa",
-        language: "Kabɩyɛ",
-        locale: "kabiye"
-    }
-];
+;
+;
 function HeroCarousel() {
+    const { locale, t, isLoading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLocale"])();
     const [currentIndex, setCurrentIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
     const [isAnimating, setIsAnimating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [welcomeMessages, setWelcomeMessages] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
+    // Load welcome messages for all locales
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const loadMessages = async ()=>{
+            const messages = [];
+            for (const loc of __TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["locales"]){
+                try {
+                    const messagesModule = await __turbopack_context__.f({
+                        "@/messages/en.json": {
+                            id: ()=>"[project]/messages/en.json (json, async loader)",
+                            module: ()=>__turbopack_context__.A("[project]/messages/en.json (json, async loader)")
+                        },
+                        "@/messages/ewe.json": {
+                            id: ()=>"[project]/messages/ewe.json (json, async loader)",
+                            module: ()=>__turbopack_context__.A("[project]/messages/ewe.json (json, async loader)")
+                        },
+                        "@/messages/fr.json": {
+                            id: ()=>"[project]/messages/fr.json (json, async loader)",
+                            module: ()=>__turbopack_context__.A("[project]/messages/fr.json (json, async loader)")
+                        }
+                    }).import(`@/messages/${loc}.json`);
+                    const welcomeText = messagesModule.default.home?.welcome || "";
+                    messages.push({
+                        text: welcomeText,
+                        language: __TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["localeNames"][loc],
+                        locale: loc
+                    });
+                } catch (error) {
+                    console.error(`Failed to load messages for locale ${loc}:`, error);
+                }
+            }
+            setWelcomeMessages(messages);
+            // Set initial index based on current locale
+            const localeIndex = messages.findIndex((msg)=>msg.locale === locale);
+            if (localeIndex !== -1) {
+                setCurrentIndex(localeIndex);
+            }
+        };
+        loadMessages();
+    }, [
+        locale
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (welcomeMessages.length === 0) return;
         const interval = setInterval(()=>{
             setIsAnimating(true);
             setTimeout(()=>{
                 setCurrentIndex((prev)=>(prev + 1) % welcomeMessages.length);
                 setIsAnimating(false);
             }, 300);
-        }, 5000); // Changed from 4000 to 5000ms
+        }, 5000);
         return ()=>clearInterval(interval);
-    }, []);
-    const currentMessage = welcomeMessages[currentIndex];
+    }, [
+        welcomeMessages.length
+    ]);
+    // Get current message from carousel or fallback to current locale
+    const currentMessage = welcomeMessages[currentIndex] || {
+        text: isLoading ? "" : t("home.welcome"),
+        language: __TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["localeNames"][locale],
+        locale
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "relative w-full h-[300px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl",
         children: [
@@ -59,12 +92,12 @@ function HeroCarousel() {
                     className: "absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/80 to-transparent"
                 }, void 0, false, {
                     fileName: "[project]/components/home/HeroCarousel.tsx",
-                    lineNumber: 45,
+                    lineNumber: 80,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/home/HeroCarousel.tsx",
-                lineNumber: 39,
+                lineNumber: 74,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -78,7 +111,7 @@ function HeroCarousel() {
                                 children: currentMessage.text
                             }, void 0, false, {
                                 fileName: "[project]/components/home/HeroCarousel.tsx",
-                                lineNumber: 52,
+                                lineNumber: 87,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -88,7 +121,7 @@ function HeroCarousel() {
                                         className: "w-2 h-2 bg-green-400 rounded-full animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/components/home/HeroCarousel.tsx",
-                                        lineNumber: 66,
+                                        lineNumber: 101,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -96,59 +129,59 @@ function HeroCarousel() {
                                         children: currentMessage.language
                                     }, void 0, false, {
                                         fileName: "[project]/components/home/HeroCarousel.tsx",
-                                        lineNumber: 67,
+                                        lineNumber: 102,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/home/HeroCarousel.tsx",
-                                lineNumber: 61,
+                                lineNumber: 96,
                                 columnNumber: 11
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            !isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-sm md:text-xl lg:text-2xl text-white/90 mb-4 md:mb-8 font-light",
-                                children: "Votre parcours simplifié de l'arrivée à l'embarquement"
+                                children: t("home.tagline")
                             }, void 0, false, {
                                 fileName: "[project]/components/home/HeroCarousel.tsx",
-                                lineNumber: 71,
-                                columnNumber: 11
+                                lineNumber: 107,
+                                columnNumber: 13
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            !isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex items-center space-x-2 md:space-x-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "bg-gradient-to-r from-green-400 to-green-500 rounded-full px-3 py-1.5 md:px-4 md:py-2 shadow-lg",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-white text-xs md:text-sm font-semibold",
-                                            children: "Course à l'heure"
+                                            children: t("home.heroTagline")
                                         }, void 0, false, {
                                             fileName: "[project]/components/home/HeroCarousel.tsx",
-                                            lineNumber: 78,
-                                            columnNumber: 15
+                                            lineNumber: 116,
+                                            columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/home/HeroCarousel.tsx",
-                                        lineNumber: 77,
-                                        columnNumber: 13
+                                        lineNumber: 115,
+                                        columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "bg-yellow-400 text-gray-900 rounded-full px-2 py-1 md:px-3 text-xs font-bold uppercase",
-                                        children: "New"
+                                        children: t("home.heroNew")
                                     }, void 0, false, {
                                         fileName: "[project]/components/home/HeroCarousel.tsx",
-                                        lineNumber: 80,
-                                        columnNumber: 13
+                                        lineNumber: 118,
+                                        columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/home/HeroCarousel.tsx",
-                                lineNumber: 76,
-                                columnNumber: 11
+                                lineNumber: 114,
+                                columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home/HeroCarousel.tsx",
-                        lineNumber: 50,
+                        lineNumber: 85,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -159,38 +192,38 @@ function HeroCarousel() {
                                 "aria-label": `Go to slide ${index + 1}`
                             }, index, false, {
                                 fileName: "[project]/components/home/HeroCarousel.tsx",
-                                lineNumber: 89,
+                                lineNumber: 128,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/home/HeroCarousel.tsx",
-                        lineNumber: 87,
+                        lineNumber: 126,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/home/HeroCarousel.tsx",
-                lineNumber: 49,
+                lineNumber: 84,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-3xl"
             }, void 0, false, {
                 fileName: "[project]/components/home/HeroCarousel.tsx",
-                lineNumber: 104,
+                lineNumber: 143,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute bottom-20 right-20 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl"
             }, void 0, false, {
                 fileName: "[project]/components/home/HeroCarousel.tsx",
-                lineNumber: 105,
+                lineNumber: 144,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/home/HeroCarousel.tsx",
-        lineNumber: 37,
+        lineNumber: 72,
         columnNumber: 5
     }, this);
 }
@@ -468,7 +501,7 @@ function Home() {
                                                                                 children: [
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                                                         className: `font-medium text-lg ${isCurrent ? "text-blue-900" : "text-gray-900"}`,
-                                                                                        children: step.title
+                                                                                        children: t(`home.journey.steps.${step.id}.title`)
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/app/page.tsx",
                                                                                         lineNumber: 163,
@@ -476,7 +509,7 @@ function Home() {
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                                         className: `text-sm ${isCurrent ? "text-blue-700" : "text-gray-600"}`,
-                                                                                        children: step.description
+                                                                                        children: t(`home.journey.steps.${step.id}.description`)
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/app/page.tsx",
                                                                                         lineNumber: 170,
@@ -501,7 +534,8 @@ function Home() {
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                         children: [
                                                                                             step.estimatedTime,
-                                                                                            " min"
+                                                                                            " ",
+                                                                                            t('common.minutes')
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/app/page.tsx",
@@ -522,7 +556,7 @@ function Home() {
                                                                     }, this),
                                                                     isCurrent && step.details && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                                                         className: "mt-3 space-y-1",
-                                                                        children: step.details.map((detail, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                                        children: step.details.map((_, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                                 className: "flex items-start space-x-2 text-sm text-gray-700",
                                                                                 children: [
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -534,7 +568,7 @@ function Home() {
                                                                                         columnNumber: 35
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                        children: detail
+                                                                                        children: t(`home.journey.steps.${step.id}.details.${idx}`)
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/app/page.tsx",
                                                                                         lineNumber: 192,

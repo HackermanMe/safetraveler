@@ -165,20 +165,20 @@ export default function Home() {
                                   isCurrent ? "text-blue-900" : "text-gray-900"
                                 }`}
                               >
-                                {step.title}
+                                {t(`home.journey.steps.${step.id}.title`)}
                               </h3>
                               <p
                                 className={`text-sm ${
                                   isCurrent ? "text-blue-700" : "text-gray-600"
                                 }`}
                               >
-                                {step.description}
+                                {t(`home.journey.steps.${step.id}.description`)}
                               </p>
                             </div>
                             {step.estimatedTime > 0 && (
                               <div className="flex items-center space-x-1 text-sm text-gray-500">
                                 <Clock className="w-4 h-4" />
-                                <span>{step.estimatedTime} min</span>
+                                <span>{step.estimatedTime} {t('common.minutes')}</span>
                               </div>
                             )}
                           </div>
@@ -186,10 +186,10 @@ export default function Home() {
                           {/* Step Details */}
                           {isCurrent && step.details && (
                             <ul className="mt-3 space-y-1">
-                              {step.details.map((detail, idx) => (
+                              {step.details.map((_, idx) => (
                                 <li key={idx} className="flex items-start space-x-2 text-sm text-gray-700">
                                   <span className="text-blue-600">•</span>
-                                  <span>{detail}</span>
+                                  <span>{t(`home.journey.steps.${step.id}.details.${idx}`)}</span>
                                 </li>
                               ))}
                             </ul>

@@ -1,0 +1,240 @@
+{
+  "nav": {
+    "home": "Home",
+    "map": "Map",
+    "navigation": "Navigation",
+    "flights": "Flights",
+    "report": "Report",
+    "services": "Services"
+  },
+  "home": {
+    "welcome": "Welcome to Lomé Airport",
+    "tagline": "Your simplified journey from arrival to boarding",
+    "heroTagline": "On-time Ride",
+    "heroNew": "NEW",
+    "profile": {
+      "modify": "Modify"
+    },
+    "journey": {
+      "title": "Your Journey",
+      "viewMap": "View on map"
+    },
+    "quickActions": {
+      "map": {
+        "title": "Airport Map",
+        "description": "Explore the interactive map"
+      },
+      "services": {
+        "title": "Services",
+        "description": "Information and assistance"
+      },
+      "report": {
+        "title": "Report",
+        "description": "Report an issue"
+      }
+    },
+    "class": {
+      "economy": "Economy",
+      "business": "Business",
+      "first": "First Class"
+    }
+  },
+  "common": {
+    "minutes": "min",
+    "gate": "Gate",
+    "flight": "Flight",
+    "search": "Search",
+    "searchPlaceholder": "Search...",
+    "all": "All",
+    "loading": "Loading...",
+    "noResults": "No results",
+    "tryAnotherSearch": "Try another search",
+    "floor": {
+      "ground": "Ground Floor",
+      "level": "Floor"
+    },
+    "close": "Close",
+    "back": "Back",
+    "continue": "Continue",
+    "send": "Send",
+    "cancel": "Cancel"
+  },
+  "map": {
+    "title": "Airport Map",
+    "searchPlaceholder": "Search for a place...",
+    "legend": "Legend",
+    "locationTypes": {
+      "gate": "Gates",
+      "checkin": "Check-in",
+      "security": "Security",
+      "toilet": "Restrooms",
+      "restaurant": "Dining",
+      "shop": "Shops",
+      "information": "Information",
+      "lounge": "Lounges",
+      "baggage": "Baggage",
+      "entrance": "Entrances",
+      "exit": "Exits",
+      "medical": "Medical",
+      "prayer": "Prayer"
+    }
+  },
+  "navigation": {
+    "title": "Navigation",
+    "subtitle": "Find your way around the airport",
+    "currentLocation": "I am currently...",
+    "destination": "I want to go to...",
+    "calculateRoute": "Calculate route",
+    "routeSummary": {
+      "distance": "Distance",
+      "duration": "Duration",
+      "steps": "steps",
+      "difficulty": "Difficulty level",
+      "easy": "Easy"
+    },
+    "instructions": "Detailed instructions",
+    "currentStep": "Current step",
+    "stepCompleted": "Step completed",
+    "next": "Next",
+    "arrived": "You have arrived!",
+    "arrivedDescription": "You have reached your destination",
+    "newRoute": "New route",
+    "selectRoute": "Choose your route",
+    "selectRouteDescription": "Select your current location and destination to get detailed instructions",
+    "popularDestinations": {
+      "boarding": "Boarding",
+      "services": "Services",
+      "dining": "Dining",
+      "shopping": "Shopping",
+      "lounge": "Lounge",
+      "arrival": "Arrival"
+    }
+  },
+  "flights": {
+    "title": "Live Flights",
+    "subtitle": "Lomé Airport (LFW)",
+    "loading": "Loading flights...",
+    "lastUpdate": "Last updated",
+    "demoMode": "Demo mode",
+    "noFlights": "No flights found",
+    "noFlightsDescription": "No flights scheduled at the moment",
+    "refresh": "Refresh flights",
+    "filters": {
+      "all": "All",
+      "departure": "Departure",
+      "arrival": "Arrival"
+    },
+    "status": {
+      "onTime": "On time",
+      "delayed": "Delayed",
+      "boarding": "Boarding",
+      "departed": "Departed",
+      "arrived": "Arrived",
+      "cancelled": "Cancelled"
+    },
+    "types": {
+      "departure": "DEP",
+      "arrival": "ARR"
+    },
+    "gate": "Gate",
+    "terminal": "Terminal"
+  },
+  "services": {
+    "title": "Services & Shops",
+    "subtitle": "Discover everything the airport has to offer",
+    "emergency": {
+      "medical": "Medical Emergency",
+      "medicalDescription": "24/7 medical assistance",
+      "information": "Information",
+      "informationDescription": "General information"
+    },
+    "tips": {
+      "title": "Useful information",
+      "arrival": {
+        "title": "Arrival",
+        "text": "2 hours before for international flights"
+      },
+      "wifi": {
+        "title": "Wi-Fi",
+        "text": "Free - 'Airport-WiFi' network"
+      },
+      "accessibility": {
+        "title": "Accessibility",
+        "text": "Assistance for disabled passengers available"
+      },
+      "exchange": {
+        "title": "Currency Exchange",
+        "text": "Exchange office on ground floor"
+      }
+    },
+    "categories": {
+      "all": "All",
+      "restaurant": "Restaurants",
+      "shop": "Shops",
+      "lounge": "Lounges",
+      "services": "Services"
+    },
+    "location": {
+      "hours": "Hours",
+      "location": "Location",
+      "access": "Access",
+      "businessOnly": "Business & First Class only"
+    },
+    "searchPlaceholder": "Search..."
+  },
+  "report": {
+    "title": "Report an incident",
+    "subtitle": "Help maintain airport security. Your report is anonymous and confidential.",
+    "anonymous": "100% anonymous report",
+    "anonymousDescription": "No personal data is collected. Your identity remains completely confidential.",
+    "categories": {
+      "suspiciousObject": "Suspicious object",
+      "suspiciousObjectDescription": "Suspicious package, luggage or abandoned object",
+      "lostObject": "Lost object",
+      "lostObjectDescription": "Lost or found personal item",
+      "concerningBehavior": "Concerning behavior",
+      "concerningBehaviorDescription": "Suspicious or inappropriate behavior",
+      "medicalIncident": "Medical incident",
+      "medicalIncidentDescription": "Medical emergency or person in distress",
+      "dangerEmergency": "Danger / Emergency",
+      "dangerEmergencyDescription": "Immediate dangerous situation"
+    },
+    "steps": {
+      "category": "What is the nature of the incident?",
+      "location": "Where is the incident located?",
+      "locationPlaceholder": "Select a zone...",
+      "description": "Detailed description",
+      "descriptionPlaceholder": "Describe the incident accurately: what you saw, heard, or noticed...",
+      "photo": "Photo (optional)",
+      "photoButton": "Tap to take a photo",
+      "review": "Review your report",
+      "incidentType": "Incident type",
+      "locationLabel": "Location",
+      "descriptionLabel": "Description",
+      "photoAttached": "Photo attached"
+    },
+    "zones": {
+      "entrance": "Main entrance",
+      "checkin": "Check-in area",
+      "security": "Security checkpoint",
+      "gatesA": "Gates A",
+      "gatesB": "Gates B",
+      "baggageClaim": "Baggage claim",
+      "foodCourt": "Food court",
+      "shops": "Commercial area",
+      "toilets": "Restrooms",
+      "parking": "Parking",
+      "other": "Other"
+    },
+    "warning": "In case of immediate emergency (life-threatening danger, fire, attack), call 112 directly or alert the nearest security personnel.",
+    "sending": "Sending...",
+    "submit": "Submit report",
+    "success": {
+      "title": "Report submitted",
+      "description": "Thank you for your vigilance. Your report has been forwarded to airport security.",
+      "trackingNumber": "Tracking number",
+      "status": "Received",
+      "statusDescription": "Security personnel have been notified and will handle your report quickly."
+    }
+  }
+}

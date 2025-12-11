@@ -1,5 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/flights/route": "app/api/flights/route.js",
   "/flights/page": "app/flights/page.js",
   "/map/page": "app/map/page.js",

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PassengerClass, getClassPrivileges } from "@/lib/types/passenger";
 import { Check, X } from "lucide-react";
 import { passengerClassColors } from "@/lib/config/theme";
+import { useLocale } from "@/lib/context/LocaleContext";
 
 interface ClassSelectorModalProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ export default function ClassSelectorModal({
   onFirstTimeSelect,
   currentClass,
 }: ClassSelectorModalProps) {
+  const { t } = useLocale();
   const [selectedClass, setSelectedClass] = useState<PassengerClass>(
     currentClass || "economy"
   );
@@ -29,18 +31,18 @@ export default function ClassSelectorModal({
   const classes: { value: PassengerClass; label: string; description: string }[] = [
     {
       value: "economy",
-      label: "Classe Économique",
-      description: "Vol standard avec tous les services essentiels",
+      label: t("home.class.selector.economyLabel"),
+      description: t("home.class.selector.economyDescription"),
     },
     {
       value: "business",
-      label: "Classe Business",
-      description: "Confort premium avec avantages exclusifs",
+      label: t("home.class.selector.businessLabel"),
+      description: t("home.class.selector.businessDescription"),
     },
     {
       value: "first",
-      label: "Première Classe",
-      description: "Expérience de luxe avec service personnalisé",
+      label: t("home.class.selector.firstLabel"),
+      description: t("home.class.selector.firstDescription"),
     },
   ];
 
@@ -58,7 +60,7 @@ export default function ClassSelectorModal({
   if (!isOpen) return null;
 
   const selectedColor = passengerClassColors[selectedClass];
-  const privileges = getClassPrivileges(selectedClass);
+  const privilegeKeys = getClassPrivileges(selectedClass);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
@@ -67,10 +69,10 @@ export default function ClassSelectorModal({
         <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center rounded-t-2xl">
           <div>
             <h2 className="text-2xl font-normal text-gray-900">
-              {currentClass ? "Modifier ma classe" : "Sélectionnez votre classe"}
+              {currentClass ? t("home.class.selector.titleEdit") : t("home.class.selector.title")}
             </h2>
             <p className="text-sm text-gray-600 mt-1">
-              Choisissez votre classe de voyage pour un guidage personnalisé
+              {t("home.class.selector.subtitle")}
             </p>
           </div>
           {currentClass && (
@@ -139,16 +141,16 @@ export default function ClassSelectorModal({
             }}
           >
             <h4 className="font-medium text-lg mb-3" style={{ color: selectedColor.primary }}>
-              Vos privilèges
+              {t("home.class.selector.privilegesTitle")}
             </h4>
             <ul className="space-y-2">
-              {privileges.slice(0, 4).map((privilege, index) => (
-                <li key={index} className="flex items-start space-x-2">
+              {privilegeKeys.slice(0, 4).map((privilegeIndex) => (
+                <li key={privilegeIndex} className="flex items-start space-x-2">
                   <Check
                     className="w-5 h-5 flex-shrink-0 mt-0.5"
                     style={{ color: selectedColor.primary }}
                   />
-                  <span className="text-sm text-gray-700">{privilege}</span>
+                  <span className="text-sm text-gray-700">{t(`home.journey.privileges.${selectedClass}.${privilegeIndex}`)}</span>
                 </li>
               ))}
             </ul>
@@ -158,26 +160,26 @@ export default function ClassSelectorModal({
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Numéro de vol (optionnel)
+                {t("home.class.selector.flightNumberLabel")}
               </label>
               <input
                 type="text"
                 value={flightNumber}
                 onChange={(e) => setFlightNumber(e.target.value.toUpperCase())}
-                placeholder="Ex: AF123"
+                placeholder={t("home.class.selector.flightNumberPlaceholder")}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Porte d'embarquement (optionnel)
+                {t("home.class.selector.gateLabel")}
               </label>
               <input
                 type="text"
                 value={gate}
                 onChange={(e) => setGate(e.target.value.toUpperCase())}
-                placeholder="Ex: A12"
+                placeholder={t("home.class.selector.gatePlaceholder")}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               />
             </div>
@@ -190,7 +192,7 @@ export default function ClassSelectorModal({
             onClick={handleConfirm}
             className="w-full bg-blue-600 text-white py-4 rounded-xl font-medium hover:bg-blue-700 transition-colors shadow-lg text-lg"
           >
-            Continuer
+            {t("home.class.selector.continue")}
           </button>
         </div>
       </div>

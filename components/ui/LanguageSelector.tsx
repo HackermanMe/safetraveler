@@ -37,7 +37,6 @@ export default function LanguageSelector({ currentLocale }: LanguageSelectorProp
       case "en":
         return "🇬🇧";
       case "ewe":
-      case "kabiye":
         return "🇹🇬";
       default:
         return "🌍";
@@ -79,9 +78,6 @@ export default function LanguageSelector({ currentLocale }: LanguageSelectorProp
                 </div>
                 {locale === "ewe" && (
                   <div className="text-xs text-gray-500">Langue Ewe</div>
-                )}
-                {locale === "kabiye" && (
-                  <div className="text-xs text-gray-500">Langue Kabiyè</div>
                 )}
               </div>
               {currentLocale === locale && (

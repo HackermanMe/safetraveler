@@ -111,7 +111,7 @@ function findNearestLocation(currentPosition, locations, type) {
 }),
 "[project]/lib/data/airport-data.json (json)", ((__turbopack_context__) => {
 
-__turbopack_context__.v(JSON.parse("{\"airport\":{\"name\":\"Aéroport International Gnassingbé Eyadéma\",\"code\":\"LFW\",\"city\":\"Lomé\",\"country\":\"Togo\",\"coordinates\":[1.2549,6.1659],\"capacity\":\"2 000 000 passagers/an\",\"hub\":\"ASKY Airlines\",\"distance_city\":\"6.8 km du centre-ville\"},\"locations\":[{\"id\":\"entrance-main\",\"name\":\"Entrée Principale\",\"type\":\"entrance\",\"floor\":0,\"coordinates\":[1.2545,6.1658],\"description\":\"Entrée principale du terminal international\",\"status\":\"open\"},{\"id\":\"entrance-vip\",\"name\":\"Entrée VIP\",\"type\":\"entrance\",\"floor\":0,\"coordinates\":[1.25455,6.1658],\"description\":\"Entrée réservée Business et Première Classe\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"checkin-economy\",\"name\":\"Enregistrement Zone A\",\"type\":\"checkin\",\"floor\":0,\"coordinates\":[1.2546,6.16585],\"description\":\"Comptoirs 1-20 - Classe Économique\",\"status\":\"open\",\"accessibleTo\":[\"economy\"]},{\"id\":\"checkin-business\",\"name\":\"Enregistrement Zone B\",\"type\":\"checkin\",\"floor\":0,\"coordinates\":[1.25465,6.16585],\"description\":\"Comptoirs 21-26 - Business & Première Classe\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"checkin-asky\",\"name\":\"Enregistrement ASKY Airlines\",\"type\":\"checkin\",\"floor\":0,\"coordinates\":[1.2547,6.16585],\"description\":\"Comptoirs dédiés ASKY Airlines (hub)\",\"status\":\"open\"},{\"id\":\"security-main\",\"name\":\"Contrôle de Sécurité Principal\",\"type\":\"security\",\"floor\":0,\"coordinates\":[1.25475,6.1659],\"description\":\"Point de contrôle sécurité et passeport\",\"status\":\"busy\"},{\"id\":\"security-fast\",\"name\":\"Contrôle Fast Track\",\"type\":\"security\",\"floor\":0,\"coordinates\":[1.2548,6.1659],\"description\":\"Voie rapide Business/Première Classe\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"gate-a1\",\"name\":\"Porte A1\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.2549,6.16595],\"description\":\"Vols internationaux - Air France, Brussels Airlines\",\"status\":\"open\"},{\"id\":\"gate-a2\",\"name\":\"Porte A2\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25495,6.16595],\"description\":\"Vols internationaux - Ethiopian Airlines\",\"status\":\"open\"},{\"id\":\"gate-a3\",\"name\":\"Porte A3\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.255,6.16595],\"description\":\"Vols internationaux - Turkish Airlines\",\"status\":\"open\"},{\"id\":\"gate-a4\",\"name\":\"Porte A4\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25505,6.16595],\"description\":\"Vols internationaux - Royal Air Maroc\",\"status\":\"open\"},{\"id\":\"gate-a5\",\"name\":\"Porte A5\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.2551,6.16595],\"description\":\"Vols internationaux - ASKY Airlines\",\"status\":\"open\"},{\"id\":\"gate-a6\",\"name\":\"Porte A6\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25515,6.16595],\"description\":\"Vols internationaux - Emirates, Air Côte d'Ivoire\",\"status\":\"open\"},{\"id\":\"gate-b1\",\"name\":\"Porte B1\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.2549,6.166],\"description\":\"Vols régionaux - Destinations Afrique de l'Ouest\",\"status\":\"open\"},{\"id\":\"gate-b2\",\"name\":\"Porte B2\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25495,6.166],\"description\":\"Vols domestiques\",\"status\":\"open\"},{\"id\":\"gate-b3\",\"name\":\"Porte B3\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.255,6.166],\"description\":\"Vols régionaux - ASKY Airlines\",\"status\":\"open\"},{\"id\":\"baggage-1\",\"name\":\"Tapis 1 - Arrivées Internationales\",\"type\":\"baggage\",\"floor\":0,\"coordinates\":[1.2552,6.16575],\"description\":\"Récupération bagages vols internationaux\",\"status\":\"open\"},{\"id\":\"baggage-2\",\"name\":\"Tapis 2 - Arrivées Régionales\",\"type\":\"baggage\",\"floor\":0,\"coordinates\":[1.25525,6.16575],\"description\":\"Récupération bagages vols régionaux\",\"status\":\"open\"},{\"id\":\"customs-arrival\",\"name\":\"Douane Arrivées\",\"type\":\"customs\",\"floor\":0,\"coordinates\":[1.2553,6.16575],\"description\":\"Contrôle douanier pour arrivées internationales\",\"status\":\"open\"},{\"id\":\"info-main\",\"name\":\"Information Principale\",\"type\":\"information\",\"floor\":0,\"coordinates\":[1.25455,6.16585],\"description\":\"Renseignements, objets trouvés, assistance\",\"status\":\"open\"},{\"id\":\"info-gates\",\"name\":\"Information Zone Embarquement\",\"type\":\"information\",\"floor\":1,\"coordinates\":[1.255,6.1659],\"description\":\"Informations vols et assistance embarquement\",\"status\":\"open\"},{\"id\":\"toilet-arrival\",\"name\":\"Toilettes Zone Arrivées\",\"type\":\"toilet\",\"floor\":0,\"coordinates\":[1.25515,6.16575],\"description\":\"Toilettes accessibles PMR\",\"status\":\"open\"},{\"id\":\"toilet-checkin\",\"name\":\"Toilettes Zone Enregistrement\",\"type\":\"toilet\",\"floor\":0,\"coordinates\":[1.25465,6.1658],\"description\":\"Toilettes accessibles PMR\",\"status\":\"open\"},{\"id\":\"toilet-gates-a\",\"name\":\"Toilettes Portes A\",\"type\":\"toilet\",\"floor\":1,\"coordinates\":[1.25505,6.1659],\"description\":\"Toilettes zone internationale\",\"status\":\"open\"},{\"id\":\"toilet-gates-b\",\"name\":\"Toilettes Portes B\",\"type\":\"toilet\",\"floor\":1,\"coordinates\":[1.25495,6.166],\"description\":\"Toilettes zone domestique\",\"status\":\"open\"},{\"id\":\"medical-main\",\"name\":\"Infirmerie\",\"type\":\"medical\",\"floor\":0,\"coordinates\":[1.2546,6.1658],\"description\":\"Assistance médicale d'urgence - 24/7\",\"status\":\"open\"},{\"id\":\"prayer-room\",\"name\":\"Salle de Prière\",\"type\":\"prayer\",\"floor\":1,\"coordinates\":[1.2551,6.1659],\"description\":\"Espace de recueillement multi-confessionnel\",\"status\":\"open\"},{\"id\":\"lounge-asky\",\"name\":\"Salon VIP ASKY Airlines\",\"type\":\"lounge\",\"floor\":1,\"coordinates\":[1.25485,6.16595],\"description\":\"Salon VIP avec restauration, Wi-Fi, douches\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"restaurant-maquis\",\"name\":\"Le Maquis de l'Aéroport\",\"type\":\"restaurant\",\"floor\":0,\"coordinates\":[1.2547,6.1658],\"description\":\"Cuisine togolaise authentique - Fufu, Akpan, Akoumé\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"restaurant-teranga\",\"name\":\"Restaurant Teranga\",\"type\":\"restaurant\",\"floor\":1,\"coordinates\":[1.25505,6.16592],\"description\":\"Cuisine africaine et internationale\",\"status\":\"open\",\"hours\":\"5h - 23h\"},{\"id\":\"cafe-express\",\"name\":\"Café Express\",\"type\":\"restaurant\",\"floor\":1,\"coordinates\":[1.25495,6.16592],\"description\":\"Café, viennoiseries, sandwichs rapides\",\"status\":\"open\",\"hours\":\"4h30 - 23h30\"},{\"id\":\"restaurant-fastfood\",\"name\":\"Quick Bites\",\"type\":\"restaurant\",\"floor\":1,\"coordinates\":[1.2551,6.16592],\"description\":\"Fast-food international - Burgers, pizzas, salades\",\"status\":\"open\",\"hours\":\"6h - 23h\"},{\"id\":\"shop-dutyfree\",\"name\":\"Duty Free Lomé\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.2549,6.16592],\"description\":\"Parfums, alcools, tabac, cosmétiques hors taxes\",\"status\":\"open\",\"hours\":\"5h - 23h\"},{\"id\":\"shop-artisanat\",\"name\":\"Artisanat Togolais\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.255,6.16592],\"description\":\"Tissus batik, sculptures, bijoux locaux, souvenirs\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"shop-presse\",\"name\":\"Relay Presse\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.25515,6.16592],\"description\":\"Presse internationale, livres, snacks\",\"status\":\"open\",\"hours\":\"5h - 23h\"},{\"id\":\"shop-electronics\",\"name\":\"Tech & Travel\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.25505,6.16597],\"description\":\"Électronique, accessoires voyage, adaptateurs\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"bank-utb\",\"name\":\"Union Togolaise de Banque (UTB)\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.25475,6.16575],\"description\":\"Distributeur automatique et services bancaires\",\"status\":\"open\",\"hours\":\"24/7 (DAB)\"},{\"id\":\"exchange-office\",\"name\":\"Bureau de Change\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.2548,6.16575],\"description\":\"Change de devises - CFA, EUR, USD\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"car-rental-avis\",\"name\":\"Avis Location de Voitures\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.25535,6.1658],\"description\":\"Location de véhicules\",\"status\":\"open\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 05 82\"},{\"id\":\"car-rental-europcar\",\"name\":\"Europcar\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.2554,6.1658],\"description\":\"Location de véhicules\",\"status\":\"open\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 13 24\"},{\"id\":\"car-rental-hertz\",\"name\":\"Hertz\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.25545,6.1658],\"description\":\"Location de véhicules\",\"status\":\"open\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 44 79\"},{\"id\":\"parking-main\",\"name\":\"Parking Principal\",\"type\":\"parking\",\"floor\":0,\"coordinates\":[1.2544,6.1658],\"description\":\"Parking longue durée - 650 places\",\"status\":\"open\",\"hours\":\"24/7\"}],\"services\":[{\"id\":\"service-prmassist\",\"name\":\"Assistance Passagers à Mobilité Réduite\",\"category\":\"assistance\",\"description\":\"Accompagnement personnalisé, fauteuils roulants, assistance embarquement/débarquement\",\"location\":\"info-main\",\"hours\":\"24/7\",\"contact\":\"+228 22 23 44 55\",\"icon\":\"accessibility\",\"free\":true},{\"id\":\"service-medical\",\"name\":\"Assistance Médicale d'Urgence\",\"category\":\"medical\",\"description\":\"Infirmerie avec personnel qualifié, premiers secours, défibrillateur\",\"location\":\"medical-main\",\"hours\":\"24/7\",\"contact\":\"+228 22 23 44 56\",\"icon\":\"cross\",\"free\":true},{\"id\":\"service-lostfound\",\"name\":\"Objets Trouvés\",\"category\":\"lost_found\",\"description\":\"Déclaration et récupération d'objets perdus dans l'enceinte de l'aéroport\",\"location\":\"info-main\",\"hours\":\"6h - 23h\",\"contact\":\"+228 22 23 44 57\",\"icon\":\"briefcase\",\"free\":true},{\"id\":\"service-flightinfo\",\"name\":\"Information Vols en Temps Réel\",\"category\":\"information\",\"description\":\"Horaires, retards, annulations, changements de porte\",\"location\":\"info-main\",\"hours\":\"24/7\",\"contact\":\"+228 22 23 44 58\",\"icon\":\"info\",\"free\":true},{\"id\":\"service-customs\",\"name\":\"Services Douaniers\",\"category\":\"customs\",\"description\":\"Déclarations douanières, contrôles, informations réglementaires\",\"location\":\"customs-arrival\",\"hours\":\"Selon horaires des vols\",\"contact\":\"+228 22 23 44 59\",\"icon\":\"shield\",\"free\":true},{\"id\":\"service-wifi\",\"name\":\"Wi-Fi Gratuit\",\"category\":\"connectivity\",\"description\":\"Accès Internet sans fil gratuit dans tout l'aéroport\",\"location\":\"Partout\",\"hours\":\"24/7\",\"network\":\"Aeroport_LFW_Free\",\"icon\":\"wifi\",\"free\":true},{\"id\":\"service-porter\",\"name\":\"Porteurs de Bagages\",\"category\":\"assistance\",\"description\":\"Aide au transport des bagages\",\"location\":\"entrance-main\",\"hours\":\"5h - 23h\",\"icon\":\"luggage\",\"free\":false,\"pricing\":\"2000-5000 CFA selon distance\"},{\"id\":\"service-vip\",\"name\":\"Service VIP & Meet & Greet\",\"category\":\"premium\",\"description\":\"Accueil personnalisé, assistance formalités, salon VIP, voie rapide\",\"location\":\"entrance-vip\",\"hours\":\"24/7 (sur réservation)\",\"contact\":\"+228 22 23 44 60\",\"icon\":\"star\",\"free\":false,\"pricing\":\"À partir de 50 000 CFA\"},{\"id\":\"service-avis\",\"name\":\"Location Voitures Avis\",\"category\":\"transport\",\"description\":\"Large gamme de véhicules disponibles\",\"location\":\"car-rental-avis\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 05 82\",\"icon\":\"car\",\"free\":false,\"website\":\"https://www.avis.com\"},{\"id\":\"service-europcar\",\"name\":\"Location Voitures Europcar\",\"category\":\"transport\",\"description\":\"Véhicules neufs et bien entretenus\",\"location\":\"car-rental-europcar\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 13 24\",\"icon\":\"car\",\"free\":false,\"website\":\"https://www.europcar.com\"},{\"id\":\"service-hertz\",\"name\":\"Location Voitures Hertz\",\"category\":\"transport\",\"description\":\"Leader mondial de la location de véhicules\",\"location\":\"car-rental-hertz\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 44 79\",\"icon\":\"car\",\"free\":false,\"website\":\"https://www.hertz.com\"},{\"id\":\"service-utb\",\"name\":\"Services Bancaires UTB\",\"category\":\"financial\",\"description\":\"Distributeur automatique 24/7, services bancaires\",\"location\":\"bank-utb\",\"hours\":\"24/7 (DAB)\",\"icon\":\"banknote\",\"free\":true},{\"id\":\"service-exchange\",\"name\":\"Bureau de Change\",\"category\":\"financial\",\"description\":\"Change CFA, Euro, Dollar US, autres devises principales\",\"location\":\"exchange-office\",\"hours\":\"6h - 22h\",\"icon\":\"coins\",\"free\":false,\"commission\":\"Commission 2-3%\"}],\"floors\":[{\"level\":0,\"name\":\"Rez-de-chaussée - Arrivées & Départs\",\"description\":\"Zone publique : Enregistrement, Bagages, Services\",\"bounds\":[[1.2544,6.1657],[1.2556,6.1661]]},{\"level\":1,\"name\":\"Étage 1 - Zone d'Embarquement\",\"description\":\"Zone sécurisée : Portes d'embarquement, Restaurants, Boutiques\",\"bounds\":[[1.2548,6.1659],[1.2552,6.1661]]}],\"airlines\":[{\"code\":\"KP\",\"name\":\"ASKY Airlines\",\"type\":\"hub\",\"destinations\":[\"Dakar\",\"Abidjan\",\"Ouagadougou\",\"Niamey\",\"Cotonou\",\"Accra\",\"Lagos\",\"Libreville\"]},{\"code\":\"AF\",\"name\":\"Air France\",\"type\":\"international\",\"destinations\":[\"Paris CDG\"]},{\"code\":\"SN\",\"name\":\"Brussels Airlines\",\"type\":\"international\",\"destinations\":[\"Bruxelles\"]},{\"code\":\"ET\",\"name\":\"Ethiopian Airlines\",\"type\":\"international\",\"destinations\":[\"Addis-Abeba\"]},{\"code\":\"TK\",\"name\":\"Turkish Airlines\",\"type\":\"international\",\"destinations\":[\"Istanbul\"]},{\"code\":\"AT\",\"name\":\"Royal Air Maroc\",\"type\":\"international\",\"destinations\":[\"Casablanca\"]},{\"code\":\"EK\",\"name\":\"Emirates\",\"type\":\"international\",\"destinations\":[\"Dubaï\"]},{\"code\":\"HF\",\"name\":\"Air Côte d'Ivoire\",\"type\":\"regional\",\"destinations\":[\"Abidjan\",\"Dakar\"]}]}"));}),
+__turbopack_context__.v({"airport":{"name":"Aéroport International Gnassingbé Eyadéma","code":"LFW","city":"Lomé","country":"Togo","coordinates":[1.2549,6.1659],"capacity":"2 000 000 passagers/an","hub":"ASKY Airlines","distance_city":"6.8 km du centre-ville"},"locations":[{"id":"gate-a1","name":"Porte A1","type":"gate","floor":1,"coordinates":[1.253568,6.170194],"description":"Porte d'embarquement A1 - Vols internationaux","status":"open"},{"id":"gate-a2","name":"Porte A2","type":"gate","floor":1,"coordinates":[1.253185,6.169748],"description":"Porte d'embarquement A2 - Vols internationaux","status":"open"},{"id":"gate-a3","name":"Porte A3","type":"gate","floor":1,"coordinates":[1.252825,6.169437],"description":"Porte d'embarquement A3 - Vols internationaux","status":"open"},{"id":"gate-b1","name":"Porte B1","type":"gate","floor":1,"coordinates":[1.254069,6.171084],"description":"Porte d'embarquement B1 - Vols régionaux","status":"open"},{"id":"gate-b2","name":"Porte B2","type":"gate","floor":1,"coordinates":[1.253923,6.170668],"description":"Porte d'embarquement B2 - Vols régionaux","status":"open"},{"id":"checkin-economy-1","name":"Enregistrement Zone A","type":"checkin","floor":0,"coordinates":[1.253038,6.170017],"description":"Comptoirs 1-20 - Classe Économique","status":"open","accessibleTo":["economy"]},{"id":"checkin-economy-2","name":"Enregistrement Zone B","type":"checkin","floor":0,"coordinates":[1.253899,6.170813],"description":"Comptoirs 21-40 - Classe Économique","status":"open","accessibleTo":["economy"]},{"id":"checkin-business","name":"Enregistrement Business","type":"checkin","floor":0,"coordinates":[1.252822,6.169666],"description":"Comptoirs Business & Première Classe","status":"open","accessibleTo":["business","first"]},{"id":"security-main","name":"Contrôle de Sécurité Principal","type":"security","floor":0,"coordinates":[1.253083,6.172066],"description":"Point de contrôle sécurité et passeport","status":"busy"},{"id":"security-fast","name":"Contrôle Fast Track","type":"security","floor":0,"coordinates":[1.253317,6.170509],"description":"Voie rapide Business/Première Classe","status":"open","accessibleTo":["business","first"]},{"id":"toilet-arrival","name":"Toilettes Zone Arrivées","type":"toilet","floor":0,"coordinates":[1.253572,6.170538],"description":"Toilettes accessibles PMR","status":"open"},{"id":"toilet-checkin","name":"Toilettes Zone Enregistrement","type":"toilet","floor":0,"coordinates":[1.253357,6.170299],"description":"Toilettes accessibles PMR","status":"open"},{"id":"toilet-gates-a","name":"Toilettes Portes A","type":"toilet","floor":1,"coordinates":[1.253572,6.170538],"description":"Toilettes zone internationale","status":"open"},{"id":"toilet-gates-b","name":"Toilettes Portes B","type":"toilet","floor":1,"coordinates":[1.253357,6.170299],"description":"Toilettes zone domestique","status":"open"},{"id":"restaurant-maquis","name":"Le Maquis de l'Aéroport","type":"restaurant","floor":0,"coordinates":[1.252739,6.170065],"description":"Cuisine togolaise authentique - Fufu, Akpan, Akoumé","status":"open","hours":"6h - 22h"},{"id":"restaurant-teranga","name":"Restaurant Teranga","type":"restaurant","floor":1,"coordinates":[1.252739,6.170065],"description":"Cuisine africaine et internationale","status":"open","hours":"5h - 23h"},{"id":"cafe-express","name":"Café Express","type":"restaurant","floor":1,"coordinates":[1.252739,6.170065],"description":"Café, viennoiseries, sandwichs rapides","status":"open","hours":"4h30 - 23h30"},{"id":"shop-dutyfree","name":"Duty Free Lomé","type":"shop","floor":1,"coordinates":[1.25217,6.169382],"description":"Parfums, alcools, tabac, cosmétiques hors taxes","status":"open","hours":"5h - 23h"},{"id":"shop-artisanat","name":"Artisanat Togolais","type":"shop","floor":1,"coordinates":[1.251705,6.169352],"description":"Tissus batik, sculptures, bijoux locaux, souvenirs","status":"open","hours":"6h - 22h"},{"id":"shop-presse","name":"Relay Presse","type":"shop","floor":1,"coordinates":[1.252265,6.169839],"description":"Presse internationale, livres, snacks","status":"open","hours":"5h - 23h"},{"id":"info-main","name":"Information Principale","type":"information","floor":0,"coordinates":[1.253386,6.17088],"description":"Renseignements, objets trouvés, assistance","status":"open"},{"id":"info-gates","name":"Information Zone Embarquement","type":"information","floor":1,"coordinates":[1.252895,6.170068],"description":"Informations vols et assistance embarquement","status":"open"},{"id":"lounge-asky","name":"Salon VIP ASKY Airlines","type":"lounge","floor":1,"coordinates":[1.252755,6.170232],"description":"Salon VIP avec restauration, Wi-Fi, douches","status":"open","accessibleTo":["business","first"]},{"id":"lounge-business","name":"Salon Business","type":"lounge","floor":1,"coordinates":[1.253317,6.170509],"description":"Salon Business avec bar et restauration","status":"open","accessibleTo":["business","first"]}],"services":[{"id":"service-prmassist","name":"Assistance Passagers à Mobilité Réduite","category":"assistance","description":"Accompagnement personnalisé, fauteuils roulants, assistance embarquement/débarquement","location":"info-main","hours":"24/7","contact":"+228 22 23 44 55","icon":"accessibility","free":true},{"id":"service-medical","name":"Assistance Médicale d'Urgence","category":"medical","description":"Infirmerie avec personnel qualifié, premiers secours, défibrillateur","location":"medical-main","hours":"24/7","contact":"+228 22 23 44 56","icon":"cross","free":true},{"id":"service-lostfound","name":"Objets Trouvés","category":"lost_found","description":"Déclaration et récupération d'objets perdus dans l'enceinte de l'aéroport","location":"info-main","hours":"6h - 23h","contact":"+228 22 23 44 57","icon":"briefcase","free":true},{"id":"service-flightinfo","name":"Information Vols en Temps Réel","category":"information","description":"Horaires, retards, annulations, changements de porte","location":"info-main","hours":"24/7","contact":"+228 22 23 44 58","icon":"info","free":true},{"id":"service-customs","name":"Services Douaniers","category":"customs","description":"Déclarations douanières, contrôles, informations réglementaires","location":"customs-arrival","hours":"Selon horaires des vols","contact":"+228 22 23 44 59","icon":"shield","free":true},{"id":"service-wifi","name":"Wi-Fi Gratuit","category":"connectivity","description":"Accès Internet sans fil gratuit dans tout l'aéroport","location":"Partout","hours":"24/7","network":"Aeroport_LFW_Free","icon":"wifi","free":true},{"id":"service-porter","name":"Porteurs de Bagages","category":"assistance","description":"Aide au transport des bagages","location":"entrance-main","hours":"5h - 23h","icon":"luggage","free":false,"pricing":"2000-5000 CFA selon distance"},{"id":"service-vip","name":"Service VIP & Meet & Greet","category":"premium","description":"Accueil personnalisé, assistance formalités, salon VIP, voie rapide","location":"entrance-vip","hours":"24/7 (sur réservation)","contact":"+228 22 23 44 60","icon":"star","free":false,"pricing":"À partir de 50 000 CFA"}],"floors":[{"level":0,"name":"Rez-de-chaussée - Arrivées & Départs","description":"Zone publique : Enregistrement, Bagages, Services","bounds":[[1.251,6.163],[1.2595,6.169]]},{"level":1,"name":"Étage 1 - Zone d'Embarquement","description":"Zone sécurisée : Portes d'embarquement, Restaurants, Boutiques","bounds":[[1.255,6.166],[1.2595,6.169]]}],"airlines":[{"code":"KP","name":"ASKY Airlines","type":"hub","destinations":["Dakar","Abidjan","Ouagadougou","Niamey","Cotonou","Accra","Lagos","Libreville"]},{"code":"AF","name":"Air France","type":"international","destinations":["Paris CDG"]},{"code":"SN","name":"Brussels Airlines","type":"international","destinations":["Bruxelles"]},{"code":"ET","name":"Ethiopian Airlines","type":"international","destinations":["Addis-Abeba"]},{"code":"TK","name":"Turkish Airlines","type":"international","destinations":["Istanbul"]},{"code":"AT","name":"Royal Air Maroc","type":"international","destinations":["Casablanca"]},{"code":"EK","name":"Emirates","type":"international","destinations":["Dubaï"]},{"code":"HF","name":"Air Côte d'Ivoire","type":"regional","destinations":["Abidjan","Dakar"]}]});}),
 "[project]/app/navigation/page.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -134,6 +134,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2f$navigation$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/utils/navigation.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$data$2f$airport$2d$data$2e$json__$28$json$29$__ = __turbopack_context__.i("[project]/lib/data/airport-data.json (json)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/config/theme.ts [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/context/LocaleContext.tsx [app-ssr] (ecmascript)");
 "use client";
 ;
 ;
@@ -141,7 +142,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts
 ;
 ;
 ;
+;
 function NavigationPage() {
+    const { t } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLocale"])();
     const [locations, setLocations] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [startLocation, setStartLocation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [endLocation, setEndLocation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
@@ -171,72 +174,72 @@ function NavigationPage() {
     const popularDestinations = [
         {
             id: "gate-a1",
-            name: "Portes A1-A3",
+            nameKey: "navigation.popularDestinations.boarding",
             icon: "🛫",
-            type: "Embarquement"
+            typeKey: "navigation.popularDestinations.boarding"
         },
         {
             id: "gate-b1",
-            name: "Portes B1-B3",
+            nameKey: "navigation.popularDestinations.boarding",
             icon: "🛫",
-            type: "Embarquement"
+            typeKey: "navigation.popularDestinations.boarding"
         },
         {
             id: "toilet-main",
-            name: "Toilettes",
+            nameKey: "map.locationTypes.toilet",
             icon: "🚻",
-            type: "Services"
+            typeKey: "navigation.popularDestinations.services"
         },
         {
             id: "restaurant-maquis",
-            name: "Restaurants",
+            nameKey: "services.categories.restaurant",
             icon: "🍽️",
-            type: "Restauration"
+            typeKey: "navigation.popularDestinations.dining"
         },
         {
             id: "shop-duty-free",
-            name: "Duty Free",
+            nameKey: "services.categories.shop",
             icon: "🛍️",
-            type: "Shopping"
+            typeKey: "navigation.popularDestinations.shopping"
         },
         {
             id: "lounge-business",
-            name: "Salon Business",
+            nameKey: "services.categories.lounge",
             icon: "✨",
-            type: "Lounge"
+            typeKey: "navigation.popularDestinations.lounge"
         },
         {
             id: "baggage-claim",
-            name: "Retrait bagages",
+            nameKey: "map.locationTypes.baggage",
             icon: "🧳",
-            type: "Arrivée"
+            typeKey: "navigation.popularDestinations.arrival"
         },
         {
             id: "information-main",
-            name: "Information",
+            nameKey: "map.locationTypes.information",
             icon: "ℹ️",
-            type: "Services"
+            typeKey: "navigation.popularDestinations.services"
         }
     ];
     const currentLocations = [
         {
             id: "entrance-main",
-            name: "Entrée principale",
+            nameKey: "map.locationTypes.entrance",
             icon: "🚪"
         },
         {
             id: "checkin-economy",
-            name: "Enregistrement",
+            nameKey: "map.locationTypes.checkin",
             icon: "✅"
         },
         {
             id: "security-main",
-            name: "Contrôle sécurité",
+            nameKey: "map.locationTypes.security",
             icon: "🔒"
         },
         {
             id: "gate-a1",
-            name: "Zone d'embarquement",
+            nameKey: "navigation.popularDestinations.boarding",
             icon: "🛫"
         }
     ];
@@ -271,10 +274,10 @@ function NavigationPage() {
                                 fontWeight: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].typography.h4.fontWeight,
                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                             },
-                            children: "Navigation"
+                            children: t("navigation.title")
                         }, void 0, false, {
                             fileName: "[project]/app/navigation/page.tsx",
-                            lineNumber: 100,
+                            lineNumber: 102,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -282,21 +285,21 @@ function NavigationPage() {
                             style: {
                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                             },
-                            children: "Trouvez votre chemin dans l'aéroport"
+                            children: t("navigation.subtitle")
                         }, void 0, false, {
                             fileName: "[project]/app/navigation/page.tsx",
-                            lineNumber: 110,
+                            lineNumber: 112,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/navigation/page.tsx",
-                    lineNumber: 99,
+                    lineNumber: 101,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/navigation/page.tsx",
-                lineNumber: 91,
+                lineNumber: 93,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -318,14 +321,14 @@ function NavigationPage() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 132,
+                                        lineNumber: 134,
                                         columnNumber: 13
                                     }, this),
-                                    "Je suis actuellement..."
+                                    t("navigation.currentLocation")
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 125,
+                                lineNumber: 127,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -343,7 +346,7 @@ function NavigationPage() {
                                                 children: loc.icon
                                             }, void 0, false, {
                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                lineNumber: 148,
+                                                lineNumber: 150,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -351,27 +354,27 @@ function NavigationPage() {
                                                 style: {
                                                     color: startLocation === loc.id ? __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.accent.dark : __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                                 },
-                                                children: loc.name
+                                                children: t(loc.nameKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                lineNumber: 149,
+                                                lineNumber: 151,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, loc.id, true, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 137,
+                                        lineNumber: 139,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 135,
+                                lineNumber: 137,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/navigation/page.tsx",
-                        lineNumber: 124,
+                        lineNumber: 126,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -390,14 +393,14 @@ function NavigationPage() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 173,
+                                        lineNumber: 175,
                                         columnNumber: 13
                                     }, this),
-                                    "Je veux aller à..."
+                                    t("navigation.destination")
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 166,
+                                lineNumber: 168,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -418,7 +421,7 @@ function NavigationPage() {
                                                         children: dest.icon
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                        lineNumber: 190,
+                                                        lineNumber: 192,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -427,16 +430,16 @@ function NavigationPage() {
                                                             backgroundColor: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.gray[200],
                                                             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                                         },
-                                                        children: dest.type
+                                                        children: t(dest.typeKey)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                        lineNumber: 191,
+                                                        lineNumber: 193,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                lineNumber: 189,
+                                                lineNumber: 191,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -444,27 +447,27 @@ function NavigationPage() {
                                                 style: {
                                                     color: endLocation === dest.id ? __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.accent.dark : __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                                 },
-                                                children: dest.name
+                                                children: t(dest.nameKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                lineNumber: 201,
+                                                lineNumber: 203,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, dest.id, true, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 178,
+                                        lineNumber: 180,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 176,
+                                lineNumber: 178,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/navigation/page.tsx",
-                        lineNumber: 165,
+                        lineNumber: 167,
                         columnNumber: 9
                     }, this),
                     startLocation && endLocation && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -482,14 +485,14 @@ function NavigationPage() {
                                 className: "w-5 h-5"
                             }, void 0, false, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 229,
+                                lineNumber: 231,
                                 columnNumber: 13
                             }, this),
-                            "Calculer l'itinéraire"
+                            t("navigation.calculateRoute")
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/navigation/page.tsx",
-                        lineNumber: 218,
+                        lineNumber: 220,
                         columnNumber: 11
                     }, this),
                     routeSteps.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -513,7 +516,7 @@ function NavigationPage() {
                                                         className: "w-5 h-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                        lineNumber: 248,
+                                                        lineNumber: 250,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -524,13 +527,13 @@ function NavigationPage() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                        lineNumber: 249,
+                                                        lineNumber: 251,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                lineNumber: 247,
+                                                lineNumber: 249,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -540,7 +543,7 @@ function NavigationPage() {
                                                         className: "w-5 h-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                        lineNumber: 254,
+                                                        lineNumber: 256,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -552,36 +555,41 @@ function NavigationPage() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                        lineNumber: 255,
+                                                        lineNumber: 257,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                lineNumber: 253,
+                                                lineNumber: 255,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 246,
+                                        lineNumber: 248,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-sm opacity-90",
                                         children: [
                                             routeSteps.length,
-                                            " étapes • Niveau de difficulté: Facile"
+                                            " ",
+                                            t("navigation.routeSummary.steps"),
+                                            " • ",
+                                            t("navigation.routeSummary.difficulty"),
+                                            ": ",
+                                            t("navigation.routeSummary.easy")
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 260,
+                                        lineNumber: 262,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 238,
+                                lineNumber: 240,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -592,10 +600,10 @@ function NavigationPage() {
                                             fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                         },
-                                        children: "Instructions détaillées"
+                                        children: t("navigation.instructions")
                                     }, void 0, false, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 267,
+                                        lineNumber: 269,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -625,7 +633,7 @@ function NavigationPage() {
                                                                 children: index + 1
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                                lineNumber: 305,
+                                                                lineNumber: 307,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -641,7 +649,7 @@ function NavigationPage() {
                                                                                 }
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                                                lineNumber: 324,
+                                                                                lineNumber: 326,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -654,13 +662,13 @@ function NavigationPage() {
                                                                                 children: step.instruction
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                                                lineNumber: 332,
+                                                                                lineNumber: 334,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                                        lineNumber: 323,
+                                                                        lineNumber: 325,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     step.distance > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -679,7 +687,7 @@ function NavigationPage() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                                                lineNumber: 347,
+                                                                                lineNumber: 349,
                                                                                 columnNumber: 31
                                                                             }, this),
                                                                             isCurrent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -688,28 +696,31 @@ function NavigationPage() {
                                                                                     backgroundColor: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.accent.main + '30',
                                                                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.accent.dark
                                                                                 },
-                                                                                children: "👉 Étape actuelle"
-                                                                            }, void 0, false, {
+                                                                                children: [
+                                                                                    "👉 ",
+                                                                                    t("navigation.currentStep")
+                                                                                ]
+                                                                            }, void 0, true, {
                                                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                                                lineNumber: 357,
+                                                                                lineNumber: 359,
                                                                                 columnNumber: 33
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                                        lineNumber: 346,
+                                                                        lineNumber: 348,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                                lineNumber: 322,
+                                                                lineNumber: 324,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                        lineNumber: 303,
+                                                        lineNumber: 305,
                                                         columnNumber: 23
                                                     }, this),
                                                     isCurrent && index < routeSteps.length - 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -724,28 +735,33 @@ function NavigationPage() {
                                                             color: '#fff',
                                                             fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize
                                                         },
-                                                        children: "✅ Étape terminée • Suivant"
-                                                    }, void 0, false, {
+                                                        children: [
+                                                            "✅ ",
+                                                            t("navigation.stepCompleted"),
+                                                            " • ",
+                                                            t("navigation.next")
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/app/navigation/page.tsx",
-                                                        lineNumber: 374,
+                                                        lineNumber: 376,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, index, true, {
                                                 fileName: "[project]/app/navigation/page.tsx",
-                                                lineNumber: 283,
+                                                lineNumber: 285,
                                                 columnNumber: 21
                                             }, this);
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 276,
+                                        lineNumber: 278,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 266,
+                                lineNumber: 268,
                                 columnNumber: 13
                             }, this),
                             currentStep >= routeSteps.length - 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -761,29 +777,29 @@ function NavigationPage() {
                                         children: "🎉"
                                     }, void 0, false, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 406,
+                                        lineNumber: 408,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                         className: "font-bold text-lg mb-1",
-                                        children: "Vous êtes arrivé!"
+                                        children: t("navigation.arrived")
                                     }, void 0, false, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 407,
+                                        lineNumber: 409,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-sm opacity-90",
-                                        children: "Vous avez atteint votre destination"
+                                        children: t("navigation.arrivedDescription")
                                     }, void 0, false, {
                                         fileName: "[project]/app/navigation/page.tsx",
-                                        lineNumber: 408,
+                                        lineNumber: 410,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 398,
+                                lineNumber: 400,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -801,16 +817,19 @@ function NavigationPage() {
                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.text.primary,
                                     fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].typography.small.fontSize
                                 },
-                                children: "🔄 Nouveau trajet"
-                            }, void 0, false, {
+                                children: [
+                                    "🔄 ",
+                                    t("navigation.newRoute")
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 415,
+                                lineNumber: 417,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/navigation/page.tsx",
-                        lineNumber: 236,
+                        lineNumber: 238,
                         columnNumber: 11
                     }, this),
                     !startLocation && !endLocation && routeSteps.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -827,7 +846,7 @@ function NavigationPage() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 445,
+                                lineNumber: 447,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -836,10 +855,10 @@ function NavigationPage() {
                                     fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                 },
-                                children: "Choisissez votre trajet"
+                                children: t("navigation.selectRoute")
                             }, void 0, false, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 449,
+                                lineNumber: 451,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -847,28 +866,28 @@ function NavigationPage() {
                                 style: {
                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                 },
-                                children: "Sélectionnez votre position actuelle et votre destination pour obtenir des instructions détaillées"
+                                children: t("navigation.selectRouteDescription")
                             }, void 0, false, {
                                 fileName: "[project]/app/navigation/page.tsx",
-                                lineNumber: 458,
+                                lineNumber: 460,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/navigation/page.tsx",
-                        lineNumber: 438,
+                        lineNumber: 440,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/navigation/page.tsx",
-                lineNumber: 122,
+                lineNumber: 124,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/navigation/page.tsx",
-        lineNumber: 86,
+        lineNumber: 88,
         columnNumber: 5
     }, this);
 }

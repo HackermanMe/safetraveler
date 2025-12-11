@@ -1,7 +1,7 @@
 (globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([typeof document === "object" ? document.currentScript : undefined,
 "[project]/lib/data/airport-data.json (json)", ((__turbopack_context__) => {
 
-__turbopack_context__.v(JSON.parse("{\"airport\":{\"name\":\"Aéroport International Gnassingbé Eyadéma\",\"code\":\"LFW\",\"city\":\"Lomé\",\"country\":\"Togo\",\"coordinates\":[1.2549,6.1659],\"capacity\":\"2 000 000 passagers/an\",\"hub\":\"ASKY Airlines\",\"distance_city\":\"6.8 km du centre-ville\"},\"locations\":[{\"id\":\"entrance-main\",\"name\":\"Entrée Principale\",\"type\":\"entrance\",\"floor\":0,\"coordinates\":[1.2545,6.1658],\"description\":\"Entrée principale du terminal international\",\"status\":\"open\"},{\"id\":\"entrance-vip\",\"name\":\"Entrée VIP\",\"type\":\"entrance\",\"floor\":0,\"coordinates\":[1.25455,6.1658],\"description\":\"Entrée réservée Business et Première Classe\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"checkin-economy\",\"name\":\"Enregistrement Zone A\",\"type\":\"checkin\",\"floor\":0,\"coordinates\":[1.2546,6.16585],\"description\":\"Comptoirs 1-20 - Classe Économique\",\"status\":\"open\",\"accessibleTo\":[\"economy\"]},{\"id\":\"checkin-business\",\"name\":\"Enregistrement Zone B\",\"type\":\"checkin\",\"floor\":0,\"coordinates\":[1.25465,6.16585],\"description\":\"Comptoirs 21-26 - Business & Première Classe\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"checkin-asky\",\"name\":\"Enregistrement ASKY Airlines\",\"type\":\"checkin\",\"floor\":0,\"coordinates\":[1.2547,6.16585],\"description\":\"Comptoirs dédiés ASKY Airlines (hub)\",\"status\":\"open\"},{\"id\":\"security-main\",\"name\":\"Contrôle de Sécurité Principal\",\"type\":\"security\",\"floor\":0,\"coordinates\":[1.25475,6.1659],\"description\":\"Point de contrôle sécurité et passeport\",\"status\":\"busy\"},{\"id\":\"security-fast\",\"name\":\"Contrôle Fast Track\",\"type\":\"security\",\"floor\":0,\"coordinates\":[1.2548,6.1659],\"description\":\"Voie rapide Business/Première Classe\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"gate-a1\",\"name\":\"Porte A1\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.2549,6.16595],\"description\":\"Vols internationaux - Air France, Brussels Airlines\",\"status\":\"open\"},{\"id\":\"gate-a2\",\"name\":\"Porte A2\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25495,6.16595],\"description\":\"Vols internationaux - Ethiopian Airlines\",\"status\":\"open\"},{\"id\":\"gate-a3\",\"name\":\"Porte A3\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.255,6.16595],\"description\":\"Vols internationaux - Turkish Airlines\",\"status\":\"open\"},{\"id\":\"gate-a4\",\"name\":\"Porte A4\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25505,6.16595],\"description\":\"Vols internationaux - Royal Air Maroc\",\"status\":\"open\"},{\"id\":\"gate-a5\",\"name\":\"Porte A5\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.2551,6.16595],\"description\":\"Vols internationaux - ASKY Airlines\",\"status\":\"open\"},{\"id\":\"gate-a6\",\"name\":\"Porte A6\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25515,6.16595],\"description\":\"Vols internationaux - Emirates, Air Côte d'Ivoire\",\"status\":\"open\"},{\"id\":\"gate-b1\",\"name\":\"Porte B1\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.2549,6.166],\"description\":\"Vols régionaux - Destinations Afrique de l'Ouest\",\"status\":\"open\"},{\"id\":\"gate-b2\",\"name\":\"Porte B2\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.25495,6.166],\"description\":\"Vols domestiques\",\"status\":\"open\"},{\"id\":\"gate-b3\",\"name\":\"Porte B3\",\"type\":\"gate\",\"floor\":1,\"coordinates\":[1.255,6.166],\"description\":\"Vols régionaux - ASKY Airlines\",\"status\":\"open\"},{\"id\":\"baggage-1\",\"name\":\"Tapis 1 - Arrivées Internationales\",\"type\":\"baggage\",\"floor\":0,\"coordinates\":[1.2552,6.16575],\"description\":\"Récupération bagages vols internationaux\",\"status\":\"open\"},{\"id\":\"baggage-2\",\"name\":\"Tapis 2 - Arrivées Régionales\",\"type\":\"baggage\",\"floor\":0,\"coordinates\":[1.25525,6.16575],\"description\":\"Récupération bagages vols régionaux\",\"status\":\"open\"},{\"id\":\"customs-arrival\",\"name\":\"Douane Arrivées\",\"type\":\"customs\",\"floor\":0,\"coordinates\":[1.2553,6.16575],\"description\":\"Contrôle douanier pour arrivées internationales\",\"status\":\"open\"},{\"id\":\"info-main\",\"name\":\"Information Principale\",\"type\":\"information\",\"floor\":0,\"coordinates\":[1.25455,6.16585],\"description\":\"Renseignements, objets trouvés, assistance\",\"status\":\"open\"},{\"id\":\"info-gates\",\"name\":\"Information Zone Embarquement\",\"type\":\"information\",\"floor\":1,\"coordinates\":[1.255,6.1659],\"description\":\"Informations vols et assistance embarquement\",\"status\":\"open\"},{\"id\":\"toilet-arrival\",\"name\":\"Toilettes Zone Arrivées\",\"type\":\"toilet\",\"floor\":0,\"coordinates\":[1.25515,6.16575],\"description\":\"Toilettes accessibles PMR\",\"status\":\"open\"},{\"id\":\"toilet-checkin\",\"name\":\"Toilettes Zone Enregistrement\",\"type\":\"toilet\",\"floor\":0,\"coordinates\":[1.25465,6.1658],\"description\":\"Toilettes accessibles PMR\",\"status\":\"open\"},{\"id\":\"toilet-gates-a\",\"name\":\"Toilettes Portes A\",\"type\":\"toilet\",\"floor\":1,\"coordinates\":[1.25505,6.1659],\"description\":\"Toilettes zone internationale\",\"status\":\"open\"},{\"id\":\"toilet-gates-b\",\"name\":\"Toilettes Portes B\",\"type\":\"toilet\",\"floor\":1,\"coordinates\":[1.25495,6.166],\"description\":\"Toilettes zone domestique\",\"status\":\"open\"},{\"id\":\"medical-main\",\"name\":\"Infirmerie\",\"type\":\"medical\",\"floor\":0,\"coordinates\":[1.2546,6.1658],\"description\":\"Assistance médicale d'urgence - 24/7\",\"status\":\"open\"},{\"id\":\"prayer-room\",\"name\":\"Salle de Prière\",\"type\":\"prayer\",\"floor\":1,\"coordinates\":[1.2551,6.1659],\"description\":\"Espace de recueillement multi-confessionnel\",\"status\":\"open\"},{\"id\":\"lounge-asky\",\"name\":\"Salon VIP ASKY Airlines\",\"type\":\"lounge\",\"floor\":1,\"coordinates\":[1.25485,6.16595],\"description\":\"Salon VIP avec restauration, Wi-Fi, douches\",\"status\":\"open\",\"accessibleTo\":[\"business\",\"first\"]},{\"id\":\"restaurant-maquis\",\"name\":\"Le Maquis de l'Aéroport\",\"type\":\"restaurant\",\"floor\":0,\"coordinates\":[1.2547,6.1658],\"description\":\"Cuisine togolaise authentique - Fufu, Akpan, Akoumé\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"restaurant-teranga\",\"name\":\"Restaurant Teranga\",\"type\":\"restaurant\",\"floor\":1,\"coordinates\":[1.25505,6.16592],\"description\":\"Cuisine africaine et internationale\",\"status\":\"open\",\"hours\":\"5h - 23h\"},{\"id\":\"cafe-express\",\"name\":\"Café Express\",\"type\":\"restaurant\",\"floor\":1,\"coordinates\":[1.25495,6.16592],\"description\":\"Café, viennoiseries, sandwichs rapides\",\"status\":\"open\",\"hours\":\"4h30 - 23h30\"},{\"id\":\"restaurant-fastfood\",\"name\":\"Quick Bites\",\"type\":\"restaurant\",\"floor\":1,\"coordinates\":[1.2551,6.16592],\"description\":\"Fast-food international - Burgers, pizzas, salades\",\"status\":\"open\",\"hours\":\"6h - 23h\"},{\"id\":\"shop-dutyfree\",\"name\":\"Duty Free Lomé\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.2549,6.16592],\"description\":\"Parfums, alcools, tabac, cosmétiques hors taxes\",\"status\":\"open\",\"hours\":\"5h - 23h\"},{\"id\":\"shop-artisanat\",\"name\":\"Artisanat Togolais\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.255,6.16592],\"description\":\"Tissus batik, sculptures, bijoux locaux, souvenirs\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"shop-presse\",\"name\":\"Relay Presse\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.25515,6.16592],\"description\":\"Presse internationale, livres, snacks\",\"status\":\"open\",\"hours\":\"5h - 23h\"},{\"id\":\"shop-electronics\",\"name\":\"Tech & Travel\",\"type\":\"shop\",\"floor\":1,\"coordinates\":[1.25505,6.16597],\"description\":\"Électronique, accessoires voyage, adaptateurs\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"bank-utb\",\"name\":\"Union Togolaise de Banque (UTB)\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.25475,6.16575],\"description\":\"Distributeur automatique et services bancaires\",\"status\":\"open\",\"hours\":\"24/7 (DAB)\"},{\"id\":\"exchange-office\",\"name\":\"Bureau de Change\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.2548,6.16575],\"description\":\"Change de devises - CFA, EUR, USD\",\"status\":\"open\",\"hours\":\"6h - 22h\"},{\"id\":\"car-rental-avis\",\"name\":\"Avis Location de Voitures\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.25535,6.1658],\"description\":\"Location de véhicules\",\"status\":\"open\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 05 82\"},{\"id\":\"car-rental-europcar\",\"name\":\"Europcar\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.2554,6.1658],\"description\":\"Location de véhicules\",\"status\":\"open\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 13 24\"},{\"id\":\"car-rental-hertz\",\"name\":\"Hertz\",\"type\":\"shop\",\"floor\":0,\"coordinates\":[1.25545,6.1658],\"description\":\"Location de véhicules\",\"status\":\"open\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 44 79\"},{\"id\":\"parking-main\",\"name\":\"Parking Principal\",\"type\":\"parking\",\"floor\":0,\"coordinates\":[1.2544,6.1658],\"description\":\"Parking longue durée - 650 places\",\"status\":\"open\",\"hours\":\"24/7\"}],\"services\":[{\"id\":\"service-prmassist\",\"name\":\"Assistance Passagers à Mobilité Réduite\",\"category\":\"assistance\",\"description\":\"Accompagnement personnalisé, fauteuils roulants, assistance embarquement/débarquement\",\"location\":\"info-main\",\"hours\":\"24/7\",\"contact\":\"+228 22 23 44 55\",\"icon\":\"accessibility\",\"free\":true},{\"id\":\"service-medical\",\"name\":\"Assistance Médicale d'Urgence\",\"category\":\"medical\",\"description\":\"Infirmerie avec personnel qualifié, premiers secours, défibrillateur\",\"location\":\"medical-main\",\"hours\":\"24/7\",\"contact\":\"+228 22 23 44 56\",\"icon\":\"cross\",\"free\":true},{\"id\":\"service-lostfound\",\"name\":\"Objets Trouvés\",\"category\":\"lost_found\",\"description\":\"Déclaration et récupération d'objets perdus dans l'enceinte de l'aéroport\",\"location\":\"info-main\",\"hours\":\"6h - 23h\",\"contact\":\"+228 22 23 44 57\",\"icon\":\"briefcase\",\"free\":true},{\"id\":\"service-flightinfo\",\"name\":\"Information Vols en Temps Réel\",\"category\":\"information\",\"description\":\"Horaires, retards, annulations, changements de porte\",\"location\":\"info-main\",\"hours\":\"24/7\",\"contact\":\"+228 22 23 44 58\",\"icon\":\"info\",\"free\":true},{\"id\":\"service-customs\",\"name\":\"Services Douaniers\",\"category\":\"customs\",\"description\":\"Déclarations douanières, contrôles, informations réglementaires\",\"location\":\"customs-arrival\",\"hours\":\"Selon horaires des vols\",\"contact\":\"+228 22 23 44 59\",\"icon\":\"shield\",\"free\":true},{\"id\":\"service-wifi\",\"name\":\"Wi-Fi Gratuit\",\"category\":\"connectivity\",\"description\":\"Accès Internet sans fil gratuit dans tout l'aéroport\",\"location\":\"Partout\",\"hours\":\"24/7\",\"network\":\"Aeroport_LFW_Free\",\"icon\":\"wifi\",\"free\":true},{\"id\":\"service-porter\",\"name\":\"Porteurs de Bagages\",\"category\":\"assistance\",\"description\":\"Aide au transport des bagages\",\"location\":\"entrance-main\",\"hours\":\"5h - 23h\",\"icon\":\"luggage\",\"free\":false,\"pricing\":\"2000-5000 CFA selon distance\"},{\"id\":\"service-vip\",\"name\":\"Service VIP & Meet & Greet\",\"category\":\"premium\",\"description\":\"Accueil personnalisé, assistance formalités, salon VIP, voie rapide\",\"location\":\"entrance-vip\",\"hours\":\"24/7 (sur réservation)\",\"contact\":\"+228 22 23 44 60\",\"icon\":\"star\",\"free\":false,\"pricing\":\"À partir de 50 000 CFA\"},{\"id\":\"service-avis\",\"name\":\"Location Voitures Avis\",\"category\":\"transport\",\"description\":\"Large gamme de véhicules disponibles\",\"location\":\"car-rental-avis\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 05 82\",\"icon\":\"car\",\"free\":false,\"website\":\"https://www.avis.com\"},{\"id\":\"service-europcar\",\"name\":\"Location Voitures Europcar\",\"category\":\"transport\",\"description\":\"Véhicules neufs et bien entretenus\",\"location\":\"car-rental-europcar\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 13 24\",\"icon\":\"car\",\"free\":false,\"website\":\"https://www.europcar.com\"},{\"id\":\"service-hertz\",\"name\":\"Location Voitures Hertz\",\"category\":\"transport\",\"description\":\"Leader mondial de la location de véhicules\",\"location\":\"car-rental-hertz\",\"hours\":\"7h - 22h\",\"contact\":\"+228 22 21 44 79\",\"icon\":\"car\",\"free\":false,\"website\":\"https://www.hertz.com\"},{\"id\":\"service-utb\",\"name\":\"Services Bancaires UTB\",\"category\":\"financial\",\"description\":\"Distributeur automatique 24/7, services bancaires\",\"location\":\"bank-utb\",\"hours\":\"24/7 (DAB)\",\"icon\":\"banknote\",\"free\":true},{\"id\":\"service-exchange\",\"name\":\"Bureau de Change\",\"category\":\"financial\",\"description\":\"Change CFA, Euro, Dollar US, autres devises principales\",\"location\":\"exchange-office\",\"hours\":\"6h - 22h\",\"icon\":\"coins\",\"free\":false,\"commission\":\"Commission 2-3%\"}],\"floors\":[{\"level\":0,\"name\":\"Rez-de-chaussée - Arrivées & Départs\",\"description\":\"Zone publique : Enregistrement, Bagages, Services\",\"bounds\":[[1.2544,6.1657],[1.2556,6.1661]]},{\"level\":1,\"name\":\"Étage 1 - Zone d'Embarquement\",\"description\":\"Zone sécurisée : Portes d'embarquement, Restaurants, Boutiques\",\"bounds\":[[1.2548,6.1659],[1.2552,6.1661]]}],\"airlines\":[{\"code\":\"KP\",\"name\":\"ASKY Airlines\",\"type\":\"hub\",\"destinations\":[\"Dakar\",\"Abidjan\",\"Ouagadougou\",\"Niamey\",\"Cotonou\",\"Accra\",\"Lagos\",\"Libreville\"]},{\"code\":\"AF\",\"name\":\"Air France\",\"type\":\"international\",\"destinations\":[\"Paris CDG\"]},{\"code\":\"SN\",\"name\":\"Brussels Airlines\",\"type\":\"international\",\"destinations\":[\"Bruxelles\"]},{\"code\":\"ET\",\"name\":\"Ethiopian Airlines\",\"type\":\"international\",\"destinations\":[\"Addis-Abeba\"]},{\"code\":\"TK\",\"name\":\"Turkish Airlines\",\"type\":\"international\",\"destinations\":[\"Istanbul\"]},{\"code\":\"AT\",\"name\":\"Royal Air Maroc\",\"type\":\"international\",\"destinations\":[\"Casablanca\"]},{\"code\":\"EK\",\"name\":\"Emirates\",\"type\":\"international\",\"destinations\":[\"Dubaï\"]},{\"code\":\"HF\",\"name\":\"Air Côte d'Ivoire\",\"type\":\"regional\",\"destinations\":[\"Abidjan\",\"Dakar\"]}]}"));}),
+__turbopack_context__.v({"airport":{"name":"Aéroport International Gnassingbé Eyadéma","code":"LFW","city":"Lomé","country":"Togo","coordinates":[1.2549,6.1659],"capacity":"2 000 000 passagers/an","hub":"ASKY Airlines","distance_city":"6.8 km du centre-ville"},"locations":[{"id":"gate-a1","name":"Porte A1","type":"gate","floor":1,"coordinates":[1.253568,6.170194],"description":"Porte d'embarquement A1 - Vols internationaux","status":"open"},{"id":"gate-a2","name":"Porte A2","type":"gate","floor":1,"coordinates":[1.253185,6.169748],"description":"Porte d'embarquement A2 - Vols internationaux","status":"open"},{"id":"gate-a3","name":"Porte A3","type":"gate","floor":1,"coordinates":[1.252825,6.169437],"description":"Porte d'embarquement A3 - Vols internationaux","status":"open"},{"id":"gate-b1","name":"Porte B1","type":"gate","floor":1,"coordinates":[1.254069,6.171084],"description":"Porte d'embarquement B1 - Vols régionaux","status":"open"},{"id":"gate-b2","name":"Porte B2","type":"gate","floor":1,"coordinates":[1.253923,6.170668],"description":"Porte d'embarquement B2 - Vols régionaux","status":"open"},{"id":"checkin-economy-1","name":"Enregistrement Zone A","type":"checkin","floor":0,"coordinates":[1.253038,6.170017],"description":"Comptoirs 1-20 - Classe Économique","status":"open","accessibleTo":["economy"]},{"id":"checkin-economy-2","name":"Enregistrement Zone B","type":"checkin","floor":0,"coordinates":[1.253899,6.170813],"description":"Comptoirs 21-40 - Classe Économique","status":"open","accessibleTo":["economy"]},{"id":"checkin-business","name":"Enregistrement Business","type":"checkin","floor":0,"coordinates":[1.252822,6.169666],"description":"Comptoirs Business & Première Classe","status":"open","accessibleTo":["business","first"]},{"id":"security-main","name":"Contrôle de Sécurité Principal","type":"security","floor":0,"coordinates":[1.253083,6.172066],"description":"Point de contrôle sécurité et passeport","status":"busy"},{"id":"security-fast","name":"Contrôle Fast Track","type":"security","floor":0,"coordinates":[1.253317,6.170509],"description":"Voie rapide Business/Première Classe","status":"open","accessibleTo":["business","first"]},{"id":"toilet-arrival","name":"Toilettes Zone Arrivées","type":"toilet","floor":0,"coordinates":[1.253572,6.170538],"description":"Toilettes accessibles PMR","status":"open"},{"id":"toilet-checkin","name":"Toilettes Zone Enregistrement","type":"toilet","floor":0,"coordinates":[1.253357,6.170299],"description":"Toilettes accessibles PMR","status":"open"},{"id":"toilet-gates-a","name":"Toilettes Portes A","type":"toilet","floor":1,"coordinates":[1.253572,6.170538],"description":"Toilettes zone internationale","status":"open"},{"id":"toilet-gates-b","name":"Toilettes Portes B","type":"toilet","floor":1,"coordinates":[1.253357,6.170299],"description":"Toilettes zone domestique","status":"open"},{"id":"restaurant-maquis","name":"Le Maquis de l'Aéroport","type":"restaurant","floor":0,"coordinates":[1.252739,6.170065],"description":"Cuisine togolaise authentique - Fufu, Akpan, Akoumé","status":"open","hours":"6h - 22h"},{"id":"restaurant-teranga","name":"Restaurant Teranga","type":"restaurant","floor":1,"coordinates":[1.252739,6.170065],"description":"Cuisine africaine et internationale","status":"open","hours":"5h - 23h"},{"id":"cafe-express","name":"Café Express","type":"restaurant","floor":1,"coordinates":[1.252739,6.170065],"description":"Café, viennoiseries, sandwichs rapides","status":"open","hours":"4h30 - 23h30"},{"id":"shop-dutyfree","name":"Duty Free Lomé","type":"shop","floor":1,"coordinates":[1.25217,6.169382],"description":"Parfums, alcools, tabac, cosmétiques hors taxes","status":"open","hours":"5h - 23h"},{"id":"shop-artisanat","name":"Artisanat Togolais","type":"shop","floor":1,"coordinates":[1.251705,6.169352],"description":"Tissus batik, sculptures, bijoux locaux, souvenirs","status":"open","hours":"6h - 22h"},{"id":"shop-presse","name":"Relay Presse","type":"shop","floor":1,"coordinates":[1.252265,6.169839],"description":"Presse internationale, livres, snacks","status":"open","hours":"5h - 23h"},{"id":"info-main","name":"Information Principale","type":"information","floor":0,"coordinates":[1.253386,6.17088],"description":"Renseignements, objets trouvés, assistance","status":"open"},{"id":"info-gates","name":"Information Zone Embarquement","type":"information","floor":1,"coordinates":[1.252895,6.170068],"description":"Informations vols et assistance embarquement","status":"open"},{"id":"lounge-asky","name":"Salon VIP ASKY Airlines","type":"lounge","floor":1,"coordinates":[1.252755,6.170232],"description":"Salon VIP avec restauration, Wi-Fi, douches","status":"open","accessibleTo":["business","first"]},{"id":"lounge-business","name":"Salon Business","type":"lounge","floor":1,"coordinates":[1.253317,6.170509],"description":"Salon Business avec bar et restauration","status":"open","accessibleTo":["business","first"]}],"services":[{"id":"service-prmassist","name":"Assistance Passagers à Mobilité Réduite","category":"assistance","description":"Accompagnement personnalisé, fauteuils roulants, assistance embarquement/débarquement","location":"info-main","hours":"24/7","contact":"+228 22 23 44 55","icon":"accessibility","free":true},{"id":"service-medical","name":"Assistance Médicale d'Urgence","category":"medical","description":"Infirmerie avec personnel qualifié, premiers secours, défibrillateur","location":"medical-main","hours":"24/7","contact":"+228 22 23 44 56","icon":"cross","free":true},{"id":"service-lostfound","name":"Objets Trouvés","category":"lost_found","description":"Déclaration et récupération d'objets perdus dans l'enceinte de l'aéroport","location":"info-main","hours":"6h - 23h","contact":"+228 22 23 44 57","icon":"briefcase","free":true},{"id":"service-flightinfo","name":"Information Vols en Temps Réel","category":"information","description":"Horaires, retards, annulations, changements de porte","location":"info-main","hours":"24/7","contact":"+228 22 23 44 58","icon":"info","free":true},{"id":"service-customs","name":"Services Douaniers","category":"customs","description":"Déclarations douanières, contrôles, informations réglementaires","location":"customs-arrival","hours":"Selon horaires des vols","contact":"+228 22 23 44 59","icon":"shield","free":true},{"id":"service-wifi","name":"Wi-Fi Gratuit","category":"connectivity","description":"Accès Internet sans fil gratuit dans tout l'aéroport","location":"Partout","hours":"24/7","network":"Aeroport_LFW_Free","icon":"wifi","free":true},{"id":"service-porter","name":"Porteurs de Bagages","category":"assistance","description":"Aide au transport des bagages","location":"entrance-main","hours":"5h - 23h","icon":"luggage","free":false,"pricing":"2000-5000 CFA selon distance"},{"id":"service-vip","name":"Service VIP & Meet & Greet","category":"premium","description":"Accueil personnalisé, assistance formalités, salon VIP, voie rapide","location":"entrance-vip","hours":"24/7 (sur réservation)","contact":"+228 22 23 44 60","icon":"star","free":false,"pricing":"À partir de 50 000 CFA"}],"floors":[{"level":0,"name":"Rez-de-chaussée - Arrivées & Départs","description":"Zone publique : Enregistrement, Bagages, Services","bounds":[[1.251,6.163],[1.2595,6.169]]},{"level":1,"name":"Étage 1 - Zone d'Embarquement","description":"Zone sécurisée : Portes d'embarquement, Restaurants, Boutiques","bounds":[[1.255,6.166],[1.2595,6.169]]}],"airlines":[{"code":"KP","name":"ASKY Airlines","type":"hub","destinations":["Dakar","Abidjan","Ouagadougou","Niamey","Cotonou","Accra","Lagos","Libreville"]},{"code":"AF","name":"Air France","type":"international","destinations":["Paris CDG"]},{"code":"SN","name":"Brussels Airlines","type":"international","destinations":["Bruxelles"]},{"code":"ET","name":"Ethiopian Airlines","type":"international","destinations":["Addis-Abeba"]},{"code":"TK","name":"Turkish Airlines","type":"international","destinations":["Istanbul"]},{"code":"AT","name":"Royal Air Maroc","type":"international","destinations":["Casablanca"]},{"code":"EK","name":"Emirates","type":"international","destinations":["Dubaï"]},{"code":"HF","name":"Air Côte d'Ivoire","type":"regional","destinations":["Abidjan","Dakar"]}]});}),
 "[project]/app/services/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -24,6 +24,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sparkles.js [app-client] (ecmascript) <export default as Sparkles>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$data$2f$airport$2d$data$2e$json__$28$json$29$__ = __turbopack_context__.i("[project]/lib/data/airport-data.json (json)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/config/theme.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/context/LocaleContext.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
@@ -31,8 +32,10 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 function ServicesPage() {
     _s();
+    const { t } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLocale"])();
     const [locations, setLocations] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [searchQuery, setSearchQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [selectedCategory, setSelectedCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("all");
@@ -45,7 +48,7 @@ function ServicesPage() {
     const categories = [
         {
             id: "all",
-            name: "Tous",
+            nameKey: "services.categories.all",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"],
             types: [
                 "restaurant",
@@ -57,7 +60,7 @@ function ServicesPage() {
         },
         {
             id: "restaurant",
-            name: "Restaurants",
+            nameKey: "services.categories.restaurant",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$utensils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Utensils$3e$__["Utensils"],
             types: [
                 "restaurant"
@@ -65,7 +68,7 @@ function ServicesPage() {
         },
         {
             id: "shop",
-            name: "Boutiques",
+            nameKey: "services.categories.shop",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"],
             types: [
                 "shop"
@@ -73,7 +76,7 @@ function ServicesPage() {
         },
         {
             id: "lounge",
-            name: "Salons",
+            nameKey: "services.categories.lounge",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$coffee$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Coffee$3e$__["Coffee"],
             types: [
                 "lounge"
@@ -81,7 +84,7 @@ function ServicesPage() {
         },
         {
             id: "services",
-            name: "Services",
+            nameKey: "services.categories.services",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"],
             types: [
                 "medical",
@@ -108,15 +111,15 @@ function ServicesPage() {
     // Emergency contacts
     const emergencyContacts = [
         {
-            name: "Urgence Médicale",
-            description: "Assistance médicale 24/7",
+            nameKey: "services.emergency.medical",
+            descriptionKey: "services.emergency.medicalDescription",
             phone: "+228 22 23 44 56",
             icon: "⚕️",
             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.error.main
         },
         {
-            name: "Information",
-            description: "Renseignements généraux",
+            nameKey: "services.emergency.information",
+            descriptionKey: "services.emergency.informationDescription",
             phone: "+228 22 23 44 55",
             icon: "ℹ️",
             color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.info.main
@@ -126,23 +129,23 @@ function ServicesPage() {
     const tips = [
         {
             icon: "⏰",
-            title: "Arrivée",
-            text: "2h avant pour vols internationaux"
+            titleKey: "services.tips.arrival.title",
+            textKey: "services.tips.arrival.text"
         },
         {
             icon: "🌐",
-            title: "Wi-Fi",
-            text: "Gratuit - Réseau 'Airport-WiFi'"
+            titleKey: "services.tips.wifi.title",
+            textKey: "services.tips.wifi.text"
         },
         {
             icon: "♿",
-            title: "Accessibilité",
-            text: "Assistance PMR disponible"
+            titleKey: "services.tips.accessibility.title",
+            textKey: "services.tips.accessibility.text"
         },
         {
             icon: "💱",
-            title: "Change",
-            text: "Bureau de change au RDC"
+            titleKey: "services.tips.exchange.title",
+            textKey: "services.tips.exchange.text"
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -168,10 +171,10 @@ function ServicesPage() {
                                 fontWeight: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.h4.fontWeight,
                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                             },
-                            children: "Services & Boutiques"
+                            children: t("services.title")
                         }, void 0, false, {
                             fileName: "[project]/app/services/page.tsx",
-                            lineNumber: 128,
+                            lineNumber: 130,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -179,21 +182,21 @@ function ServicesPage() {
                             style: {
                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                             },
-                            children: "Découvrez tout ce que l'aéroport offre"
+                            children: t("services.subtitle")
                         }, void 0, false, {
                             fileName: "[project]/app/services/page.tsx",
-                            lineNumber: 138,
+                            lineNumber: 140,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/services/page.tsx",
-                    lineNumber: 127,
+                    lineNumber: 129,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/services/page.tsx",
-                lineNumber: 119,
+                lineNumber: 121,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -215,23 +218,23 @@ function ServicesPage() {
                                         children: contact.icon
                                     }, void 0, false, {
                                         fileName: "[project]/app/services/page.tsx",
-                                        lineNumber: 164,
+                                        lineNumber: 166,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                         className: "font-bold text-sm mb-1",
-                                        children: contact.name
+                                        children: t(contact.nameKey)
                                     }, void 0, false, {
                                         fileName: "[project]/app/services/page.tsx",
-                                        lineNumber: 165,
+                                        lineNumber: 167,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-xs opacity-90 mb-2",
-                                        children: contact.description
+                                        children: t(contact.descriptionKey)
                                     }, void 0, false, {
                                         fileName: "[project]/app/services/page.tsx",
-                                        lineNumber: 166,
+                                        lineNumber: 168,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -241,25 +244,25 @@ function ServicesPage() {
                                                 className: "w-3 h-3"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/services/page.tsx",
-                                                lineNumber: 168,
+                                                lineNumber: 170,
                                                 columnNumber: 17
                                             }, this),
                                             contact.phone
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/services/page.tsx",
-                                        lineNumber: 167,
+                                        lineNumber: 169,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, contact.phone, true, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 154,
+                                lineNumber: 156,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/services/page.tsx",
-                        lineNumber: 152,
+                        lineNumber: 154,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -283,14 +286,14 @@ function ServicesPage() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/services/page.tsx",
-                                        lineNumber: 190,
+                                        lineNumber: 192,
                                         columnNumber: 13
                                     }, this),
-                                    "Infos utiles"
+                                    t("services.tips.title")
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 183,
+                                lineNumber: 185,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -303,7 +306,7 @@ function ServicesPage() {
                                                 children: tip.icon
                                             }, void 0, false, {
                                                 fileName: "[project]/app/services/page.tsx",
-                                                lineNumber: 196,
+                                                lineNumber: 198,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -311,10 +314,10 @@ function ServicesPage() {
                                                 style: {
                                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                                 },
-                                                children: tip.title
+                                                children: t(tip.titleKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/services/page.tsx",
-                                                lineNumber: 197,
+                                                lineNumber: 199,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -322,27 +325,27 @@ function ServicesPage() {
                                                 style: {
                                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                                 },
-                                                children: tip.text
+                                                children: t(tip.textKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/services/page.tsx",
-                                                lineNumber: 203,
+                                                lineNumber: 205,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, index, true, {
                                         fileName: "[project]/app/services/page.tsx",
-                                        lineNumber: 195,
+                                        lineNumber: 197,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 193,
+                                lineNumber: 195,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/services/page.tsx",
-                        lineNumber: 176,
+                        lineNumber: 178,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -355,14 +358,14 @@ function ServicesPage() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 213,
+                                lineNumber: 215,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                 type: "text",
                                 value: searchQuery,
                                 onChange: (e)=>setSearchQuery(e.target.value),
-                                placeholder: "Rechercher...",
+                                placeholder: t("services.searchPlaceholder"),
                                 className: "w-full rounded-xl transition-all",
                                 style: {
                                     padding: `${__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].spacing[3]} ${__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].spacing[3]} ${__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].spacing[3]} ${__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].spacing[10]}`,
@@ -373,7 +376,7 @@ function ServicesPage() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 217,
+                                lineNumber: 219,
                                 columnNumber: 11
                             }, this),
                             searchQuery && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -386,18 +389,18 @@ function ServicesPage() {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/app/services/page.tsx",
-                                    lineNumber: 236,
+                                    lineNumber: 238,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 232,
+                                lineNumber: 234,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/services/page.tsx",
-                        lineNumber: 212,
+                        lineNumber: 214,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -422,14 +425,14 @@ function ServicesPage() {
                                         className: "w-4 h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/app/services/page.tsx",
-                                        lineNumber: 268,
+                                        lineNumber: 270,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: category.name
+                                        children: t(category.nameKey)
                                     }, void 0, false, {
                                         fileName: "[project]/app/services/page.tsx",
-                                        lineNumber: 269,
+                                        lineNumber: 271,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -440,19 +443,19 @@ function ServicesPage() {
                                         children: count
                                     }, void 0, false, {
                                         fileName: "[project]/app/services/page.tsx",
-                                        lineNumber: 270,
+                                        lineNumber: 272,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, category.id, true, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 251,
+                                lineNumber: 253,
                                 columnNumber: 15
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/app/services/page.tsx",
-                        lineNumber: 242,
+                        lineNumber: 244,
                         columnNumber: 9
                     }, this),
                     filteredLocations.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -469,7 +472,7 @@ function ServicesPage() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 294,
+                                lineNumber: 296,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -478,10 +481,10 @@ function ServicesPage() {
                                     fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                 },
-                                children: "Aucun résultat"
+                                children: t("common.noResults")
                             }, void 0, false, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 298,
+                                lineNumber: 300,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -489,16 +492,16 @@ function ServicesPage() {
                                 style: {
                                     color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                 },
-                                children: "Essayez une autre recherche"
+                                children: t("common.tryAnotherSearch")
                             }, void 0, false, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 307,
+                                lineNumber: 309,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/services/page.tsx",
-                        lineNumber: 287,
+                        lineNumber: 289,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "space-y-3",
@@ -518,7 +521,7 @@ function ServicesPage() {
                                             children: getLocationIcon(location.type)
                                         }, void 0, false, {
                                             fileName: "[project]/app/services/page.tsx",
-                                            lineNumber: 325,
+                                            lineNumber: 327,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -533,7 +536,7 @@ function ServicesPage() {
                                                     children: location.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/services/page.tsx",
-                                                    lineNumber: 329,
+                                                    lineNumber: 331,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -544,7 +547,7 @@ function ServicesPage() {
                                                     children: location.description
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/services/page.tsx",
-                                                    lineNumber: 338,
+                                                    lineNumber: 340,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -561,14 +564,14 @@ function ServicesPage() {
                                                                     className: "w-3 h-3"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/services/page.tsx",
-                                                                    lineNumber: 353,
+                                                                    lineNumber: 355,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 location.hours
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/services/page.tsx",
-                                                            lineNumber: 346,
+                                                            lineNumber: 348,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -577,44 +580,44 @@ function ServicesPage() {
                                                                 backgroundColor: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.gray[200],
                                                                 color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                                             },
-                                                            children: location.floor === 0 ? "RDC" : location.floor === 1 ? "Étage 1" : `Étage ${location.floor}`
+                                                            children: location.floor === 0 ? t("common.floor.ground") : `${t("common.floor.level")} ${location.floor}`
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/services/page.tsx",
-                                                            lineNumber: 357,
+                                                            lineNumber: 359,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/services/page.tsx",
-                                                    lineNumber: 344,
+                                                    lineNumber: 346,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/services/page.tsx",
-                                            lineNumber: 328,
+                                            lineNumber: 330,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/services/page.tsx",
-                                    lineNumber: 324,
+                                    lineNumber: 326,
                                     columnNumber: 17
                                 }, this)
                             }, location.id, false, {
                                 fileName: "[project]/app/services/page.tsx",
-                                lineNumber: 314,
+                                lineNumber: 316,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/services/page.tsx",
-                        lineNumber: 312,
+                        lineNumber: 314,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/services/page.tsx",
-                lineNumber: 150,
+                lineNumber: 152,
                 columnNumber: 7
             }, this),
             selectedLocation && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -728,7 +731,7 @@ function ServicesPage() {
                                                     style: {
                                                         color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                                     },
-                                                    children: "Horaires"
+                                                    children: t("services.location.hours")
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/services/page.tsx",
                                                     lineNumber: 442,
@@ -782,7 +785,7 @@ function ServicesPage() {
                                                     style: {
                                                         color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                                     },
-                                                    children: "Localisation"
+                                                    children: t("services.location.location")
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/services/page.tsx",
                                                     lineNumber: 467,
@@ -794,7 +797,7 @@ function ServicesPage() {
                                                         fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                                         color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                                     },
-                                                    children: selectedLocation.floor === 0 ? "Rez-de-chaussée" : `Étage ${selectedLocation.floor}`
+                                                    children: selectedLocation.floor === 0 ? t("common.floor.ground") : `${t("common.floor.level")} ${selectedLocation.floor}`
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/services/page.tsx",
                                                     lineNumber: 470,
@@ -836,7 +839,7 @@ function ServicesPage() {
                                                     style: {
                                                         color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.secondary
                                                     },
-                                                    children: "Accès"
+                                                    children: t("services.location.access")
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/services/page.tsx",
                                                     lineNumber: 497,
@@ -848,7 +851,7 @@ function ServicesPage() {
                                                         fontSize: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].typography.base.fontSize,
                                                         color: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$config$2f$theme$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["theme"].colors.text.primary
                                                     },
-                                                    children: "Business & Première Classe uniquement"
+                                                    children: t("services.location.businessOnly")
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/services/page.tsx",
                                                     lineNumber: 500,
@@ -886,11 +889,15 @@ function ServicesPage() {
         ]
     }, void 0, true, {
         fileName: "[project]/app/services/page.tsx",
-        lineNumber: 114,
+        lineNumber: 116,
         columnNumber: 5
     }, this);
 }
-_s(ServicesPage, "Ma925qpZtdEZDBAGB4YmnfrPIlg=");
+_s(ServicesPage, "sHtc5ltbkt5+lXFKY4xTOQzrdv0=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$context$2f$LocaleContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLocale"]
+    ];
+});
 _c = ServicesPage;
 var _c;
 __turbopack_context__.k.register(_c, "ServicesPage");

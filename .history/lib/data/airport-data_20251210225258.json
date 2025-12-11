@@ -1,0 +1,397 @@
+{
+  "airport": {
+    "name": "Aéroport International Gnassingbé Eyadéma",
+    "code": "LFW",
+    "city": "Lomé",
+    "country": "Togo",
+    "coordinates": [1.2549, 6.1659],
+    "capacity": "2 000 000 passagers/an",
+    "hub": "ASKY Airlines",
+    "distance_city": "6.8 km du centre-ville"
+  },
+  "locations": [
+    {
+      "id": "gate-a1",
+      "name": "Porte A1",
+      "type": "gate",
+      "floor": 1,
+      "coordinates": [1.256200, 6.167200],
+      "description": "Porte d'embarquement A1 - Vols internationaux",
+      "status": "open"
+    },
+    {
+      "id": "gate-a2",
+      "name": "Porte A2",
+      "type": "gate",
+      "floor": 1,
+      "coordinates": [1.256500, 6.167200],
+      "description": "Porte d'embarquement A2 - Vols internationaux",
+      "status": "open"
+    },
+    {
+      "id": "gate-a3",
+      "name": "Porte A3",
+      "type": "gate",
+      "floor": 1,
+      "coordinates": [1.256800, 6.167200],
+      "description": "Porte d'embarquement A3 - Vols internationaux",
+      "status": "open"
+    },
+    {
+      "id": "gate-b1",
+      "name": "Porte B1",
+      "type": "gate",
+      "floor": 1,
+      "coordinates": [1.256200, 6.166800],
+      "description": "Porte d'embarquement B1 - Vols régionaux",
+      "status": "open"
+    },
+    {
+      "id": "gate-b2",
+      "name": "Porte B2",
+      "type": "gate",
+      "floor": 1,
+      "coordinates": [1.256500, 6.166800],
+      "description": "Porte d'embarquement B2 - Vols régionaux",
+      "status": "open"
+    },
+    {
+      "id": "checkin-economy-1",
+      "name": "Enregistrement Zone A",
+      "type": "checkin",
+      "floor": 0,
+      "coordinates": [1.253500, 6.165200],
+      "description": "Comptoirs 1-20 - Classe Économique",
+      "status": "open",
+      "accessibleTo": ["economy"]
+    },
+    {
+      "id": "checkin-economy-2",
+      "name": "Enregistrement Zone B",
+      "type": "checkin",
+      "floor": 0,
+      "coordinates": [1.253800, 6.165200],
+      "description": "Comptoirs 21-40 - Classe Économique",
+      "status": "open",
+      "accessibleTo": ["economy"]
+    },
+    {
+      "id": "checkin-business",
+      "name": "Enregistrement Business",
+      "type": "checkin",
+      "floor": 0,
+      "coordinates": [1.254100, 6.165200],
+      "description": "Comptoirs Business & Première Classe",
+      "status": "open",
+      "accessibleTo": ["business", "first"]
+    },
+    {
+      "id": "security-main",
+      "name": "Contrôle de Sécurité Principal",
+      "type": "security",
+      "floor": 0,
+      "coordinates": [1.254800, 6.165500],
+      "description": "Point de contrôle sécurité et passeport",
+      "status": "busy"
+    },
+    {
+      "id": "security-fast",
+      "name": "Contrôle Fast Track",
+      "type": "security",
+      "floor": 0,
+      "coordinates": [1.255100, 6.165500],
+      "description": "Voie rapide Business/Première Classe",
+      "status": "open",
+      "accessibleTo": ["business", "first"]
+    },
+    {
+      "id": "toilet-arrival",
+      "name": "Toilettes Zone Arrivées",
+      "type": "toilet",
+      "floor": 0,
+      "coordinates": [1.253200, 6.164800],
+      "description": "Toilettes accessibles PMR",
+      "status": "open"
+    },
+    {
+      "id": "toilet-checkin",
+      "name": "Toilettes Zone Enregistrement",
+      "type": "toilet",
+      "floor": 0,
+      "coordinates": [1.253600, 6.165000],
+      "description": "Toilettes accessibles PMR",
+      "status": "open"
+    },
+    {
+      "id": "toilet-gates-a",
+      "name": "Toilettes Portes A",
+      "type": "toilet",
+      "floor": 1,
+      "coordinates": [1.256600, 6.167000],
+      "description": "Toilettes zone internationale",
+      "status": "open"
+    },
+    {
+      "id": "toilet-gates-b",
+      "name": "Toilettes Portes B",
+      "type": "toilet",
+      "floor": 1,
+      "coordinates": [1.256300, 6.166600],
+      "description": "Toilettes zone domestique",
+      "status": "open"
+    },
+    {
+      "id": "restaurant-maquis",
+      "name": "Le Maquis de l'Aéroport",
+      "type": "restaurant",
+      "floor": 0,
+      "coordinates": [1.254200, 6.164600],
+      "description": "Cuisine togolaise authentique - Fufu, Akpan, Akoumé",
+      "status": "open",
+      "hours": "6h - 22h"
+    },
+    {
+      "id": "restaurant-teranga",
+      "name": "Restaurant Teranga",
+      "type": "restaurant",
+      "floor": 1,
+      "coordinates": [1.256700, 6.166900],
+      "description": "Cuisine africaine et internationale",
+      "status": "open",
+      "hours": "5h - 23h"
+    },
+    {
+      "id": "cafe-express",
+      "name": "Café Express",
+      "type": "restaurant",
+      "floor": 1,
+      "coordinates": [1.256400, 6.166900],
+      "description": "Café, viennoiseries, sandwichs rapides",
+      "status": "open",
+      "hours": "4h30 - 23h30"
+    },
+    {
+      "id": "shop-dutyfree",
+      "name": "Duty Free Lomé",
+      "type": "shop",
+      "floor": 1,
+      "coordinates": [1.256000, 6.166700],
+      "description": "Parfums, alcools, tabac, cosmétiques hors taxes",
+      "status": "open",
+      "hours": "5h - 23h"
+    },
+    {
+      "id": "shop-artisanat",
+      "name": "Artisanat Togolais",
+      "type": "shop",
+      "floor": 1,
+      "coordinates": [1.256900, 6.166700],
+      "description": "Tissus batik, sculptures, bijoux locaux, souvenirs",
+      "status": "open",
+      "hours": "6h - 22h"
+    },
+    {
+      "id": "shop-presse",
+      "name": "Relay Presse",
+      "type": "shop",
+      "floor": 1,
+      "coordinates": [1.256200, 6.166500],
+      "description": "Presse internationale, livres, snacks",
+      "status": "open",
+      "hours": "5h - 23h"
+    },
+    {
+      "id": "info-main",
+      "name": "Information Principale",
+      "type": "information",
+      "floor": 0,
+      "coordinates": [1.253400, 6.165400],
+      "description": "Renseignements, objets trouvés, assistance",
+      "status": "open"
+    },
+    {
+      "id": "info-gates",
+      "name": "Information Zone Embarquement",
+      "type": "information",
+      "floor": 1,
+      "coordinates": [1.256600, 6.167000],
+      "description": "Informations vols et assistance embarquement",
+      "status": "open"
+    },
+    {
+      "id": "lounge-asky",
+      "name": "Salon VIP ASKY Airlines",
+      "type": "lounge",
+      "floor": 1,
+      "coordinates": [1.255800, 6.166600],
+      "description": "Salon VIP avec restauration, Wi-Fi, douches",
+      "status": "open",
+      "accessibleTo": ["business", "first"]
+    },
+    {
+      "id": "lounge-business",
+      "name": "Salon Business",
+      "type": "lounge",
+      "floor": 1,
+      "coordinates": [1.255500, 6.166600],
+      "description": "Salon Business avec bar et restauration",
+      "status": "open",
+      "accessibleTo": ["business", "first"]
+    }
+  ],
+  "services": [
+    {
+      "id": "service-prmassist",
+      "name": "Assistance Passagers à Mobilité Réduite",
+      "category": "assistance",
+      "description": "Accompagnement personnalisé, fauteuils roulants, assistance embarquement/débarquement",
+      "location": "info-main",
+      "hours": "24/7",
+      "contact": "+228 22 23 44 55",
+      "icon": "accessibility",
+      "free": true
+    },
+    {
+      "id": "service-medical",
+      "name": "Assistance Médicale d'Urgence",
+      "category": "medical",
+      "description": "Infirmerie avec personnel qualifié, premiers secours, défibrillateur",
+      "location": "medical-main",
+      "hours": "24/7",
+      "contact": "+228 22 23 44 56",
+      "icon": "cross",
+      "free": true
+    },
+    {
+      "id": "service-lostfound",
+      "name": "Objets Trouvés",
+      "category": "lost_found",
+      "description": "Déclaration et récupération d'objets perdus dans l'enceinte de l'aéroport",
+      "location": "info-main",
+      "hours": "6h - 23h",
+      "contact": "+228 22 23 44 57",
+      "icon": "briefcase",
+      "free": true
+    },
+    {
+      "id": "service-flightinfo",
+      "name": "Information Vols en Temps Réel",
+      "category": "information",
+      "description": "Horaires, retards, annulations, changements de porte",
+      "location": "info-main",
+      "hours": "24/7",
+      "contact": "+228 22 23 44 58",
+      "icon": "info",
+      "free": true
+    },
+    {
+      "id": "service-customs",
+      "name": "Services Douaniers",
+      "category": "customs",
+      "description": "Déclarations douanières, contrôles, informations réglementaires",
+      "location": "customs-arrival",
+      "hours": "Selon horaires des vols",
+      "contact": "+228 22 23 44 59",
+      "icon": "shield",
+      "free": true
+    },
+    {
+      "id": "service-wifi",
+      "name": "Wi-Fi Gratuit",
+      "category": "connectivity",
+      "description": "Accès Internet sans fil gratuit dans tout l'aéroport",
+      "location": "Partout",
+      "hours": "24/7",
+      "network": "Aeroport_LFW_Free",
+      "icon": "wifi",
+      "free": true
+    },
+    {
+      "id": "service-porter",
+      "name": "Porteurs de Bagages",
+      "category": "assistance",
+      "description": "Aide au transport des bagages",
+      "location": "entrance-main",
+      "hours": "5h - 23h",
+      "icon": "luggage",
+      "free": false,
+      "pricing": "2000-5000 CFA selon distance"
+    },
+    {
+      "id": "service-vip",
+      "name": "Service VIP & Meet & Greet",
+      "category": "premium",
+      "description": "Accueil personnalisé, assistance formalités, salon VIP, voie rapide",
+      "location": "entrance-vip",
+      "hours": "24/7 (sur réservation)",
+      "contact": "+228 22 23 44 60",
+      "icon": "star",
+      "free": false,
+      "pricing": "À partir de 50 000 CFA"
+    }
+  ],
+  "floors": [
+    {
+      "level": 0,
+      "name": "Rez-de-chaussée - Arrivées & Départs",
+      "description": "Zone publique : Enregistrement, Bagages, Services",
+      "bounds": [[1.2544, 6.1657], [1.2556, 6.1661]]
+    },
+    {
+      "level": 1,
+      "name": "Étage 1 - Zone d'Embarquement",
+      "description": "Zone sécurisée : Portes d'embarquement, Restaurants, Boutiques",
+      "bounds": [[1.2548, 6.1659], [1.2552, 6.1661]]
+    }
+  ],
+  "airlines": [
+    {
+      "code": "KP",
+      "name": "ASKY Airlines",
+      "type": "hub",
+      "destinations": ["Dakar", "Abidjan", "Ouagadougou", "Niamey", "Cotonou", "Accra", "Lagos", "Libreville"]
+    },
+    {
+      "code": "AF",
+      "name": "Air France",
+      "type": "international",
+      "destinations": ["Paris CDG"]
+    },
+    {
+      "code": "SN",
+      "name": "Brussels Airlines",
+      "type": "international",
+      "destinations": ["Bruxelles"]
+    },
+    {
+      "code": "ET",
+      "name": "Ethiopian Airlines",
+      "type": "international",
+      "destinations": ["Addis-Abeba"]
+    },
+    {
+      "code": "TK",
+      "name": "Turkish Airlines",
+      "type": "international",
+      "destinations": ["Istanbul"]
+    },
+    {
+      "code": "AT",
+      "name": "Royal Air Maroc",
+      "type": "international",
+      "destinations": ["Casablanca"]
+    },
+    {
+      "code": "EK",
+      "name": "Emirates",
+      "type": "international",
+      "destinations": ["Dubaï"]
+    },
+    {
+      "code": "HF",
+      "name": "Air Côte d'Ivoire",
+      "type": "regional",
+      "destinations": ["Abidjan", "Dakar"]
+    }
+  ]
+}
