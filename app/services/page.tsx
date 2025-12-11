@@ -83,14 +83,15 @@ export default function ServicesPage() {
   ];
 
   const getLocationIcon = (type: string) => {
-    const icons: Record<string, string> = {
-      restaurant: "🍽️",
-      shop: "🛍️",
-      lounge: "✨",
-      medical: "⚕️",
-      information: "ℹ️",
+    const icons: Record<string, React.ElementType> = {
+      restaurant: Utensils,
+      shop: ShoppingBag,
+      lounge: Coffee,
+      medical: Heart,
+      information: Info,
     };
-    return icons[type] || "📍";
+    const IconComponent = icons[type] || MapPin;
+    return <IconComponent />;
   };
 
   const filteredLocations = locations.filter((loc) => {
@@ -124,10 +125,10 @@ export default function ServicesPage() {
 
   // Quick tips
   const tips = [
-    { icon: "⏰", titleKey: "services.tips.arrival.title", textKey: "services.tips.arrival.text" },
-    { icon: "🌐", titleKey: "services.tips.wifi.title", textKey: "services.tips.wifi.text" },
-    { icon: "♿", titleKey: "services.tips.accessibility.title", textKey: "services.tips.accessibility.text" },
-    { icon: "💱", titleKey: "services.tips.exchange.title", textKey: "services.tips.exchange.text" },
+    { icon: Clock, titleKey: "services.tips.arrival.title", textKey: "services.tips.arrival.text" },
+    { icon: Globe, titleKey: "services.tips.wifi.title", textKey: "services.tips.wifi.text" },
+    { icon: Accessibility, titleKey: "services.tips.accessibility.title", textKey: "services.tips.accessibility.text" },
+    { icon: DollarSign, titleKey: "services.tips.exchange.title", textKey: "services.tips.exchange.text" },
   ];
 
   return (
@@ -225,20 +226,25 @@ export default function ServicesPage() {
             {t("services.tips.title")}
           </h3>
           <div className="grid grid-cols-2 gap-3">
-            {tips.map((tip, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl mb-1">{tip.icon}</div>
-                <p
-                  className="font-semibold text-xs mb-0.5"
-                  style={{ color: theme.colors.text.primary }}
-                >
-                  {t(tip.titleKey)}
-                </p>
-                <p className="text-xs" style={{ color: theme.colors.text.secondary }}>
-                  {t(tip.textKey)}
-                </p>
-              </div>
-            ))}
+            {tips.map((tip, index) => {
+              const IconComponent = tip.icon;
+              return (
+                <div key={index} className="text-center">
+                  <div className="mb-1 flex justify-center">
+                    <IconComponent className="w-8 h-8" style={{ color: theme.colors.accent.main }} />
+                  </div>
+                  <p
+                    className="font-semibold text-xs mb-0.5"
+                    style={{ color: theme.colors.text.primary }}
+                  >
+                    {t(tip.titleKey)}
+                  </p>
+                  <p className="text-xs" style={{ color: theme.colors.text.secondary }}>
+                    {t(tip.textKey)}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -432,7 +438,7 @@ export default function ServicesPage() {
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="text-4xl">
+                <div className="text-4xl text-blue-600">
                   {getLocationIcon(selectedLocation.type)}
                 </div>
                 <h3

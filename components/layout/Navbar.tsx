@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Navigation, AlertTriangle, Info, User, Plane, PlaneTakeoff } from "lucide-react";
+import { Navigation, AlertTriangle, Info, User, Plane, PlaneTakeoff, Home } from "lucide-react";
 import { usePassenger } from "@/lib/context/PassengerContext";
 import { passengerClassColors, theme } from "@/lib/config/theme";
 import LanguageSelector from "@/components/ui/LanguageSelector";
@@ -13,9 +13,20 @@ export default function Navbar() {
   const { profile } = usePassenger();
   const { locale, t } = useLocale();
 
-  const navItems = [
+  // Navigation pour desktop (Accueil au début)
+  const desktopNavItems = [
+    { nameKey: "nav.home", href: "/", icon: Home },
     { nameKey: "nav.navigation", href: "/navigation", icon: Navigation },
     { nameKey: "nav.flights", href: "/flights", icon: PlaneTakeoff },
+    { nameKey: "nav.report", href: "/report", icon: AlertTriangle },
+    { nameKey: "nav.services", href: "/services", icon: Info },
+  ];
+
+  // Navigation pour mobile (Accueil au milieu)
+  const mobileNavItems = [
+    { nameKey: "nav.navigation", href: "/navigation", icon: Navigation },
+    { nameKey: "nav.flights", href: "/flights", icon: PlaneTakeoff },
+    { nameKey: "nav.home", href: "/", icon: Home },
     { nameKey: "nav.report", href: "/report", icon: AlertTriangle },
     { nameKey: "nav.services", href: "/services", icon: Info },
   ];
@@ -48,7 +59,7 @@ export default function Navbar() {
 
             {/* Nav Items */}
             <div className="flex items-center" style={{ gap: theme.spacing[1] }}>
-              {navItems.map((item) => {
+              {desktopNavItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
                   <Link
@@ -168,7 +179,7 @@ export default function Navbar() {
         }}
       >
         <div className="flex justify-around items-center px-4" style={{ height: "68px" }}>
-          {navItems.map((item) => {
+          {mobileNavItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
             return (

@@ -89,13 +89,9 @@ export async function submitIncidentReport(
       throw new Error(`Failed to submit incident: ${response.status} - ${errorText}`);
     }
 
-    const result: ApiResponse<IncidentResponse> = await response.json();
+    const result: IncidentResponse = await response.json();
 
-    if (result.error) {
-      throw new Error(result.message || 'Failed to submit incident');
-    }
-
-    return result.data;
+    return result;
   } catch (error) {
     console.error('Error submitting incident report:', error);
     throw error;

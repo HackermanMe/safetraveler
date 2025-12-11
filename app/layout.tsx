@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link rel="icon" href="/icons/icon-192x192.png" />
+        <link rel="icon" href="/ico.png" />
         <meta name="theme-color" content="#1976d2" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

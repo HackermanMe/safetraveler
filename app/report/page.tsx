@@ -204,7 +204,7 @@ export default function ReportPage() {
                   fontSize: theme.typography.small.fontSize,
                 }}
               >
-                Numéro de suivi :
+                Merci pour votre
               </p>
               <p
                 className="font-mono font-bold"
@@ -213,7 +213,7 @@ export default function ReportPage() {
                   fontSize: theme.typography.base.fontSize,
                 }}
               >
-                {trackingId}
+                rapport !
               </p>
             </div>
           )}
@@ -256,9 +256,9 @@ export default function ReportPage() {
           <h1
             className="font-bold mb-2"
             style={{
-              fontSize: theme.typography.display.fontSize,
-              fontWeight: theme.typography.display.fontWeight,
-              lineHeight: theme.typography.display.lineHeight,
+              fontSize: theme.typography.h3.fontSize,
+              fontWeight: theme.typography.h3.fontWeight,
+              lineHeight: theme.typography.h3.lineHeight,
               color: theme.colors.text.primary,
             }}
           >
@@ -317,9 +317,9 @@ export default function ReportPage() {
                         e.currentTarget.style.backgroundColor = "#ffffff";
                       }
                     }}
-                    aria-label={`${t(type.labelKey)} - ${type.severity}`}
+                    aria-label={t(type.labelKey)}
                   >
-                    <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center justify-start w-full">
                       <span
                         className="text-xs font-bold px-2 py-0.5 rounded"
                         style={{
@@ -329,14 +329,6 @@ export default function ReportPage() {
                         }}
                       >
                         {type.code}
-                      </span>
-                      <span
-                        className="text-xs font-medium"
-                        style={{
-                          color: isSelected ? type.color : theme.colors.text.secondary,
-                        }}
-                      >
-                        {type.severity}
                       </span>
                     </div>
                     <span
