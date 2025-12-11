@@ -1,0 +1,106 @@
+%% SafeTraveler - Flux de Données Principaux
+%% Ouvrez ce fichier sur https://mermaid.live pour générer l'image
+
+graph TD
+    %% Flux de Navigation et Calcul d'Itinéraire
+    Start[👤 Utilisateur sur Page Navigation]
+    SelectLoc[🎯 Sélectionne Départ + Destination]
+    CalcRoute[⚙️ handleCalculateRoute]
+    GetCoords[📍 Récupère coordonnées<br/>airport-data.json]
+    FindWaypoints[🔍 findIntermediateWaypoints<br/>Points intermédiaires]
+    CallMapbox[🌐 getMapboxDirections<br/>Appel API Mapbox]
+    ReceiveGeo[📦 Reçoit géométrie trajet]
+    ExtractPath[🗺️ extractRoutePath<br/>Convertit coordonnées]
+    ExtractInst[📋 extractRouteInstructions<br/>Génère instructions]
+    UpdateState[💾 Mise à jour State]
+    DisplayRoute[✅ Affichage]
+    ShowLine[━━ Ligne sur carte]
+    ShowPanel[📱 Panel instructions]
+    ShowSummary[⏱️ Distance/Durée]
+    
+    Start --> SelectLoc
+    SelectLoc --> CalcRoute
+    CalcRoute --> GetCoords
+    GetCoords --> FindWaypoints
+    FindWaypoints --> CallMapbox
+    CallMapbox --> ReceiveGeo
+    ReceiveGeo --> ExtractPath
+    ReceiveGeo --> ExtractInst
+    ExtractPath --> UpdateState
+    ExtractInst --> UpdateState
+    UpdateState --> DisplayRoute
+    DisplayRoute --> ShowLine
+    DisplayRoute --> ShowPanel
+    DisplayRoute --> ShowSummary
+    
+    %% Flux de Sélection de Classe
+    UserArrives[👤 Utilisateur arrive]
+    ShowModal[🎫 ClassSelectorModal s'affiche]
+    ChooseClass[🎯 Choisit classe<br/>Economy/Business/First]
+    SetProfile[💾 PassengerContext.setProfile]
+    SaveLocal[💿 Sauvegarde localStorage]
+    UpdateGlobal[🔄 Met à jour state global]
+    Rerender[🔃 Re-render composants]
+    UpdateRoadmap[🗺️ Roadmap étapes adaptées]
+    UpdateFAB[🔘 ClassFAB couleur classe]
+    UpdateNav[🧭 Navigation filtre lieux]
+    
+    UserArrives --> ShowModal
+    ShowModal --> ChooseClass
+    ChooseClass --> SetProfile
+    SetProfile --> SaveLocal
+    SetProfile --> UpdateGlobal
+    UpdateGlobal --> Rerender
+    Rerender --> UpdateRoadmap
+    Rerender --> UpdateFAB
+    Rerender --> UpdateNav
+    
+    %% Flux de Recherche
+    SearchStart[🔍 Utilisateur tape recherche]
+    SetQuery[💾 setSearchQuery]
+    FilterLocs[⚙️ filteredLocations.filter]
+    FilterName[📝 Filtre par nom]
+    FilterDesc[📄 Filtre par description]
+    FilterType[🏷️ Filtre par type]
+    UpdateMap[🗺️ EnhancedAirportMap<br/>reçoit filteredLocations]
+    ShowMarkers[📍 Affiche marqueurs filtrés]
+    
+    SearchStart --> SetQuery
+    SetQuery --> FilterLocs
+    FilterLocs --> FilterName
+    FilterLocs --> FilterDesc
+    FilterLocs --> FilterType
+    FilterName --> UpdateMap
+    FilterDesc --> UpdateMap
+    FilterType --> UpdateMap
+    UpdateMap --> ShowMarkers
+    
+    %% Flux i18n
+    ChangeLang[🌐 Utilisateur change langue]
+    LangOnChange[⚙️ LanguageSelector.onChange]
+    SetLocale[💾 LocaleContext.setLocale]
+    UpdateCookie[🍪 Met à jour cookie]
+    LoadMessages[📦 Recharge messages<br/>fr.json ou en.json]
+    RerenderAll[🔃 Composants avec t re-rendent]
+    UpdateTexts[✅ Textes mis à jour]
+    
+    ChangeLang --> LangOnChange
+    LangOnChange --> SetLocale
+    SetLocale --> UpdateCookie
+    SetLocale --> LoadMessages
+    LoadMessages --> RerenderAll
+    RerenderAll --> UpdateTexts
+    
+    %% Styles
+    classDef userAction fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    classDef process fill:#10B981,stroke:#065F46,stroke-width:2px,color:#fff
+    classDef data fill:#F59E0B,stroke:#B45309,stroke-width:2px,color:#fff
+    classDef display fill:#3B82F6,stroke:#1E40AF,stroke-width:2px,color:#fff
+    classDef api fill:#EF4444,stroke:#991B1B,stroke-width:2px,color:#fff
+    
+    class Start,SelectLoc,UserArrives,ChooseClass,SearchStart,ChangeLang userAction
+    class CalcRoute,FindWaypoints,SetProfile,FilterLocs,LangOnChange process
+    class GetCoords,SaveLocal,UpdateGlobal,SetQuery,SetLocale,UpdateCookie data
+    class DisplayRoute,ShowLine,ShowPanel,ShowSummary,UpdateRoadmap,UpdateFAB,UpdateNav,ShowMarkers,UpdateTexts display
+    class CallMapbox,ReceiveGeo,LoadMessages api
+
