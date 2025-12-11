@@ -30,16 +30,16 @@ export default function LanguageSelector({ currentLocale }: LanguageSelectorProp
     setIsOpen(false);
   };
 
-  const getLocaleFlag = (locale: string) => {
+  const getLocaleCode = (locale: string) => {
     switch (locale) {
       case "fr":
-        return "🇫🇷";
+        return "FR";
       case "en":
-        return "🇬🇧";
+        return "EN";
       case "ewe":
-        return "🇹🇬";
+        return "EWE";
       default:
-        return "🌍";
+        return "INT";
     }
   };
 
@@ -48,17 +48,23 @@ export default function LanguageSelector({ currentLocale }: LanguageSelectorProp
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-        aria-label="Select language"
+        aria-label={`Select language - Current: ${localeNames[currentLocale as Locale]}`}
       >
         <Globe className="w-5 h-5 text-gray-600" />
         <span className="hidden md:inline text-sm font-medium text-gray-700">
           {localeNames[currentLocale as Locale]}
         </span>
-        <span className="text-lg">{getLocaleFlag(currentLocale)}</span>
+        <span className="text-xs font-bold text-gray-600 bg-gray-100 px-2 py-1 rounded">
+          {getLocaleCode(currentLocale)}
+        </span>
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+        <div
+          className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+          role="menu"
+          aria-label="Language options"
+        >
           {locales.map((locale) => (
             <button
               key={locale}
@@ -66,8 +72,12 @@ export default function LanguageSelector({ currentLocale }: LanguageSelectorProp
               className={`w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors ${
                 currentLocale === locale ? "bg-blue-50" : ""
               }`}
+              role="menuitem"
+              aria-label={`Switch to ${localeNames[locale]}`}
             >
-              <span className="text-2xl">{getLocaleFlag(locale)}</span>
+              <span className="text-xs font-bold text-gray-600 bg-gray-100 px-2 py-1 rounded min-w-[42px] text-center">
+                {getLocaleCode(locale)}
+              </span>
               <div className="flex-1 text-left">
                 <div
                   className={`text-sm font-medium ${
@@ -81,7 +91,7 @@ export default function LanguageSelector({ currentLocale }: LanguageSelectorProp
                 )}
               </div>
               {currentLocale === locale && (
-                <div className="w-2 h-2 bg-blue-600 rounded-full" />
+                <div className="w-2 h-2 bg-blue-600 rounded-full" aria-label="Selected" />
               )}
             </button>
           ))}

@@ -14,6 +14,12 @@ import {
   Info,
   WifiIcon,
   Sparkles,
+  AlertCircle,
+  Accessibility,
+  DollarSign,
+  Globe,
+  Store,
+  Cross,
 } from "lucide-react";
 import { Location } from "@/lib/types";
 import airportData from "@/lib/data/airport-data.json";
@@ -30,6 +36,18 @@ export default function ServicesPage() {
   useEffect(() => {
     setLocations(airportData.locations as Location[]);
   }, []);
+
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && selectedLocation) {
+        setSelectedLocation(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [selectedLocation]);
 
   const categories = [
     {
@@ -65,7 +83,14 @@ export default function ServicesPage() {
   ];
 
   const getLocationIcon = (type: string) => {
-    return "";
+    const icons: Record<string, string> = {
+      restaurant: "🍽️",
+      shop: "🛍️",
+      lounge: "✨",
+      medical: "⚕️",
+      information: "ℹ️",
+    };
+    return icons[type] || "📍";
   };
 
   const filteredLocations = locations.filter((loc) => {
@@ -85,24 +110,24 @@ export default function ServicesPage() {
       nameKey: "services.emergency.medical",
       descriptionKey: "services.emergency.medicalDescription",
       phone: "+228 22 23 44 56",
-      icon: "⚕️",
+      icon: Cross,
       color: theme.colors.error.main,
     },
     {
       nameKey: "services.emergency.information",
       descriptionKey: "services.emergency.informationDescription",
       phone: "+228 22 23 44 55",
-      icon: "ℹ️",
+      icon: Info,
       color: theme.colors.info.main,
     },
   ];
 
   // Quick tips
   const tips = [
-    { titleKey: "services.tips.arrival.title", textKey: "services.tips.arrival.text" },
-    { titleKey: "services.tips.wifi.title", textKey: "services.tips.wifi.text" },
-    { titleKey: "services.tips.accessibility.title", textKey: "services.tips.accessibility.text" },
-    { titleKey: "services.tips.exchange.title", textKey: "services.tips.exchange.text" },
+    { icon: "⏰", titleKey: "services.tips.arrival.title", textKey: "services.tips.arrival.text" },
+    { icon: "🌐", titleKey: "services.tips.wifi.title", textKey: "services.tips.wifi.text" },
+    { icon: "♿", titleKey: "services.tips.accessibility.title", textKey: "services.tips.accessibility.text" },
+    { icon: "💱", titleKey: "services.tips.exchange.title", textKey: "services.tips.exchange.text" },
   ];
 
   return (
@@ -156,6 +181,7 @@ export default function ServicesPage() {
                 boxShadow: theme.shadow.md,
               }}
             >
+              <div className="text-3xl mb-2">{contact.icon}</div>
               <h3 className="font-bold text-sm mb-1">{t(contact.nameKey)}</h3>
               <p className="text-xs opacity-90 mb-2">{t(contact.descriptionKey)}</p>
               <div className="flex items-center gap-1 text-xs font-semibold">
@@ -195,40 +221,15 @@ export default function ServicesPage() {
           </h3>
           <div className="grid grid-cols-2 gap-3">
             {tips.map((tip, index) => (
-              <div
-                key={index}
-                className="rounded-lg p-3 text-center transition-all"
-                style={{
-                  backgroundColor: theme.colors.background.default,
-                  border: `1px solid ${theme.colors.border.light}`,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = theme.colors.accent.main;
-                  e.currentTarget.style.boxShadow = theme.shadow.sm;
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = theme.colors.border.light;
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
+              <div key={index} className="text-center">
+                <div className="text-2xl mb-1">{tip.icon}</div>
                 <p
-                  className="font-semibold mb-1.5"
-                  style={{
-                    fontSize: theme.typography.small.fontSize,
-                    color: theme.colors.text.primary,
-                  }}
+                  className="font-semibold text-xs mb-0.5"
+                  style={{ color: theme.colors.text.primary }}
                 >
                   {t(tip.titleKey)}
                 </p>
-                <p
-                  className="leading-relaxed"
-                  style={{
-                    fontSize: theme.typography.tiny.fontSize,
-                    color: theme.colors.text.secondary,
-                  }}
-                >
+                <p className="text-xs" style={{ color: theme.colors.text.secondary }}>
                   {t(tip.textKey)}
                 </p>
               </div>
@@ -237,13 +238,14 @@ export default function ServicesPage() {
         </div>
 
         {/* Search */}
-        <div className="relative">
+        <div className="relative" role="search">
           <Search
             className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"
             style={{ color: theme.colors.text.secondary }}
+            aria-hidden="true"
           />
           <input
-            type="text"
+            type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t("services.searchPlaceholder")}
@@ -255,11 +257,13 @@ export default function ServicesPage() {
               color: theme.colors.text.primary,
               backgroundColor: theme.colors.background.elevated,
             }}
+            aria-label={t("services.searchPlaceholder")}
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
               className="absolute right-3 top-1/2 transform -translate-y-1/2"
+              aria-label="Clear search"
             >
               <X className="w-5 h-5" style={{ color: theme.colors.text.secondary }} />
             </button>
@@ -348,8 +352,12 @@ export default function ServicesPage() {
                   border: `1px solid ${theme.colors.border.main}`,
                   boxShadow: theme.shadow.sm,
                 }}
+                aria-label={`View details for ${location.name}`}
               >
                 <div className="flex items-start gap-3">
+                  <div className="text-3xl flex-shrink-0">
+                    {getLocationIcon(location.type)}
+                  </div>
                   <div className="flex-1 min-w-0">
                     <h3
                       className="font-semibold mb-1"
@@ -404,6 +412,9 @@ export default function ServicesPage() {
         <div
           className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/50 backdrop-blur-sm"
           onClick={() => setSelectedLocation(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="location-modal-title"
         >
           <div
             className="bg-white rounded-t-3xl md:rounded-3xl w-full md:max-w-lg p-6 pb-8 md:pb-6"
@@ -416,7 +427,11 @@ export default function ServicesPage() {
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
+                <div className="text-4xl">
+                  {getLocationIcon(selectedLocation.type)}
+                </div>
                 <h3
+                  id="location-modal-title"
                   className="font-bold"
                   style={{
                     fontSize: theme.typography.h5.fontSize,
@@ -432,6 +447,7 @@ export default function ServicesPage() {
                 style={{
                   backgroundColor: theme.colors.gray[100],
                 }}
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" style={{ color: theme.colors.text.primary }} />
               </button>

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Camera, Send, CheckCircle2, AlertTriangle, MapPin, ChevronDown } from "lucide-react";
+import { Camera, Send, CheckCircle2, AlertTriangle, MapPin, ChevronDown, X } from "lucide-react";
 import { useLocale } from "@/lib/context/LocaleContext";
-import { theme } from "@/lib/config/theme";
+import { theme, aviationIncidentCategories } from "@/lib/config/theme";
 import { Location } from "@/lib/types";
 import airportData from "@/lib/data/airport-data.json";
 
@@ -22,34 +22,49 @@ export default function ReportPage() {
     setLocations(airportData.locations as Location[]);
   }, []);
 
+  // Aviation incident categories (OACI-standardized)
   const problemTypes = [
-    { 
-      value: "security", 
-      labelKey: "report.categories.security",
-      color: theme.colors.error.main, // Rouge pour sécurité
-      lightColor: theme.colors.error.light,
-      darkColor: theme.colors.error.dark,
+    {
+      value: "SECURITY_BREACH",
+      labelKey: aviationIncidentCategories.SECURITY_BREACH.nameKey,
+      code: aviationIncidentCategories.SECURITY_BREACH.code,
+      color: aviationIncidentCategories.SECURITY_BREACH.color,
+      severity: aviationIncidentCategories.SECURITY_BREACH.severity,
     },
-    { 
-      value: "cleanliness", 
-      labelKey: "report.categories.cleanliness",
-      color: theme.colors.success.main, // Vert pour propreté
-      lightColor: theme.colors.success.light,
-      darkColor: theme.colors.success.dark,
+    {
+      value: "FOD",
+      labelKey: aviationIncidentCategories.FOD.nameKey,
+      code: aviationIncidentCategories.FOD.code,
+      color: aviationIncidentCategories.FOD.color,
+      severity: aviationIncidentCategories.FOD.severity,
     },
-    { 
-      value: "maintenance", 
-      labelKey: "report.categories.maintenance",
-      color: theme.colors.info.main, // Bleu pour maintenance
-      lightColor: theme.colors.info.light,
-      darkColor: theme.colors.info.dark,
+    {
+      value: "PASSENGER_SAFETY",
+      labelKey: aviationIncidentCategories.PASSENGER_SAFETY.nameKey,
+      code: aviationIncidentCategories.PASSENGER_SAFETY.code,
+      color: aviationIncidentCategories.PASSENGER_SAFETY.color,
+      severity: aviationIncidentCategories.PASSENGER_SAFETY.severity,
     },
-    { 
-      value: "other", 
-      labelKey: "report.categories.other",
-      color: theme.colors.warning.main, // Jaune/ambre pour autres
-      lightColor: theme.colors.warning.light,
-      darkColor: theme.colors.warning.dark,
+    {
+      value: "FACILITY_MAINTENANCE",
+      labelKey: aviationIncidentCategories.FACILITY_MAINTENANCE.nameKey,
+      code: aviationIncidentCategories.FACILITY_MAINTENANCE.code,
+      color: aviationIncidentCategories.FACILITY_MAINTENANCE.color,
+      severity: aviationIncidentCategories.FACILITY_MAINTENANCE.severity,
+    },
+    {
+      value: "ENVIRONMENTAL",
+      labelKey: aviationIncidentCategories.ENVIRONMENTAL.nameKey,
+      code: aviationIncidentCategories.ENVIRONMENTAL.code,
+      color: aviationIncidentCategories.ENVIRONMENTAL.color,
+      severity: aviationIncidentCategories.ENVIRONMENTAL.severity,
+    },
+    {
+      value: "OTHER",
+      labelKey: aviationIncidentCategories.OTHER.nameKey,
+      code: aviationIncidentCategories.OTHER.code,
+      color: aviationIncidentCategories.OTHER.color,
+      severity: aviationIncidentCategories.OTHER.severity,
     },
   ];
 
@@ -243,20 +258,20 @@ export default function ReportPage() {
                     key={type.value}
                     type="button"
                     onClick={() => setProblemType(type.value)}
-                    className="p-4 rounded-lg border-2 transition-all text-center flex items-center justify-center"
+                    className="p-3 rounded-lg border-2 transition-all flex flex-col items-start gap-1"
                     style={{
                       borderColor: isSelected
                         ? type.color
                         : theme.colors.border.main,
                       backgroundColor: isSelected
-                        ? type.color + "20"
+                        ? type.color + "15"
                         : "#ffffff",
                       boxShadow: isSelected ? theme.shadow.sm : "none",
                     }}
                     onMouseEnter={(e) => {
                       if (!isSelected) {
-                        e.currentTarget.style.borderColor = type.color + "80"; // 50% opacity
-                        e.currentTarget.style.backgroundColor = type.color + "10"; // 10% opacity
+                        e.currentTarget.style.borderColor = type.color + "80";
+                        e.currentTarget.style.backgroundColor = type.color + "08";
                       }
                     }}
                     onMouseLeave={(e) => {
@@ -265,14 +280,33 @@ export default function ReportPage() {
                         e.currentTarget.style.backgroundColor = "#ffffff";
                       }
                     }}
+                    aria-label={`${t(type.labelKey)} - ${type.severity}`}
                   >
+                    <div className="flex items-center justify-between w-full">
+                      <span
+                        className="text-xs font-bold px-2 py-0.5 rounded"
+                        style={{
+                          backgroundColor: type.color,
+                          color: "#ffffff",
+                          fontFamily: theme.typography.fontFamily.mono,
+                        }}
+                      >
+                        {type.code}
+                      </span>
+                      <span
+                        className="text-xs font-medium"
+                        style={{
+                          color: isSelected ? type.color : theme.colors.text.secondary,
+                        }}
+                      >
+                        {type.severity}
+                      </span>
+                    </div>
                     <span
-                      className="font-medium"
+                      className="font-medium text-left w-full"
                       style={{
-                        fontSize: theme.typography.base.fontSize,
-                        color: isSelected
-                          ? type.darkColor
-                          : theme.colors.text.primary,
+                        fontSize: theme.typography.small.fontSize,
+                        color: isSelected ? type.color : theme.colors.text.primary,
                       }}
                     >
                       {t(type.labelKey)}
@@ -402,8 +436,9 @@ export default function ReportPage() {
                     }
                   }}
                   className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-colors"
+                  aria-label="Remove photo"
                 >
-                  ✕
+                  <X className="w-5 h-5 text-gray-700" />
                 </button>
               </div>
             ) : (

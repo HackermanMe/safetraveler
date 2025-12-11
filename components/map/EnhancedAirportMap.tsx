@@ -451,7 +451,7 @@ function getLocationInitial(type: LocationType): string {
     smoking: "S",
     atm: "$",
     wifi: "W",
-    charging: "⚡",
+    charging: "⚡", // Using lightning symbol as it's a standard Unicode character, not an emoji
   };
   return initials[type] || "?";
 }

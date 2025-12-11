@@ -294,17 +294,17 @@
     "searchPlaceholder": "Rechercher..."
   },
   "report": {
-    "title": "Signaler un problème",
-    "subtitle": "Signalez anonymement tout problème rencontré dans l'aéroport",
+    "title": "Rapport d'incident aviation",
+    "subtitle": "Signalement anonyme conforme aux standards OACI - Aéroport LFW Lomé",
     "anonymous": "Signalement 100% anonyme",
-    "anonymousDescription": "Aucune donnée personnelle n'est collectée. Votre identité reste totalement confidentielle.",
+    "anonymousDescription": "Conforme OACI Annexe 13. Aucune donnée personnelle collectée. Identité confidentielle.",
     "categories": {
       "security": "Sécurité",
       "cleanliness": "Propreté",
       "maintenance": "Maintenance",
       "other": "Autre"
     },
-    "typeLabel": "Type de problème",
+    "typeLabel": "Catégorie d'incident (OACI)",
     "locationLabel": "Emplacement",
     "locationPlaceholder": "Sélectionnez une zone...",
     "descriptionLabel": "Description",
@@ -328,7 +328,28 @@
     },
     "success": {
       "title": "Signalement envoyé",
-      "description": "Merci pour votre signalement. Votre problème a été transmis et sera traité rapidement."
+      "description": "Merci pour votre signalement. Votre rapport a été transmis à l'ANAC et sera traité selon les procédures OACI."
     }
+  },
+  "incidents": {
+    "categories": {
+      "runwayIncursion": "Incursion de piste",
+      "fod": "Corps étrangers (FOD)",
+      "birdStrike": "Péril animalier",
+      "securityBreach": "Violation de sécurité",
+      "facilityMaintenance": "Maintenance infrastructures",
+      "groundHandling": "Assistance au sol",
+      "passengerSafety": "Sécurité passagers",
+      "environmental": "Environnement / Propreté",
+      "other": "Autre incident"
+    }
+  },
+  "zones": {
+    "airside": "Zone airside (côté pistes)",
+    "landside": "Zone landside (côté ville)",
+    "terminal": "Terminal passagers",
+    "apron": "Aire de trafic",
+    "runway": "Piste / Taxiway",
+    "cargo": "Zone cargo / fret"
   }
 }

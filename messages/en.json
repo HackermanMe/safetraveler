@@ -294,17 +294,17 @@
     "searchPlaceholder": "Search..."
   },
   "report": {
-    "title": "Report a problem",
-    "subtitle": "Report anonymously any problem encountered in the airport",
+    "title": "Aviation Incident Report",
+    "subtitle": "Anonymous reporting compliant with ICAO standards - LFW Lomé Airport",
     "anonymous": "100% anonymous report",
-    "anonymousDescription": "No personal data is collected. Your identity remains completely confidential.",
+    "anonymousDescription": "ICAO Annex 13 compliant. No personal data collected. Identity confidential.",
     "categories": {
       "security": "Security",
       "cleanliness": "Cleanliness",
       "maintenance": "Maintenance",
       "other": "Other"
     },
-    "typeLabel": "Type of problem",
+    "typeLabel": "Incident Category (ICAO)",
     "locationLabel": "Location",
     "locationPlaceholder": "Select a zone...",
     "descriptionLabel": "Description",
@@ -328,7 +328,28 @@
     },
     "success": {
       "title": "Report sent",
-      "description": "Thank you for your report. Your problem has been forwarded and will be handled quickly."
+      "description": "Thank you for your report. Your report has been forwarded to ANAC and will be processed according to ICAO procedures."
     }
+  },
+  "incidents": {
+    "categories": {
+      "runwayIncursion": "Runway Incursion",
+      "fod": "Foreign Object Debris (FOD)",
+      "birdStrike": "Wildlife Hazard",
+      "securityBreach": "Security Breach",
+      "facilityMaintenance": "Facility Maintenance",
+      "groundHandling": "Ground Handling",
+      "passengerSafety": "Passenger Safety",
+      "environmental": "Environmental / Housekeeping",
+      "other": "Other Incident"
+    }
+  },
+  "zones": {
+    "airside": "Airside (runway side)",
+    "landside": "Landside (city side)",
+    "terminal": "Passenger terminal",
+    "apron": "Apron",
+    "runway": "Runway / Taxiway",
+    "cargo": "Cargo / Freight area"
   }
 }

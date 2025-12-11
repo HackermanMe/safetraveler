@@ -69,7 +69,12 @@ export default function HeroCarousel() {
   };
 
   return (
-    <div className="relative w-full h-[300px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+    <div
+      className="relative w-full h-[300px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl"
+      role="region"
+      aria-label="Welcome carousel"
+      aria-live="polite"
+    >
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -77,7 +82,7 @@ export default function HeroCarousel() {
           backgroundImage: "url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop')",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/80 to-transparent" />
+        <div className="absolute inset-0 bg-blue-900/85" />
       </div>
 
       {/* Content */}
@@ -112,10 +117,10 @@ export default function HeroCarousel() {
           {/* Features Badge */}
           {!isLoading && (
             <div className="flex items-center space-x-2 md:space-x-3">
-              <div className="bg-gradient-to-r from-green-400 to-green-500 rounded-full px-3 py-1.5 md:px-4 md:py-2 shadow-lg">
+              <div className="bg-green-600 rounded-full px-3 py-1.5 md:px-4 md:py-2 shadow-lg">
                 <span className="text-white text-xs md:text-sm font-semibold">{t("home.heroTagline")}</span>
               </div>
-              <div className="bg-yellow-400 text-gray-900 rounded-full px-2 py-1 md:px-3 text-xs font-bold uppercase">
+              <div className="bg-amber-500 text-white rounded-full px-2 py-1 md:px-3 text-xs font-bold uppercase">
                 {t("home.heroNew")}
               </div>
             </div>
@@ -123,7 +128,11 @@ export default function HeroCarousel() {
         </div>
 
         {/* Carousel Indicators */}
-        <div className="absolute bottom-4 md:bottom-8 left-4 md:left-8 lg:left-16 flex space-x-2">
+        <div
+          className="absolute bottom-4 md:bottom-8 left-4 md:left-8 lg:left-16 flex space-x-2"
+          role="group"
+          aria-label="Carousel navigation"
+        >
           {welcomeMessages.map((_, index) => (
             <button
               key={index}
@@ -134,6 +143,7 @@ export default function HeroCarousel() {
                   : "w-4 md:w-6 bg-white/40 hover:bg-white/60"
               }`}
               aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === currentIndex ? "true" : "false"}
             />
           ))}
         </div>

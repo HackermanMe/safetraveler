@@ -38,51 +38,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center" style={{ height: "64px" }}>
             {/* Logo */}
-            <Link
-              href="/"
-            >
+            <Link href="/">
               <img
                 src="/icons/logo.png"
                 alt="SafeTraveler Logo"
                 className="w-50 h-auto my-9"
               />
             </Link>
-            {/* <Link
-              href="/"
-              className="flex items-center space-x-3 transition-transform hover:scale-105"
-            >
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{
-                  background: `linear-gradient(135deg, ${theme.colors.accent.main} 0%, ${theme.colors.accent.dark} 100%)`,
-                  boxShadow: theme.shadow.md,
-                }}
-              >
-                <Plane className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1
-                  className="font-semibold"
-                  style={{
-                    fontSize: theme.typography.h6.fontSize,
-                    fontWeight: theme.typography.h6.fontWeight,
-                    color: theme.colors.text.primary,
-                    lineHeight: 1.2,
-                  }}
-                >
-                  SafeTraveler
-                </h1>
-                <p
-                  className="text-xs"
-                  style={{
-                    color: theme.colors.text.secondary,
-                    fontSize: theme.typography.tiny.fontSize,
-                  }}
-                >
-                  Aéroport de Lomé
-                </p>
-              </div>
-            </Link> */}
 
             {/* Nav Items */}
             <div className="flex items-center" style={{ gap: theme.spacing[1] }}>
