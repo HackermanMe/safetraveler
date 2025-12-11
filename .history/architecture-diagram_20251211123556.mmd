@@ -1,0 +1,106 @@
+%% SafeTraveler Architecture Diagram
+%% Ouvrez ce fichier sur https://mermaid.live pour générer l'image
+
+graph TB
+    %% Couche Utilisateur
+    User[👤 UTILISATEUR<br/>Navigateur Web / Mobile PWA]
+    
+    %% Couche Présentation
+    subgraph Presentation["🖥️ COUCHE PRÉSENTATION (Next.js App Router)"]
+        Home[🏠 Page Accueil<br/>Roadmap Carrousel]
+        Navigation[🗺️ Page Navigation<br/>Carte Interactive]
+        Flights[✈️ Page Vols<br/>Informations]
+        Report[⚠️ Page Signaler<br/>Incidents]
+        Services[ℹ️ Page Services<br/>Infos Utiles]
+    end
+    
+    %% Couche Composants
+    subgraph Components["🧩 COUCHE COMPOSANTS UI"]
+        subgraph Layout["Layout Components"]
+            Navbar[📱 Navbar Desktop]
+            BottomNav[📱 BottomNav Mobile]
+        end
+        
+        subgraph MapComp["Map Components"]
+            AirportMap[🗺️ EnhancedAirportMap<br/>Mapbox GL JS]
+        end
+        
+        subgraph UIComp["UI Components"]
+            ClassModal[🎫 ClassSelectorModal]
+            ClassFAB[🔘 ClassFAB Button]
+            LangSelector[🌐 LanguageSelector]
+            HeroCarousel[🎠 HeroCarousel]
+        end
+    end
+    
+    %% Couche État
+    subgraph State["💾 COUCHE GESTION D'ÉTAT (Context API)"]
+        PassengerCtx[👤 PassengerContext<br/>• Classe passager<br/>• Numéro vol<br/>• Porte<br/>• Étape actuelle]
+        LocaleCtx[🌍 LocaleContext<br/>• Langue FR/EN<br/>• Traductions i18n<br/>• Fonction t]
+    end
+    
+    %% Couche Logique
+    subgraph Logic["⚙️ COUCHE LOGIQUE MÉTIER"]
+        subgraph Utils["Utils & Services"]
+            MapboxDir[🧭 mapbox-directions.ts<br/>• Calcul itinéraire<br/>• Instructions<br/>• Résumé trajet]
+            NavUtils[🔍 navigation.ts<br/>• Recherche chemin<br/>• Waypoints<br/>• Filtrage]
+        end
+        
+        subgraph Config["Types & Config"]
+            PassengerTypes[📋 passenger.ts<br/>• PassengerClass<br/>• JourneyStep<br/>• Location types]
+            Theme[🎨 theme.ts<br/>• Couleurs<br/>• Typographie<br/>• Styles]
+        end
+    end
+    
+    %% Couche Données
+    subgraph Data["📊 COUCHE DONNÉES"]
+        subgraph StaticData["Données Statiques"]
+            AirportData[📍 airport-data.json<br/>• 400+ lieux<br/>• Coordonnées GPS<br/>• Types & étages<br/>• Descriptions]
+        end
+        
+        subgraph External["Services Externes"]
+            MapboxAPI[🗺️ Mapbox API<br/>• Cartes<br/>• Directions<br/>• Géolocalisation]
+            I18nMsg[🌐 Messages i18n<br/>• messages/fr.json<br/>• messages/en.json]
+        end
+    end
+    
+    %% Connexions principales
+    User --> Presentation
+    
+    Presentation --> Components
+    Home --> HeroCarousel
+    Home --> ClassModal
+    Navigation --> AirportMap
+    Navigation --> ClassFAB
+    
+    Components --> State
+    Navbar --> LocaleCtx
+    ClassModal --> PassengerCtx
+    ClassFAB --> PassengerCtx
+    LangSelector --> LocaleCtx
+    
+    State --> Logic
+    PassengerCtx --> PassengerTypes
+    LocaleCtx --> I18nMsg
+    
+    Logic --> Data
+    MapboxDir --> MapboxAPI
+    NavUtils --> AirportData
+    AirportMap --> AirportData
+    AirportMap --> MapboxAPI
+    
+    %% Styles
+    classDef userStyle fill:#4F46E5,stroke:#312E81,stroke-width:3px,color:#fff
+    classDef presentationStyle fill:#10B981,stroke:#065F46,stroke-width:2px,color:#fff
+    classDef componentStyle fill:#3B82F6,stroke:#1E40AF,stroke-width:2px,color:#fff
+    classDef stateStyle fill:#F59E0B,stroke:#B45309,stroke-width:2px,color:#fff
+    classDef logicStyle fill:#8B5CF6,stroke:#5B21B6,stroke-width:2px,color:#fff
+    classDef dataStyle fill:#EF4444,stroke:#991B1B,stroke-width:2px,color:#fff
+    
+    class User userStyle
+    class Home,Navigation,Flights,Report,Services presentationStyle
+    class Navbar,BottomNav,AirportMap,ClassModal,ClassFAB,LangSelector,HeroCarousel componentStyle
+    class PassengerCtx,LocaleCtx stateStyle
+    class MapboxDir,NavUtils,PassengerTypes,Theme logicStyle
+    class AirportData,MapboxAPI,I18nMsg dataStyle
+
