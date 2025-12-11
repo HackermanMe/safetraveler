@@ -170,26 +170,31 @@ export default function ServicesPage() {
       <div className="px-4 py-4 space-y-4">
         {/* Emergency Cards */}
         <div className="grid grid-cols-2 gap-3">
-          {emergencyContacts.map((contact) => (
-            <a
-              key={contact.phone}
-              href={`tel:${contact.phone.replace(/\s/g, "")}`}
-              className="rounded-xl p-4 transition-all"
-              style={{
-                background: `linear-gradient(135deg, ${contact.color} 0%, ${contact.color}DD 100%)`,
-                color: "#fff",
-                boxShadow: theme.shadow.md,
-              }}
-            >
-              <div className="text-3xl mb-2">{contact.icon}</div>
-              <h3 className="font-bold text-sm mb-1">{t(contact.nameKey)}</h3>
-              <p className="text-xs opacity-90 mb-2">{t(contact.descriptionKey)}</p>
-              <div className="flex items-center gap-1 text-xs font-semibold">
-                <Phone className="w-3 h-3" />
-                {contact.phone}
-              </div>
-            </a>
-          ))}
+          {emergencyContacts.map((contact) => {
+            const Icon = contact.icon;
+            return (
+              <a
+                key={contact.phone}
+                href={`tel:${contact.phone.replace(/\s/g, "")}`}
+                className="rounded-xl p-4 transition-all"
+                style={{
+                  background: `linear-gradient(135deg, ${contact.color} 0%, ${contact.color}DD 100%)`,
+                  color: "#fff",
+                  boxShadow: theme.shadow.md,
+                }}
+              >
+                <div className="mb-2">
+                  <Icon size={32} />
+                </div>
+                <h3 className="font-bold text-sm mb-1">{t(contact.nameKey)}</h3>
+                <p className="text-xs opacity-90 mb-2">{t(contact.descriptionKey)}</p>
+                <div className="flex items-center gap-1 text-xs font-semibold">
+                  <Phone className="w-3 h-3" />
+                  {contact.phone}
+                </div>
+              </a>
+            )
+          })}
         </div>
 
         {/* Quick Tips */}
@@ -394,9 +399,9 @@ export default function ServicesPage() {
                           color: theme.colors.text.secondary,
                         }}
                       >
-                      {location.floor === 0
-                        ? t("common.floor.ground")
-                        : `${t("common.floor.level")} ${location.floor}`}
+                        {location.floor === 0
+                          ? t("common.floor.ground")
+                          : `${t("common.floor.level")} ${location.floor}`}
                       </span>
                     </div>
                   </div>

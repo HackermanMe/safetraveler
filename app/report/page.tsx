@@ -6,6 +6,7 @@ import { useLocale } from "@/lib/context/LocaleContext";
 import { theme, aviationIncidentCategories } from "@/lib/config/theme";
 import { Location } from "@/lib/types";
 import airportData from "@/lib/data/airport-data.json";
+import { submitIncidentReport } from "@/lib/services/incident-api";
 
 export default function ReportPage() {
   const { t } = useLocale();
@@ -15,6 +16,8 @@ export default function ReportPage() {
   const [photo, setPhoto] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
+  const [trackingId, setTrackingId] = useState<string | null>(null);
   const [locations, setLocations] = useState<Location[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -101,29 +104,33 @@ export default function ReportPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!problemType || !location || !description.trim()) {
       return;
     }
 
     setIsSubmitting(true);
+    setSubmissionError(null);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      // In a real app, you would send the data to your API
-      // await fetch("/api/reports", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ problemType, location, description, photo }),
-      // });
-      
+      // Submit the report to the ANAC backend
+      const response = await submitIncidentReport({
+        problemType,
+        location,
+        description,
+        photo,
+      });
+
+      // Store the tracking ID for display
+      setTrackingId(response.trackingId);
       setSubmitted(true);
     } catch (error) {
       console.error("Error submitting report:", error);
-      // Still show success for demo purposes
-      setSubmitted(true);
+      setSubmissionError(
+        error instanceof Error
+          ? error.message
+          : "Une erreur est survenue lors de l'envoi du rapport. Veuillez réessayer."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -135,6 +142,8 @@ export default function ReportPage() {
     setDescription("");
     setPhoto(null);
     setSubmitted(false);
+    setSubmissionError(null);
+    setTrackingId(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -171,7 +180,7 @@ export default function ReportPage() {
             {t("report.success.title")}
           </h2>
           <p
-            className="mb-8"
+            className="mb-4"
             style={{
               fontSize: theme.typography.base.fontSize,
               color: theme.colors.text.secondary,
@@ -180,6 +189,34 @@ export default function ReportPage() {
           >
             {t("report.success.description")}
           </p>
+          {trackingId && (
+            <div
+              className="mb-8 p-4 rounded-lg"
+              style={{
+                backgroundColor: theme.colors.info.main + "10",
+                border: `1px solid ${theme.colors.info.main}30`,
+              }}
+            >
+              <p
+                className="text-sm mb-2"
+                style={{
+                  color: theme.colors.text.secondary,
+                  fontSize: theme.typography.small.fontSize,
+                }}
+              >
+                Numéro de suivi :
+              </p>
+              <p
+                className="font-mono font-bold"
+                style={{
+                  color: theme.colors.info.main,
+                  fontSize: theme.typography.base.fontSize,
+                }}
+              >
+                {trackingId}
+              </p>
+            </div>
+          )}
           <button
             onClick={resetForm}
             className="rounded-lg font-medium transition-all px-8 py-3"
@@ -489,6 +526,31 @@ export default function ReportPage() {
               {t("report.anonymousNotice")}
             </p>
           </div>
+
+          {/* Error Message */}
+          {submissionError && (
+            <div
+              className="rounded-lg p-4 flex items-start gap-3"
+              style={{
+                backgroundColor: theme.colors.error.main + "10",
+                border: `1px solid ${theme.colors.error.main}30`,
+              }}
+            >
+              <AlertTriangle
+                className="w-5 h-5 flex-shrink-0 mt-0.5"
+                style={{ color: theme.colors.error.main }}
+              />
+              <p
+                style={{
+                  fontSize: theme.typography.small.fontSize,
+                  color: theme.colors.error.main,
+                  lineHeight: theme.typography.small.lineHeight,
+                }}
+              >
+                {submissionError}
+              </p>
+            </div>
+          )}
 
           {/* Submit Button */}
           <button

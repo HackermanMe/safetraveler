@@ -5,6 +5,7 @@ import { LocaleProvider } from "@/lib/context/LocaleContext";
 import Navbar from "@/components/layout/Navbar";
 import ClassFAB from "@/components/ui/ClassFAB";
 import DemoModeBanner from "@/components/ui/DemoModeBanner";
+import InstallPrompt from "@/components/pwa/InstallPrompt";
 
 export const metadata: Metadata = {
   title: "SafeTraveler - Aéroport de Lomé",
@@ -51,6 +52,7 @@ export default function RootLayout({
             <main className="pb-16 md:pb-0">{children}</main>
             <ClassFAB />
             <DemoModeBanner />
+            <InstallPrompt />
           </PassengerProvider>
         </LocaleProvider>
       </body>

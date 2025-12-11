@@ -271,8 +271,19 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "[project]/lib/config/theme.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-// SafeTraveler Design System - Modern & Accessible
+// ============================================
+// ANAC SafeTraveler - Aviation Design System
+// OACI/IATA Compliant | WCAG 2.1 AA
+// Aéroport International Gnassingbé Eyadéma (LFW)
+// ============================================
+// Aviation Information - ICAO/IATA Codes
 __turbopack_context__.s([
+    "airportInfo",
+    ()=>airportInfo,
+    "airportZones",
+    ()=>airportZones,
+    "aviationIncidentCategories",
+    ()=>aviationIncidentCategories,
     "locationColors",
     ()=>locationColors,
     "passengerClassColors",
@@ -280,13 +291,108 @@ __turbopack_context__.s([
     "theme",
     ()=>theme
 ]);
+const airportInfo = {
+    icaoCode: 'DXXX',
+    iataCode: 'LFW',
+    name: {
+        fr: 'Aéroport International Gnassingbé Eyadéma',
+        en: 'Gnassingbé Eyadéma International Airport',
+        full: 'Aéroport International Gnassingbé Eyadéma de Lomé'
+    },
+    location: {
+        city: 'Lomé',
+        country: 'Togo',
+        countryCode: 'TG',
+        region: 'West Africa',
+        timezone: 'GMT',
+        coordinates: {
+            lat: 6.1659,
+            lng: 1.2549
+        }
+    },
+    operator: 'ANAC - Agence Nationale de l\'Aviation Civile'
+};
+const aviationIncidentCategories = {
+    // OACI Annex 13 - Aircraft Accident and Incident Investigation
+    RUNWAY_INCURSION: {
+        code: 'RI',
+        nameKey: 'incidents.categories.runwayIncursion',
+        severity: 'CRITICAL',
+        color: '#CC0000',
+        description: 'Unauthorized entry onto runway protected area'
+    },
+    FOD: {
+        code: 'FOD',
+        nameKey: 'incidents.categories.fod',
+        severity: 'HIGH',
+        color: '#FF6600',
+        description: 'Foreign Object Debris on operational surfaces'
+    },
+    BIRD_STRIKE: {
+        code: 'BS',
+        nameKey: 'incidents.categories.birdStrike',
+        severity: 'HIGH',
+        color: '#FF6600',
+        description: 'Wildlife hazard or bird strike incident'
+    },
+    SECURITY_BREACH: {
+        code: 'SEC',
+        nameKey: 'incidents.categories.securityBreach',
+        severity: 'CRITICAL',
+        color: '#CC0000',
+        description: 'Aviation security violation'
+    },
+    FACILITY_MAINTENANCE: {
+        code: 'FM',
+        nameKey: 'incidents.categories.facilityMaintenance',
+        severity: 'MEDIUM',
+        color: '#0066CC',
+        description: 'Airport infrastructure maintenance issue'
+    },
+    GROUND_HANDLING: {
+        code: 'GH',
+        nameKey: 'incidents.categories.groundHandling',
+        severity: 'MEDIUM',
+        color: '#FF9900',
+        description: 'Ground support equipment or handling issue'
+    },
+    PASSENGER_SAFETY: {
+        code: 'PS',
+        nameKey: 'incidents.categories.passengerSafety',
+        severity: 'HIGH',
+        color: '#FF6600',
+        description: 'Passenger safety or medical emergency'
+    },
+    ENVIRONMENTAL: {
+        code: 'ENV',
+        nameKey: 'incidents.categories.environmental',
+        severity: 'LOW',
+        color: '#006600',
+        description: 'Environmental or housekeeping concern'
+    },
+    OTHER: {
+        code: 'OTH',
+        nameKey: 'incidents.categories.other',
+        severity: 'LOW',
+        color: '#666666',
+        description: 'Other operational concern'
+    }
+};
 const theme = {
     colors: {
-        // Accent color - Yellow/Gold (for CTA, icons, badges)
+        // OACI Standard Aviation Colors
+        aviation: {
+            blue: '#003F87',
+            orange: '#FF6600',
+            red: '#CC0000',
+            yellow: '#FFD700',
+            green: '#006600'
+        },
+        // Accent color - Aviation Gold (for CTA, icons, badges)
         accent: {
-            main: '#F59E0B',
-            light: '#FCD34D',
-            dark: '#D97706',
+            main: '#D4AF37',
+            light: '#EDD382',
+            dark: '#AA8A2E',
             contrast: '#1F2937'
         },
         // Neutral palette - Grays
@@ -302,29 +408,29 @@ const theme = {
             800: '#1F2937',
             900: '#111827'
         },
-        // Semantic colors (minimal use)
+        // Semantic colors (aviation-aligned)
         success: {
-            main: '#10B981',
-            light: '#34D399',
-            dark: '#059669',
+            main: '#006600',
+            light: '#059669',
+            dark: '#047857',
             contrast: '#ffffff'
         },
         warning: {
-            main: '#F59E0B',
-            light: '#FCD34D',
-            dark: '#D97706',
+            main: '#FF9900',
+            light: '#FFB84D',
+            dark: '#CC7A00',
             contrast: '#1F2937'
         },
         error: {
-            main: '#EF4444',
-            light: '#F87171',
-            dark: '#DC2626',
+            main: '#CC0000',
+            light: '#EF4444',
+            dark: '#991B1B',
             contrast: '#ffffff'
         },
         info: {
-            main: '#3B82F6',
-            light: '#60A5FA',
-            dark: '#2563EB',
+            main: '#003F87',
+            light: '#3B82F6',
+            dark: '#1E3A8A',
             contrast: '#ffffff'
         },
         // Backgrounds
@@ -386,11 +492,13 @@ const theme = {
         20: '80px',
         24: '96px'
     },
-    // Modern typography scale (Roboto/Inter)
+    // Aviation-standard typography (Roboto/Inter for readability)
+    // OACI Doc 8126 - AIS Abbreviations and Codes
     typography: {
         fontFamily: {
             sans: "'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-            mono: "'JetBrains Mono', 'Fira Code', Consolas, monospace"
+            mono: "'JetBrains Mono', 'Fira Code', Consolas, monospace",
+            aviation: "'Roboto Mono', 'Courier New', monospace"
         },
         // Display - Large hero text
         display: {
@@ -510,38 +618,76 @@ const passengerClassColors = {
         border: '#E5E7EB'
     },
     business: {
-        primary: '#3B82F6',
-        light: '#60A5FA',
+        primary: '#003F87',
+        light: '#3B82F6',
         background: '#EFF6FF',
         border: '#BFDBFE'
     },
     first: {
-        primary: '#F59E0B',
-        light: '#FCD34D',
+        primary: '#D4AF37',
+        light: '#EDD382',
         background: '#FFFBEB',
         border: '#FDE68A'
     }
 };
 const locationColors = {
-    gate: "#3B82F6",
-    checkin: "#06B6D4",
-    security: "#F97316",
+    gate: "#003F87",
+    checkin: "#0891B2",
+    security: "#CC0000",
     customs: "#8B5CF6",
     toilet: "#14B8A6",
-    restaurant: "#EF4444",
+    restaurant: "#FF6600",
     shop: "#EC4899",
-    information: "#10B981",
+    information: "#006600",
     exit: "#6B7280",
     entrance: "#374151",
-    lounge: "#F59E0B",
+    lounge: "#D4AF37",
     baggage: "#92400E",
-    parking: "#8B5CF6",
-    medical: "#DC2626",
+    parking: "#5B21B6",
+    medical: "#CC0000",
     prayer: "#7C3AED",
     smoking: "#9CA3AF",
-    atm: "#059669",
+    atm: "#047857",
     wifi: "#0891B2",
-    charging: "#FBBF24"
+    charging: "#FFD700"
+};
+const airportZones = {
+    AIRSIDE: {
+        code: 'AS',
+        nameKey: 'zones.airside',
+        description: 'Restricted area - Beyond security',
+        accessLevel: 'RESTRICTED'
+    },
+    LANDSIDE: {
+        code: 'LS',
+        nameKey: 'zones.landside',
+        description: 'Public area - Before security',
+        accessLevel: 'PUBLIC'
+    },
+    TERMINAL: {
+        code: 'T',
+        nameKey: 'zones.terminal',
+        description: 'Terminal building',
+        accessLevel: 'PUBLIC'
+    },
+    APRON: {
+        code: 'AP',
+        nameKey: 'zones.apron',
+        description: 'Aircraft parking area',
+        accessLevel: 'RESTRICTED'
+    },
+    RUNWAY: {
+        code: 'RWY',
+        nameKey: 'zones.runway',
+        description: 'Runway and taxiway system',
+        accessLevel: 'RESTRICTED'
+    },
+    CARGO: {
+        code: 'CG',
+        nameKey: 'zones.cargo',
+        description: 'Cargo handling area',
+        accessLevel: 'RESTRICTED'
+    }
 };
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
@@ -590,16 +736,16 @@ function LanguageSelector({ currentLocale }) {
         setLocale(locale);
         setIsOpen(false);
     };
-    const getLocaleFlag = (locale)=>{
+    const getLocaleCode = (locale)=>{
         switch(locale){
             case "fr":
-                return "🇫🇷";
+                return "FR";
             case "en":
-                return "🇬🇧";
+                return "EN";
             case "ewe":
-                return "🇹🇬";
+                return "EWE";
             default:
-                return "🌍";
+                return "INT";
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -609,7 +755,7 @@ function LanguageSelector({ currentLocale }) {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                 onClick: ()=>setIsOpen(!isOpen),
                 className: "flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors",
-                "aria-label": "Select language",
+                "aria-label": `Select language - Current: ${__TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["localeNames"][currentLocale]}`,
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__["Globe"], {
                         className: "w-5 h-5 text-gray-600"
@@ -627,8 +773,8 @@ function LanguageSelector({ currentLocale }) {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-lg",
-                        children: getLocaleFlag(currentLocale)
+                        className: "text-xs font-bold text-gray-600 bg-gray-100 px-2 py-1 rounded",
+                        children: getLocaleCode(currentLocale)
                     }, void 0, false, {
                         fileName: "[project]/components/ui/LanguageSelector.tsx",
                         lineNumber: 57,
@@ -642,16 +788,20 @@ function LanguageSelector({ currentLocale }) {
             }, this),
             isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50",
+                role: "menu",
+                "aria-label": "Language options",
                 children: __TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["locales"].map((locale)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: ()=>handleLanguageChange(locale),
                         className: `w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors ${currentLocale === locale ? "bg-blue-50" : ""}`,
+                        role: "menuitem",
+                        "aria-label": `Switch to ${__TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["localeNames"][locale]}`,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "text-2xl",
-                                children: getLocaleFlag(locale)
+                                className: "text-xs font-bold text-gray-600 bg-gray-100 px-2 py-1 rounded min-w-[42px] text-center",
+                                children: getLocaleCode(locale)
                             }, void 0, false, {
                                 fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                lineNumber: 70,
+                                lineNumber: 78,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -662,7 +812,7 @@ function LanguageSelector({ currentLocale }) {
                                         children: __TURBOPACK__imported__module__$5b$project$5d2f$i18n$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["localeNames"][locale]
                                     }, void 0, false, {
                                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                        lineNumber: 72,
+                                        lineNumber: 82,
                                         columnNumber: 17
                                     }, this),
                                     locale === "ewe" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -670,31 +820,32 @@ function LanguageSelector({ currentLocale }) {
                                         children: "Langue Ewe"
                                     }, void 0, false, {
                                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                        lineNumber: 80,
+                                        lineNumber: 90,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                lineNumber: 71,
+                                lineNumber: 81,
                                 columnNumber: 15
                             }, this),
                             currentLocale === locale && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "w-2 h-2 bg-blue-600 rounded-full"
+                                className: "w-2 h-2 bg-blue-600 rounded-full",
+                                "aria-label": "Selected"
                             }, void 0, false, {
                                 fileName: "[project]/components/ui/LanguageSelector.tsx",
-                                lineNumber: 84,
+                                lineNumber: 94,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, locale, true, {
                         fileName: "[project]/components/ui/LanguageSelector.tsx",
-                        lineNumber: 63,
+                        lineNumber: 69,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/ui/LanguageSelector.tsx",
-                lineNumber: 61,
+                lineNumber: 63,
                 columnNumber: 9
             }, this)
         ]
@@ -798,7 +949,7 @@ function Navbar() {
                                     className: "w-50 h-auto my-9"
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/Navbar.tsx",
-                                    lineNumber: 44,
+                                    lineNumber: 42,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
@@ -838,12 +989,12 @@ function Navbar() {
                                                 children: t(item.nameKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                                lineNumber: 118,
+                                                lineNumber: 80,
                                                 columnNumber: 21
                                             }, this)
                                         }, item.nameKey, false, {
                                             fileName: "[project]/components/layout/Navbar.tsx",
-                                            lineNumber: 92,
+                                            lineNumber: 54,
                                             columnNumber: 19
                                         }, this);
                                     }),
@@ -851,13 +1002,13 @@ function Navbar() {
                                         currentLocale: locale
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout/Navbar.tsx",
-                                        lineNumber: 124,
+                                        lineNumber: 86,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                lineNumber: 88,
+                                lineNumber: 50,
                                 columnNumber: 13
                             }, this),
                             profile && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -881,12 +1032,12 @@ function Navbar() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/layout/Navbar.tsx",
-                                            lineNumber: 144,
+                                            lineNumber: 106,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout/Navbar.tsx",
-                                        lineNumber: 137,
+                                        lineNumber: 99,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -901,7 +1052,7 @@ function Navbar() {
                                                 children: t(`home.class.${profile.class === "economy" ? "economy" : profile.class === "business" ? "business" : "first"}`)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                                lineNumber: 147,
+                                                lineNumber: 109,
                                                 columnNumber: 19
                                             }, this),
                                             profile.flightNumber && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -913,19 +1064,19 @@ function Navbar() {
                                                 children: profile.flightNumber
                                             }, void 0, false, {
                                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                                lineNumber: 157,
+                                                lineNumber: 119,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/layout/Navbar.tsx",
-                                        lineNumber: 146,
+                                        lineNumber: 108,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                lineNumber: 129,
+                                lineNumber: 91,
                                 columnNumber: 15
                             }, this)
                         ]
@@ -967,35 +1118,35 @@ function Navbar() {
                                     className: "h-20 w-auto"
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/Navbar.tsx",
-                                    lineNumber: 187,
+                                    lineNumber: 149,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                lineNumber: 186,
+                                lineNumber: 148,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$LanguageSelector$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 currentLocale: locale
                             }, void 0, false, {
                                 fileName: "[project]/components/layout/Navbar.tsx",
-                                lineNumber: 195,
+                                lineNumber: 157,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/layout/Navbar.tsx",
-                        lineNumber: 184,
+                        lineNumber: 146,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/layout/Navbar.tsx",
-                    lineNumber: 183,
+                    lineNumber: 145,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/layout/Navbar.tsx",
-                lineNumber: 175,
+                lineNumber: 137,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1024,7 +1175,7 @@ function Navbar() {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/Navbar.tsx",
-                                    lineNumber: 218,
+                                    lineNumber: 180,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1036,24 +1187,24 @@ function Navbar() {
                                     children: t(item.nameKey)
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/Navbar.tsx",
-                                    lineNumber: 225,
+                                    lineNumber: 187,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, item.nameKey, true, {
                             fileName: "[project]/components/layout/Navbar.tsx",
-                            lineNumber: 213,
+                            lineNumber: 175,
                             columnNumber: 15
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/components/layout/Navbar.tsx",
-                    lineNumber: 208,
+                    lineNumber: 170,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/layout/Navbar.tsx",
-                lineNumber: 201,
+                lineNumber: 163,
                 columnNumber: 7
             }, this)
         ]
