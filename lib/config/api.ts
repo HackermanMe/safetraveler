@@ -3,7 +3,7 @@
 
 export const API_CONFIG = {
   // Backend base URL - Update this based on your environment
-  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api/v1',
+  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'https://anac-api.up.railway.app/api/v1',
 
   // Endpoints
   ENDPOINTS: {
