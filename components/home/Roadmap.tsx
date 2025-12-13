@@ -103,8 +103,9 @@ export default function Roadmap({
                     const { x, y } = getCoordinates(index);
                     const isCompleted = index < currentStepIndex;
                     const isCurrent = index === currentStepIndex;
-                    const isActive = index === activeStepIndex; // The step currently being viewed
-                    const isPast = index <= currentStepIndex;
+                    const isActive = index === activeStepIndex;
+                    // Stylistically "past" if it's actually completed OR if it's before the one we are looking at
+                    const isColored = index <= currentStepIndex || index < activeStepIndex;
 
                     return (
                         <g
@@ -112,7 +113,7 @@ export default function Roadmap({
                             className="cursor-pointer transition-all duration-300"
                             onClick={() => onStepClick(index)}
                         >
-                            {/* Ripple effect for active/selected step */}
+                            {/* Ripple effect for active/selected step only */}
                             {isActive && (
                                 <circle cx={x} cy={y} r="30" fill={classColor.primary} opacity="0.2">
                                     <animate attributeName="r" from="30" to="50" dur="1.5s" repeatCount="indefinite" />
@@ -125,8 +126,8 @@ export default function Roadmap({
                                 cx={x}
                                 cy={y}
                                 r="24"
-                                fill={isActive ? classColor.primary : (isPast ? classColor.light : "white")}
-                                stroke={isActive ? "white" : (isPast ? classColor.primary : theme.colors.gray[300])}
+                                fill={isActive ? classColor.primary : (isColored ? classColor.light : "white")}
+                                stroke={isActive ? "white" : (isColored ? classColor.primary : theme.colors.gray[300])}
                                 strokeWidth="4"
                                 className="shadow-lg transition-colors duration-300"
                             />
@@ -138,7 +139,7 @@ export default function Roadmap({
                                         {isCompleted ? (
                                             <Check size={16} strokeWidth={3} />
                                         ) : (
-                                            <span className={`font-bold text-lg ${isActive ? 'text-white' : (isPast ? 'text-white' : 'text-gray-400')}`}>
+                                            <span className={`font-bold text-lg ${isActive ? 'text-white' : (isColored ? 'text-white' : 'text-gray-400')}`}>
                                                 {index + 1}
                                             </span>
                                         )}
@@ -159,12 +160,11 @@ export default function Roadmap({
                                 >
                                     <div
                                         className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-1 shadow-sm
-                        ${isActive ? 'bg-white text-gray-900 border-2 scale-110' : ''}`}
+                        ${isActive ? 'bg-white text-gray-900 border-2' : ''}`}
                                         style={{
                                             borderColor: isActive ? classColor.primary : 'transparent',
                                             backgroundColor: isActive ? 'white' : 'rgba(255,255,255,0.8)',
                                             color: isActive ? classColor.primary : theme.colors.gray[600],
-                                            transform: isActive ? 'scale(1.05)' : 'scale(1)',
                                             transition: 'all 0.3s ease'
                                         }}
                                     >

@@ -131,7 +131,10 @@ export default function Home() {
 
                                             {/* Action Button (Contextual) */}
                                             <div className="mt-10 pt-8 border-t border-white/20">
-                                                <button className="w-full bg-white text-gray-900 font-bold py-4 rounded-xl shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+                                                <button
+                                                    onClick={() => router.push('/navigation')}
+                                                    className="w-full bg-white text-gray-900 font-bold py-4 rounded-xl shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                                                >
                                                     <span>Voir sur la carte</span>
                                                     <ChevronDown className="rotate-[-90deg]" size={20} />
                                                 </button>
