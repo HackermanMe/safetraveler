@@ -9,6 +9,7 @@ import { useLocale } from "@/lib/context/LocaleContext";
 interface RoadmapProps {
     steps: JourneyStep[];
     currentStepIndex: number;
+    activeStepIndex: number;
     passengerClass: PassengerClass;
     onStepClick: (index: number) => void;
 }
@@ -16,6 +17,7 @@ interface RoadmapProps {
 export default function Roadmap({
     steps,
     currentStepIndex,
+    activeStepIndex,
     passengerClass,
     onStepClick,
 }: RoadmapProps) {
@@ -101,7 +103,8 @@ export default function Roadmap({
                     const { x, y } = getCoordinates(index);
                     const isCompleted = index < currentStepIndex;
                     const isCurrent = index === currentStepIndex;
-                    const isActive = index <= currentStepIndex;
+                    const isActive = index === activeStepIndex; // The step currently being viewed
+                    const isPast = index <= currentStepIndex;
 
                     return (
                         <g
@@ -109,8 +112,8 @@ export default function Roadmap({
                             className="cursor-pointer transition-all duration-300"
                             onClick={() => onStepClick(index)}
                         >
-                            {/* Ripple effect for current step */}
-                            {isCurrent && (
+                            {/* Ripple effect for active/selected step */}
+                            {isActive && (
                                 <circle cx={x} cy={y} r="30" fill={classColor.primary} opacity="0.2">
                                     <animate attributeName="r" from="30" to="50" dur="1.5s" repeatCount="indefinite" />
                                     <animate attributeName="opacity" from="0.3" to="0" dur="1.5s" repeatCount="indefinite" />
@@ -122,8 +125,8 @@ export default function Roadmap({
                                 cx={x}
                                 cy={y}
                                 r="24"
-                                fill={isActive ? classColor.primary : "white"}
-                                stroke={isActive ? "white" : theme.colors.gray[300]}
+                                fill={isActive ? classColor.primary : (isPast ? classColor.light : "white")}
+                                stroke={isActive ? "white" : (isPast ? classColor.primary : theme.colors.gray[300])}
                                 strokeWidth="4"
                                 className="shadow-lg transition-colors duration-300"
                             />
@@ -135,7 +138,7 @@ export default function Roadmap({
                                         {isCompleted ? (
                                             <Check size={16} strokeWidth={3} />
                                         ) : (
-                                            <span className={`font-bold text-lg ${isActive ? 'text-white' : 'text-gray-400'}`}>
+                                            <span className={`font-bold text-lg ${isActive ? 'text-white' : (isPast ? 'text-white' : 'text-gray-400')}`}>
                                                 {index + 1}
                                             </span>
                                         )}
@@ -156,11 +159,13 @@ export default function Roadmap({
                                 >
                                     <div
                                         className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-1 shadow-sm
-                        ${isCurrent ? 'bg-white text-gray-900 border-2' : ''}`}
+                        ${isActive ? 'bg-white text-gray-900 border-2 scale-110' : ''}`}
                                         style={{
                                             borderColor: isActive ? classColor.primary : 'transparent',
-                                            backgroundColor: isCurrent ? 'white' : 'rgba(255,255,255,0.8)',
-                                            color: isCurrent ? classColor.primary : theme.colors.gray[600]
+                                            backgroundColor: isActive ? 'white' : 'rgba(255,255,255,0.8)',
+                                            color: isActive ? classColor.primary : theme.colors.gray[600],
+                                            transform: isActive ? 'scale(1.05)' : 'scale(1)',
+                                            transition: 'all 0.3s ease'
                                         }}
                                     >
                                         {t(`home.journey.steps.${step.id}.title`)}

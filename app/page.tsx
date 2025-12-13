@@ -75,6 +75,7 @@ export default function Home() {
                                         <Roadmap
                                             steps={steps}
                                             currentStepIndex={currentStepIndex}
+                                            activeStepIndex={activeStepIndex}
                                             passengerClass={profile.class}
                                             onStepClick={setActiveStepIndex}
                                         />
